@@ -12,15 +12,20 @@ description: "定义视频的全局艺术风格与视觉基调。当需要设定
 - 在剧本定稿后，开始视觉生成前。
 
 ## 3. 执行指令
-1. **风格调研**：推荐匹配的艺术流派（如：写实电影感、赛博朋克、吉卜力动漫等）。
+1. **风格调研**：推荐匹配的艺术流派。
 2. **色板定义**：选定主色、辅助色和强调色。
 3. **Prompt 模板构建**：生成用于 AI 绘图的正面后缀和负面提示词。
-4. **风格参考图生成**：产出 1-3 张代表全片视觉最高标准的“风格样帧（Style Frames）”，展示光影、材质和色彩的最终效果。
+4. **风格参考图生成**：
+   - 调用 `03-art-style/scripts/` 下的生成脚本（如 `generate_style.py`）。
+   - 参考 `03-art-style/references/` 中的 API 文档或风格库。
+   - 产出 1-3 张代表全片视觉最高标准的“风格样帧”。
 
 ## 4. 交付物与存放位置
-- **风格参考图**: `03-art-style/style_reference.png` (或多张，如 `style_ref_1.png`)
+- **风格参考图**: `03-art-style/style_reference.png`
 - **风格配置文件 (JSON)**: `03-art-style/style_config.json`
 - **风格参考说明 (Markdown)**: `03-art-style/style_guide.md`
+- **工具脚本**: `03-art-style/scripts/`
+- **参考资料**: `03-art-style/references/`
 
 ## 5. 约束与规范
 - 所有关键词和参考图必须服务于同一种艺术流派。
