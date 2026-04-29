@@ -12,12 +12,13 @@ description: "负责视频场景的空间布局与环境设定。当需要设计
 - 在剧本场景划分完成后。
 
 ## 3. 执行指令
-1. **场景需求分析**：识别场景的功能性与情感基调。
-2. **空间布局规划 (Layout)**：明确主体活动区域与背景区域。
-3. **设定图生成**：
-   - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[Prompt]" --output "assets/05-scene-design/scenes/[name]/concept.png"`。
-   - 参考 `assets/05-scene-design/references/` 中的场景库或光影规范。
-   - 产出高保真场景概念图（Concept Art）。
+1. **资产检索**：
+   - **必须**先读取 `assets/03-art-style/style_guide.md`。
+   - **必须**使用 `assets/03-art-style/style_reference.png` 作为环境光影与质感的基准。
+2. **场景需求分析**：识别场景的功能性与情感基调。
+3. **空间布局规划 (Layout)**：明确主体活动区域与背景区域。
+4. **设定图生成**：
+   - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[Prompt] in [Style Keywords] style" --base_image "assets/03-art-style/style_reference.png" --output "assets/05-scene-design/scenes/[name]/concept.png"`。
 
 ## 4. 场景设计深度与广度 (Depth & Scope)
 场景设计应涵盖以下维度：

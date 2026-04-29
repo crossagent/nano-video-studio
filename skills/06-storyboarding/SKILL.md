@@ -22,15 +22,15 @@ description: "将剧本转化为可视化的分镜表。当需要规划镜头语
    - **必须包含**：每个镜头的详细描述、关联的角色参考图、场景参考图及艺术风格说明。
 5. **关键帧生成 (Keyframe Generation)**：
     - 根据预览描述，逐个生成可视化关键帧。
-    - **多参考图调用**：同时引用角色设定图、场景概念图和风格参考图。
+    - **内容参考调用**：同时引用角色设定图和场景概念图。风格应通过文字 Prompt 继承，而非直接传图。
     - 调用示例：
       ```bash
       python skills/00-common-tools/scripts/gen_image.py \
-        --prompt "[Visual Prompt]" \
-        --base_image "assets/04-character-design/characters/[name]/character_sheet.png" "assets/05-scene-design/scenes/[scene]/concept.png" "assets/03-art-style/style_reference.png" \
+        --prompt "[Visual Prompt] ... (Incorporate style keywords here)" \
+        --base_image "assets/04-character-design/characters/[name]/character_sheet.png" "assets/05-scene-design/scenes/[scene]/concept.png" \
         --output "assets/06-storyboarding/shots/[shot_id].png" \
         --size "1K" \
-        --aspect_ratio "16:9"
+        --versioning
       ```
 
 ## 4. 交付物与存放位置

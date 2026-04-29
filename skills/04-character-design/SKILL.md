@@ -12,17 +12,16 @@ description: "负责视频角色的视觉设定与一致性维护。当需要设
 - 在风格定稿后，需要为剧本中的角色建立视觉形象时。
 
 ## 3. 执行指令
-1. **角色画像提取**：分析性格、职业、背景。
-2. **视觉锚点定义**：确定不可变特征。
-3. **设定图生成与迭代**：
-   - **综合设定图 (Character Sheet)**：推荐将所有要素整合在一张图中。
-     - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[角色名] full body turnaround, expressions sheet, key details, [视觉锚点], anime style, comprehensive character design sheet" --output "assets/04-character-design/characters/[name]/character_sheet.png"`。
-   - **初次生成**：调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[Prompt]" --output "assets/04-character-design/characters/[name]/turnaround.png"`。
-   - **迭代修改**：若用户提供原图及修改要求，调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[修改要求]" --base_image "[原图路径]" --output "[新版本路径]"`。
-   - **三视图 (Turnaround)**：正面、侧面、背面。
-   - **表情特写 (Expression Sheet)**：
-     - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[角色名] expressions: happy, angry, sad, surprised, seductive, detailed facial features" --base_image "assets/04-character-design/characters/[name]/turnaround.png" --output "assets/04-character-design/characters/[name]/expressions.png"`。
-     - 必须包含至少 4 种核心情绪，确保五官特征与三视图一致。
+1. **资产检索**：
+   - **必须**先读取 `assets/03-art-style/style_guide.md` 以获取全片的视觉基调。
+   - **必须**使用 `assets/03-art-style/style_reference.png` 作为底层风格参考。
+2. **角色画像提取**：分析性格、职业、背景。
+3. **视觉锚点定义**：确定不可变特征。
+4. **设定图生成与迭代**：
+   - **综合设定图 (Character Sheet)**：
+     - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[角色名] full body turnaround, expressions, [视觉锚点], [Style Keywords]" --base_image "assets/03-art-style/style_reference.png" --output "assets/04-character-design/characters/[name]/character_sheet.png"`。
+   - **迭代修改**：若用户提供原图及修改要求，同时引用风格图和原图。
+     - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[修改要求]" --base_image "assets/03-art-style/style_reference.png" "[原图路径]" --output "[新版本路径]"`。
 
 ## 4. 角色设定图核心要素 (Core Elements)
 为了确保角色一致性，一张完整的设定图应包含以下要素：
