@@ -13,12 +13,16 @@ description: "负责视频场景的空间布局与环境设定。当需要设计
 
 ## 3. 执行指令
 1. **资产检索**：
-   - **必须**先读取 `assets/03-art-style/style_guide.md`。
-   - **必须**使用 `assets/03-art-style/style_reference.png` 作为环境光影与质感的基准。
+   - **必须**先读取 `[project]/assets/03-art-style/style_guide.md`。
+   - **必须**使用 `[project]/assets/03-art-style/style_reference.png` 作为环境光影与质感的基准。
 2. **场景需求分析**：识别场景的功能性与情感基调。
 3. **空间布局规划 (Layout)**：明确主体活动区域与背景区域。
-4. **设定图生成**：
-   - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[Prompt] in [Style Keywords] style" --base_image "assets/03-art-style/style_reference.png" --output "assets/05-scene-design/scenes/[name]/concept.png"`。
+4. **生成任务流 (Generation Workflow)**：
+   - **创建提案 (Propose)**：
+     使用 `task_db.py` 向指定图像模型表添加任务。必须包含 `ref_image_path`（通常为艺术风格图）。
+   - **获取审批**：告知用户任务 ID 与参数，由用户决定是否执行。
+   - **触发执行 (Execute)**：
+     通过 `run_task.py` 触发生成，并将结果保存至 `[project]/assets/05-scene-design/scenes/[name]/` 目录。
 
 ## 4. 场景设计深度与广度 (Depth & Scope)
 场景设计应涵盖以下维度：
@@ -27,12 +31,12 @@ description: "负责视频场景的空间布局与环境设定。当需要设计
 - **建筑结构设计图 (Architecture)**：建筑外观、结构透视、空间比例。
 
 ## 5. 交付物与存放位置
-- **场景设定说明书 (Markdown)**: `assets/05-scene-design/scenes/[name]/scene_guide.md`
+- **场景设定说明书 (Markdown)**: `[project]/assets/05-scene-design/scenes/[name]/scene_guide.md`
 - **场景概念总图 (Total Map/Concept)**: `concept.png` (场景的全局氛围与核心视角)
 - **室内/室外细节图 (Detail Maps)**: `details/[indoor_or_outdoor].png`
 - **建筑结构图 (Structure)**: `details/architecture.png`
 - **平面布局图 (Layout)**: `layout_map.png`
-- **参考资料**: `assets/05-scene-design/references/`
+- **参考资料**: `[project]/assets/05-scene-design/references/`
 
 ## 6. 场景设定说明书 (scene_guide.md) 结构规范
 文档应遵循“总-分”结构，包含以下内容：
@@ -50,7 +54,7 @@ description: "负责视频场景的空间布局与环境设定。当需要设计
 - 必须明确物体的相对方位，严禁空间逻辑冲突。
 - 场景风格必须与 `03-art-style` 保持一致。
 - **禁止使用 JSON 配置文件**，所有场景设定必须记录在 `scene_guide.md` 中。
-- 交付物必须严格存放在 `assets/05-scene-design/scenes/` 对应子目录下。
+- 交付物必须严格存放在 `[project]/assets/05-scene-design/scenes/` 对应子目录下。
 
 ## 8. 示例 (scene_guide.md 片段)
 ### 设计点描述

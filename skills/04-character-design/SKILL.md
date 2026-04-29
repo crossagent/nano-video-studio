@@ -13,15 +13,16 @@ description: "负责视频角色的视觉设定与一致性维护。当需要设
 
 ## 3. 执行指令
 1. **资产检索**：
-   - **必须**先读取 `assets/03-art-style/style_guide.md` 以获取全片的视觉基调。
-   - **必须**使用 `assets/03-art-style/style_reference.png` 作为底层风格参考。
+   - **必须**先读取 `[project]/assets/03-art-style/style_guide.md` 以获取全片的视觉基调。
+   - **必须**使用 `[project]/assets/03-art-style/style_reference.png` 作为底层风格参考。
 2. **角色画像提取**：分析性格、职业、背景。
 3. **视觉锚点定义**：确定不可变特征。
-4. **设定图生成与迭代**：
-   - **综合设定图 (Character Sheet)**：
-     - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[角色名] full body turnaround, expressions, [视觉锚点], [Style Keywords]" --base_image "assets/03-art-style/style_reference.png" --output "assets/04-character-design/characters/[name]/character_sheet.png"`。
-   - **迭代修改**：若用户提供原图及修改要求，同时引用风格图和原图。
-     - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[修改要求]" --base_image "assets/03-art-style/style_reference.png" "[原图路径]" --output "[新版本路径]"`。
+4. **生成任务流 (Generation Workflow)**：
+   - **创建提案 (Propose)**：
+     调用 `task_db.py` 向 `model_openrouter_gpt54_image` 或 `model_volcengine_seedream_image` 表添加任务，并附带参考图路径。
+   - **获取审批**：向用户汇报任务 ID 及参数，等待批准。
+   - **触发执行 (Execute)**：
+     审批通过后，调用 `python skills/00-common-tools/scripts/run_task.py --table [table] --id [id]` 完成图片生成。
 
 ## 4. 角色设定图核心要素 (Core Elements)
 为了确保角色一致性，一张完整的设定图应包含以下要素：
@@ -32,12 +33,12 @@ description: "负责视频角色的视觉设定与一致性维护。当需要设
 - **色板 (Color Palette)**：标注头发、皮肤、服装的主色调。
 
 ## 5. 交付物与存放位置
-- **角色设定说明书 (Markdown)**: `assets/04-character-design/characters/[name]/character_guide.md`
+- **角色设定说明书 (Markdown)**: `[project]/assets/04-character-design/characters/[name]/character_guide.md`
 - **角色综合设定图 (Total Map)**: `character_sheet.png` (包含全身、核心表情、核心细节)
 - **三视图 (Turnaround)**: `turnaround.png`
 - **表情特写 (Expression Sheet)**: `expressions.png`
 - **视觉锚点/细节图 (Detail Maps)**: `details/[feature].png`
-- **参考资料**: `assets/04-character-design/references/`
+- **参考资料**: `[project]/assets/04-character-design/references/`
 
 ## 6. 角色设定说明书 (character_guide.md) 结构规范
 文档应遵循“总-分”结构，包含以下内容：
@@ -54,7 +55,7 @@ description: "负责视频角色的视觉设定与一致性维护。当需要设
 - 必须使用纯色背景以突出角色。
 - 角色特征必须在所有图中保持高度统一。
 - **禁止使用 JSON 配置文件**，所有角色设定必须记录在 `character_guide.md` 中。
-- 交付物必须严格存放在 `assets/04-character-design/characters/` 对应子目录下。
+- 交付物必须严格存放在 `[project]/assets/04-character-design/characters/` 对应子目录下。
 
 ## 8. 示例 (character_guide.md 片段)
 ### 设计点描述

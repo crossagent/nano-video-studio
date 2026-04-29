@@ -13,23 +13,29 @@ description: "负责视频的最终合成、渲染与音画同步。当需要拼
 
 ## 3. 执行指令
 1. **素材校验**：检查分辨率、帧率。
-2. **音画对齐 (Syncing)**：精确对齐音频与画面。
-3. **后期处理**：添加转场、调色、字幕。
+2. **视频生成任务流 (Video Generation Workflow)**：
+   - **创建提案 (Propose)**：
+     使用 `task_db.py` 向 `model_volcengine_seedance_video` 表添加任务。必须包含 `ref_image_path`（分镜关键帧）。
+   - **获取审批**：向用户展示视频生成参数、成本及关联分镜图，等待批准。
+   - **触发执行 (Execute)**：
+     调用 `run_task.py` 启动异步生成任务，脚本会自动轮询直至完成。
+3. **音画对齐 (Syncing)**：精确对齐音频与画面。
+4. **后期处理**：添加转场、调色、字幕。
 
 ## 4. 交付物与存放位置
-- **最终视频文件**: `assets/07-production/output/final_video.mp4`
-- **项目元数据 (JSON)**: `assets/07-production/output/project_metadata.json`
-- **封面图**: `assets/07-production/output/cover.jpg`
+- **最终视频文件**: `[project]/assets/07-production/output/final_video.mp4`
+- **项目元数据 (JSON)**: `[project]/assets/07-production/output/project_metadata.json`
+- **封面图**: `[project]/assets/07-production/output/cover.jpg`
 
 ## 5. 约束与规范
 - 默认输出 1080p, 30fps, H.264 编码。
-- 交付物必须严格存放在 `assets/07-production/output/` 目录下。
+- 交付物必须严格存放在 `[project]/assets/07-production/output/` 目录下。
 
 ## 6. 示例
 ```json
 {
   "project_name": "未来城市",
   "total_duration": 60,
-  "output_file": "assets/07-production/output/final_video.mp4"
+  "output_file": "[project]/assets/07-production/output/final_video.mp4"
 }
 ```
