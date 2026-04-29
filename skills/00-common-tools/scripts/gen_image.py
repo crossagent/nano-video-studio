@@ -4,6 +4,10 @@ import base64
 import os
 import sys
 import argparse
+from dotenv import load_dotenv
+
+# 加载 .env 文件
+load_dotenv()
 
 def encode_image(image_path):
     """将本地图片转为 Base64 编码"""
@@ -21,7 +25,7 @@ def save_base64_image(base64_data, output_path):
     print(f"图片已保存至: {output_path}")
 
 def generate_image(prompt, output_path, base_image_path=None, api_key=None):
-    """调用 OpenRouter API 生成或迭代图片"""
+    """调用 OpenRouter API 使用 openai/gpt-5.4-image-2 生成或迭代图片"""
     if not api_key:
         api_key = os.getenv("OPENROUTER_API_KEY")
     
@@ -36,12 +40,12 @@ def generate_image(prompt, output_path, base_image_path=None, api_key=None):
     }
 
     # 构建消息内容
-    content = [{"type": "text", "text": prompt}]
+    user_content = [{"type": "text", "text": prompt}]
     
     if base_image_path and os.path.exists(base_image_path):
         print(f"检测到原图，正在进行迭代生成: {base_image_path}")
         base64_img = encode_image(base_image_path)
-        content.append({
+        user_content.append({
             "type": "image_url",
             "image_url": {
                 "url": f"data:image/png;base64,{base64_img}"
@@ -49,11 +53,11 @@ def generate_image(prompt, output_path, base_image_path=None, api_key=None):
         })
 
     payload = {
-        "model": "openai/gpt-4o", # 默认使用支持多模态的模型
+        "model": "openai/gpt-5.4-image-2",
         "messages": [
             {
                 "role": "user",
-                "content": content
+                "content": user_content if len(user_content) > 1 else prompt
             }
         ],
         "modalities": ["image", "text"]
@@ -61,15 +65,17 @@ def generate_image(prompt, output_path, base_image_path=None, api_key=None):
 
     try:
         response = requests.post(url, headers=headers, data=json.dumps(payload))
+        if response.status_code != 200:
+            print(f"API 响应错误 ({response.status_code}): {response.text}")
         response.raise_for_status()
         result = response.json()
 
         if result.get("choices"):
             message = result["choices"][0]["message"]
             if message.get("images"):
-                # 假设返回第一张图
-                image_data = message["images"][0]["image_url"]["url"]
-                save_base64_image(image_data, output_path)
+                # 提取第一张生成的图片
+                image_url = message["images"][0]["image_url"]["url"]
+                save_base64_image(image_url, output_path)
             else:
                 print("API 未返回图片数据。")
                 if message.get("content"):
