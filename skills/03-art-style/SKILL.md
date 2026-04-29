@@ -16,20 +16,20 @@ description: "定义视频的全局艺术风格与视觉基调。当需要设定
 2. **色板定义**：选定主色、辅助色和强调色。
 3. **Prompt 模板构建**：生成用于 AI 绘图的正面后缀和负面提示词。
 4. **风格参考图生成**：
-   - 调用 `03-art-style/scripts/` 下的生成脚本（如 `generate_style.py`）。
-   - 参考 `03-art-style/references/` 中的 API 文档或风格库。
+   - 调用 `skills/03-art-style/scripts/` 下的生成脚本（如 `generate_style.py`）。
+   - 参考 `skills/03-art-style/references/` 中的 API 文档或风格库。
    - 产出 1-3 张代表全片视觉最高标准的“风格样帧”。
 
 ## 4. 交付物与存放位置
-- **风格参考图**: `03-art-style/style_reference.png`
-- **风格配置文件 (JSON)**: `03-art-style/style_config.json`
-- **风格参考说明 (Markdown)**: `03-art-style/style_guide.md`
-- **工具脚本**: `03-art-style/scripts/`
-- **参考资料**: `03-art-style/references/`
+- **风格参考图**: `skills/03-art-style/style_reference.png`
+- **风格配置文件 (JSON)**: `skills/03-art-style/style_config.json`
+- **风格参考说明 (Markdown)**: `skills/03-art-style/style_guide.md`
+- **工具脚本**: `skills/03-art-style/scripts/`
+- **参考资料**: `skills/03-art-style/references/`
 
 ## 5. 约束与规范
 - 所有关键词和参考图必须服务于同一种艺术流派。
-- 交付物必须严格存放在 `03-art-style/` 目录下。
+- 交付物必须严格存放在 `skills/03-art-style/` 目录下。
 
 ## 6. 示例
 ```json

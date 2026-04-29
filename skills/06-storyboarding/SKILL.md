@@ -17,12 +17,12 @@ description: "将剧本转化为可视化的分镜表。当需要规划镜头语
 3. **视觉 Prompt 合成**：整合剧本描述、风格后缀和角色锚点。
 
 ## 4. 交付物与存放位置
-- **分镜表 (JSON)**: `06-storyboarding/storyboard.json`
-- **分镜预览 (Markdown)**: `06-storyboarding/storyboard_preview.md`
+- **分镜表 (JSON)**: `skills/06-storyboarding/storyboard.json`
+- **分镜预览 (Markdown)**: `skills/06-storyboarding/storyboard_preview.md`
 
 ## 5. 约束 with 规范
 - 必须使用标准的影视工业术语。
-- 交付物必须严格存放在 `06-storyboarding/` 目录下。
+- 交付物必须严格存放在 `skills/06-storyboarding/` 目录下。
 
 ## 6. 示例
 ```json

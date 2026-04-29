@@ -12,17 +12,17 @@ description: "负责视频剧本的深度创作与结构化拆解。当需要将
 - 在故事大纲（来自 01-storytelling）定稿后，需要将其转化为具体脚本时。
 
 ## 3. 执行指令
-1. **故事大纲分析**：读取 `01-storytelling/story_outline.json`，识别核心情节。
+1. **故事大纲分析**：读取 `skills/01-storytelling/story_outline.json`，识别核心情节。
 2. **旁白创作**：编写口语化、有节奏感的旁白（VO）。
 3. **结构化拆解**：将剧本拆分为多个场景（Scene）。
 
 ## 4. 交付物与存放位置
-- **结构化剧本 (JSON)**: `02-scripting/script.json` (包含旁白、视觉描述、时长)
-- **剧本预览 (Markdown)**: `02-scripting/script_preview.md`
+- **结构化剧本 (JSON)**: `skills/02-scripting/script.json` (包含旁白、视觉描述、时长)
+- **剧本预览 (Markdown)**: `skills/02-scripting/script_preview.md`
 
 ## 5. 约束与规范
 - 视觉描述必须包含主体、动作、环境。
-- 交付物必须严格存放在 `02-scripting/` 目录下。
+- 交付物必须严格存放在 `skills/02-scripting/` 目录下。
 
 ## 6. 示例
 ```json
