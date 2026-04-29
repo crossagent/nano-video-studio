@@ -89,9 +89,9 @@ class TaskDB:
 
 def init_system_tables():
     db = TaskDB()
-    db.create_model_table("model_openrouter_gpt54_image", ["size TEXT", "aspect_ratio TEXT", "ref_image_path TEXT"])
-    db.create_model_table("model_volcengine_seedream_image", ["size TEXT", "seed INTEGER", "ref_image_path TEXT"])
-    db.create_model_table("model_volcengine_seedance_video", ["duration INTEGER", "ref_image_path TEXT", "ref_video_path TEXT", "aspect_ratio TEXT"])
+    db.create_model_table("model_openrouter_gpt54_image", ["size TEXT", "aspect_ratio TEXT", "ref_images_json TEXT"])
+    db.create_model_table("model_volcengine_seedream_image", ["size TEXT", "seed INTEGER", "ref_images_json TEXT"])
+    db.create_model_table("model_volcengine_seedance_video", ["duration INTEGER", "ref_images_json TEXT", "aspect_ratio TEXT"])
 
 def main():
     parser = argparse.ArgumentParser(description="Generation Task Database Manager")

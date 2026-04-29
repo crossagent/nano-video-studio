@@ -43,10 +43,19 @@ def execute_task(table_name, task_id):
     output_path = str(output_dir / f"{table_name}_{task_id}{ext}")
 
     try:
+        # 解析参考资产 (JSON 格式)
+        ref_assets = []
+        if task.get('ref_images_json'):
+            try:
+                ref_assets = json.loads(task['ref_images_json'])
+            except:
+                print("Warning: Failed to parse ref_images_json.")
+
         success = False
         if "video" in table_name:
             # 视频生成逻辑
-            images_ref = [task['ref_image_path']] if task.get('ref_image_path') else None
+            # 视频模型目前主要关注第一张图作为关键帧参考
+            images_ref = [a['path'] for a in ref_assets if a.get('path')]
             success = gen_video.generate_video(
                 prompt=task['prompt'],
                 output_path=output_path,
@@ -54,13 +63,14 @@ def execute_task(table_name, task_id):
             )
         else:
             # 图像生成逻辑
+            # 传入结构化的 ref_assets 到 gen_image
             gen_image.generate_image(
                 prompt=task['prompt'],
                 output_path=output_path,
                 model=model_name,
                 size=task.get('size'),
                 aspect_ratio=task.get('aspect_ratio'),
-                base_image_paths=[task['ref_image_path']] if task.get('ref_image_path') else None
+                ref_assets=ref_assets
             )
             success = os.path.exists(output_path)
 

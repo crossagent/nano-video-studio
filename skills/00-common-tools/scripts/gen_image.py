@@ -63,15 +63,25 @@ def generate_via_openrouter(prompt, output_path, model, base_image_paths=None, s
         "X-Title": "Nano Video Studio",
     }
 
-    user_content = [{"type": "text", "text": prompt}]
-    if base_image_paths:
-        for img_path in base_image_paths:
-            if os.path.exists(img_path):
-                base64_img = encode_image(img_path)
+    # 构建多模态内容：交织模式 (Label + Image)
+    user_content = []
+    
+    if ref_assets:
+        for asset in ref_assets:
+            path = asset.get('path')
+            label = asset.get('label', os.path.basename(path) if path else "参考图")
+            if path and os.path.exists(path):
+                img_data = encode_image(path)
+                # 插入文字描述标签
+                user_content.append({"type": "text", "text": f"参考资产 ({label}):"})
+                # 插入图片
                 user_content.append({
                     "type": "image_url",
-                    "image_url": {"url": f"data:image/png;base64,{base64_img}"}
+                    "image_url": {"url": f"data:image/png;base64,{img_data}"}
                 })
+    
+    # 最后放入核心 Prompt
+    user_content.append({"type": "text", "text": f"最终生图指令: {prompt}"})
 
     payload = {
         "model": model,
