@@ -26,7 +26,7 @@ def save_base64_image(base64_data, output_path):
         f.write(base64.b64decode(base64_data))
     print(f"图片已保存至: {output_path}")
 
-def generate_image(prompt, output_path, base_image_path=None, api_key=None):
+def generate_image(prompt, output_path, base_image_paths=None, api_key=None, size=None, aspect_ratio=None):
     """调用 OpenRouter API 使用 openai/gpt-5.4-image-2 生成或迭代图片"""
     if not api_key:
         api_key = os.getenv("OPENROUTER_API_KEY")
@@ -52,15 +52,22 @@ def generate_image(prompt, output_path, base_image_path=None, api_key=None):
     # 构建消息内容
     user_content = [{"type": "text", "text": prompt}]
     
-    if base_image_path and os.path.exists(base_image_path):
-        print(f"检测到原图，正在进行迭代生成: {base_image_path}")
-        base64_img = encode_image(base_image_path)
-        user_content.append({
-            "type": "image_url",
-            "image_url": {
-                "url": f"data:image/png;base64,{base64_img}"
-            }
-        })
+    if base_image_paths:
+        if isinstance(base_image_paths, str):
+            base_image_paths = [base_image_paths]
+            
+        for img_path in base_image_paths:
+            if os.path.exists(img_path):
+                print(f"检测到参考图，正在加入 Prompt: {img_path}")
+                base64_img = encode_image(img_path)
+                user_content.append({
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:image/png;base64,{base64_img}"
+                    }
+                })
+            else:
+                print(f"警告: 参考图路径不存在: {img_path}")
 
     payload = {
         "model": "openai/gpt-5.4-image-2",
@@ -72,6 +79,16 @@ def generate_image(prompt, output_path, base_image_path=None, api_key=None):
         ],
         "modalities": ["image", "text"]
     }
+
+    # 添加图像配置
+    image_config = {}
+    if size:
+        image_config["image_size"] = size
+    if aspect_ratio:
+        image_config["aspect_ratio"] = aspect_ratio
+    
+    if image_config:
+        payload["image_config"] = image_config
 
     try:
         response = requests.post(url, headers=headers, data=json.dumps(payload))
@@ -100,8 +117,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="AI 图像生成与迭代工具")
     parser.add_argument("--prompt", required=True, help="生成指令")
     parser.add_argument("--output", required=True, help="输出图片路径")
-    parser.add_argument("--base_image", help="原图路径（用于迭代修改）")
+    parser.add_argument("--base_image", nargs='+', help="参考图路径，支持多个（用于角色一致性、场景参考等）")
+    parser.add_argument("--size", help="图片尺寸 (如: 0.5K, 1K, 2K, 4K)")
+    parser.add_argument("--aspect_ratio", help="图片比例 (如: 1:1, 16:9, 9:16)")
     
     args = parser.parse_args()
     
-    generate_image(args.prompt, args.output, args.base_image)
+    generate_image(args.prompt, args.output, args.base_image, size=args.size, aspect_ratio=args.aspect_ratio)

@@ -19,24 +19,46 @@ description: "负责视频场景的空间布局与环境设定。当需要设计
    - 参考 `assets/05-scene-design/references/` 中的场景库或光影规范。
    - 产出高保真场景概念图（Concept Art）。
 
-## 4. 交付物与存放位置
-- **场景设定目录**: `assets/05-scene-design/scenes/[scene_name]/`
-- **场景概念图**: `concept.png`
-- **平面布局图**: `layout_map.png`
-- **场景配置文件 (JSON)**: `config.json`
+## 4. 场景设计深度与广度 (Depth & Scope)
+场景设计应涵盖以下维度：
+- **室内场景 (Indoor)**：内部装饰、家具布局、功能区划分。
+- **室外场景 (Outdoor)**：自然环境、地形地貌、外部氛围。
+- **建筑结构设计图 (Architecture)**：建筑外观、结构透视、空间比例。
+
+## 5. 交付物与存放位置
+- **场景设定说明书 (Markdown)**: `assets/05-scene-design/scenes/[name]/scene_guide.md`
+- **场景概念总图 (Total Map/Concept)**: `concept.png` (场景的全局氛围与核心视角)
+- **室内/室外细节图 (Detail Maps)**: `details/[indoor_or_outdoor].png`
+- **建筑结构图 (Structure)**: `details/architecture.png`
+- **平面布局图 (Layout)**: `layout_map.png`
 - **参考资料**: `assets/05-scene-design/references/`
 
-## 5. 约束与规范
+## 6. 场景设定说明书 (scene_guide.md) 结构规范
+文档应遵循“总-分”结构，包含以下内容：
+1. **设计点描述**：描述场景的功能、情感基调、光影规范、地理位置及核心资产。
+2. **图片简介表格**：
+   | 图片名称 | 存放路径 | 内容简介 | 备注 |
+   | :--- | :--- | :--- | :--- |
+   | 场景概念总图 | concept.png | 场景的全局氛围、光影与视觉基调 | 总图 |
+   | 室内细节 | details/indoor.png | 内部装饰细节与空间利用 | 分图 |
+   | 室外环境 | details/outdoor.png | 外部环境、植被或地形 | 分图 |
+   | 建筑结构图 | details/architecture.png | 建筑的结构透视、外观设计与比例 | 分图 |
+   | 平面布局图 | layout_map.png | 空间的俯视布局与物体相对位置 | 分图 |
+
+## 7. 约束与规范
 - 必须明确物体的相对方位，严禁空间逻辑冲突。
 - 场景风格必须与 `03-art-style` 保持一致。
-- 交付物必须严格存放在 `skills/05-scene-design/scenes/` 对应子目录下。
+- **禁止使用 JSON 配置文件**，所有场景设定必须记录在 `scene_guide.md` 中。
+- 交付物必须严格存放在 `assets/05-scene-design/scenes/` 对应子目录下。
 
-## 6. 示例
-```json
-{
-  "scene_name": "遗忘实验室",
-  "layout": "圆形空间，直径10米，培养皿位于圆心",
-  "lighting": "冷色调，顶部点光源，培养皿自发光",
-  "key_assets": ["发光培养皿", "生锈的操作台"]
-}
-```
+## 8. 示例 (scene_guide.md 片段)
+### 设计点描述
+场景“遗忘实验室”是一个位于荒漠中的圆形科研设施。
+基调：压抑、科幻、冷色调。
+核心资产：中央发光培养皿、生锈的操作台。
+
+### 图片简介
+| 图片名称 | 存放路径 | 内容简介 | 备注 |
+| :--- | :--- | :--- | :--- |
+| 实验室总图 | concept.png | 全景展示实验室内部氛围与中心培养皿 | 总图 |
+| 建筑外观 | details/architecture.png | 实验室在荒漠中的球形建筑外观 | 分图 |

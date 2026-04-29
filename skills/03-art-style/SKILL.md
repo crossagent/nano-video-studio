@@ -21,22 +21,32 @@ description: "定义视频的全局艺术风格与视觉基调。当需要设定
    - 产出 1-3 张代表全片视觉最高标准的“风格样帧”。
 
 ## 4. 交付物与存放位置
-- **风格参考图**: `assets/03-art-style/style_reference.png`
-- **风格配置文件 (JSON)**: `assets/03-art-style/style_config.json`
-- **风格参考说明 (Markdown)**: `assets/03-art-style/style_guide.md`
+- **艺术风格说明书 (Markdown)**: `assets/03-art-style/style_guide.md`
+- **风格参考图 (Total Map)**: `assets/03-art-style/style_reference.png`
+- **细节参考图 (Detail Maps)**: `assets/03-art-style/details/[feature].png`
 - **参考资料**: `assets/03-art-style/references/`
 
-## 5. 约束与规范
-- 所有关键词和参考图必须服务于同一种艺术流派。
-- 交付物必须严格存放在 `skills/03-art-style/` 目录下。
+## 5. 艺术风格说明书 (style_guide.md) 结构规范
+文档应遵循“总-分”结构，包含以下内容：
+1. **设计点描述**：详细描述视觉风格、色彩规范、光影基准及 Prompt 核心词。
+2. **图片简介表格**：
+   | 图片名称 | 存放路径 | 内容简介 | 备注 |
+   | :--- | :--- | :--- | :--- |
+   | 全局风格参考图 | style_reference.png | 展示全片的视觉基调、核心色彩与光影 | 总图 |
+   | [细节图名称] | details/[name].png | 描述该细节图展示的具体材质、光效或元素 | 分图 |
 
-## 6. 示例
-```json
-{
-  "style_name": "未来主义写实",
-  "positive_suffix": "cinematic lighting, 8k resolution, photorealistic",
-  "negative_prompt": "cartoon, anime, sketch",
-  "color_palette": { "primary": "#001219", "accent": "#ee9b00" },
-  "reference_images": ["style_reference.png"]
-}
-```
+## 6. 约束与规范
+- 所有关键词和参考图必须服务于同一种艺术流派。
+- **禁止使用 JSON 配置文件**，所有设定必须记录在 `style_guide.md` 中。
+- 交付物必须严格存放在 `assets/03-art-style/` 目录下。
+
+## 7. 示例 (style_guide.md 片段)
+### 设计点描述
+本片采用“赛博朋克写实风格”，主色调为霓虹深蓝与暗金。光影强调高对比度，冷暖光交替。
+Prompt 核心：`cyberpunk realism, high contrast, neon lighting, 8k, cinematic`
+
+### 图片简介
+| 图片名称 | 存放路径 | 内容简介 | 备注 |
+| :--- | :--- | :--- | :--- |
+| 赛博朋克总图 | style_reference.png | 定义全片的高对比度冷暖视觉基调 | 总图 |
+| 霓虹灯光细节 | details/neon_detail.png | 展示霓虹灯在雨水地面的反射质感 | 分图 |

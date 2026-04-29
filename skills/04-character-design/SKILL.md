@@ -15,29 +15,56 @@ description: "负责视频角色的视觉设定与一致性维护。当需要设
 1. **角色画像提取**：分析性格、职业、背景。
 2. **视觉锚点定义**：确定不可变特征。
 3. **设定图生成与迭代**：
+   - **综合设定图 (Character Sheet)**：推荐将所有要素整合在一张图中。
+     - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[角色名] full body turnaround, expressions sheet, key details, [视觉锚点], anime style, comprehensive character design sheet" --output "assets/04-character-design/characters/[name]/character_sheet.png"`。
    - **初次生成**：调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[Prompt]" --output "assets/04-character-design/characters/[name]/turnaround.png"`。
    - **迭代修改**：若用户提供原图及修改要求，调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[修改要求]" --base_image "[原图路径]" --output "[新版本路径]"`。
    - **三视图 (Turnaround)**：正面、侧面、背面。
-   - **表情特写 (Expression Sheet)**：至少包含 4 种核心情绪。
+   - **表情特写 (Expression Sheet)**：
+     - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[角色名] expressions: happy, angry, sad, surprised, seductive, detailed facial features" --base_image "assets/04-character-design/characters/[name]/turnaround.png" --output "assets/04-character-design/characters/[name]/expressions.png"`。
+     - 必须包含至少 4 种核心情绪，确保五官特征与三视图一致。
 
-## 4. 交付物与存放位置
-- **角色设定目录**: `assets/04-character-design/characters/[character_name]/`
-- **三视图**: `turnaround.png`
-- **表情特写**: `expressions.png`
-- **角色配置文件 (JSON)**: `config.json`
+## 4. 角色设定图核心要素 (Core Elements)
+为了确保角色一致性，一张完整的设定图应包含以下要素：
+- **全身三视图**：正面、侧面、背面，展示完整的体型与服装。
+- **核心表情组**：至少包含 4-5 种代表性情绪（如：喜、怒、哀、惊、诱惑）。
+- **视觉锚点 (Visual Anchors)**：角色不可变的特征（如：腰间魅魔纹、高马尾）。
+- **服装细节**：明确的衣着款式（如：吊带、1分裤）。
+- **色板 (Color Palette)**：标注头发、皮肤、服装的主色调。
+
+## 5. 交付物与存放位置
+- **角色设定说明书 (Markdown)**: `assets/04-character-design/characters/[name]/character_guide.md`
+- **角色综合设定图 (Total Map)**: `character_sheet.png` (包含全身、核心表情、核心细节)
+- **三视图 (Turnaround)**: `turnaround.png`
+- **表情特写 (Expression Sheet)**: `expressions.png`
+- **视觉锚点/细节图 (Detail Maps)**: `details/[feature].png`
 - **参考资料**: `assets/04-character-design/references/`
 
-## 5. 约束与规范
+## 6. 角色设定说明书 (character_guide.md) 结构规范
+文档应遵循“总-分”结构，包含以下内容：
+1. **设计点描述**：描述角色的性格、视觉特征、视觉锚点（不可变特征）及核心色板。
+2. **图片简介表格**：
+   | 图片名称 | 存放路径 | 内容简介 | 备注 |
+   | :--- | :--- | :--- | :--- |
+   | 角色综合设定图 | character_sheet.png | 包含全身、表情组、视觉锚点等的综合大图 | 总图 |
+   | 三视图 | turnaround.png | 角色的正面、侧面、背面标准化展示 | 分图 |
+   | 表情特写 | expressions.png | 包含至少4种核心情绪的表情集合 | 分图 |
+   | [细节图名称] | details/[name].png | 展示特定的视觉锚点（如机械臂、纹身等） | 分图 |
+
+## 7. 约束与规范
 - 必须使用纯色背景以突出角色。
 - 角色特征必须在所有图中保持高度统一。
-- 交付物必须严格存放在 `skills/04-character-design/characters/` 对应子目录下。
+- **禁止使用 JSON 配置文件**，所有角色设定必须记录在 `character_guide.md` 中。
+- 交付物必须严格存放在 `assets/04-character-design/characters/` 对应子目录下。
 
-## 6. 示例
-```json
-{
-  "character_name": "艾米利亚",
-  "visual_anchors": ["银色机械左臂", "红色短发"],
-  "color_palette": { "hair": "#FF0000", "suit": "#0000FF" },
-  "prompt_trigger": "Emilia, red short hair, silver robotic left arm, turnaround sheet"
-}
-```
+## 8. 示例 (character_guide.md 片段)
+### 设计点描述
+角色“艾米利亚”是一名冷静的机械师。
+核心特征：银色机械左臂，红色短发。
+色板：头发 #FF0000，皮肤 #FFDAB9，机械臂 #C0C0C0。
+
+### 图片简介
+| 图片名称 | 存放路径 | 内容简介 | 备注 |
+| :--- | :--- | :--- | :--- |
+| 艾米利亚总图 | character_sheet.png | 综合展示艾米利亚的外形与表情基调 | 总图 |
+| 银色机械臂细节 | details/robotic_arm.png | 详细展示机械臂的构造与反光质感 | 分图 |
