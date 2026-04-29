@@ -18,12 +18,12 @@ description: "负责视频的核心故事创作与叙事结构设计。当需要
 3. **产出故事大纲**：编写包含起承转合的详细故事梗概。
 
 ## 4. 交付物与存放位置
-- **故事大纲 (JSON)**: `skills/01-storytelling/story_outline.json` (用于程序读取)
-- **故事梗概 (Markdown)**: `skills/01-storytelling/story_concept.md` (用于人类阅读)
+- **故事大纲 (JSON)**: `assets/01-storytelling/story_outline.json` (用于程序读取)
+- **故事梗概 (Markdown)**: `assets/01-storytelling/story_concept.md` (用于人类阅读)
 
 ## 5. 约束与规范
 - 逻辑自洽，情感指向明确。
-- 交付物必须严格存放在 `skills/01-storytelling/` 目录下。
+- 交付物必须严格存放在 `assets/01-storytelling/` 目录下。
 
 ## 6. 示例
 ```json

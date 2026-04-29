@@ -17,19 +17,19 @@ description: "负责视频的最终合成、渲染与音画同步。当需要拼
 3. **后期处理**：添加转场、调色、字幕。
 
 ## 4. 交付物与存放位置
-- **最终视频文件**: `skills/07-production/output/final_video.mp4`
-- **项目元数据 (JSON)**: `skills/07-production/output/project_metadata.json`
-- **封面图**: `skills/07-production/output/cover.jpg`
+- **最终视频文件**: `assets/07-production/output/final_video.mp4`
+- **项目元数据 (JSON)**: `assets/07-production/output/project_metadata.json`
+- **封面图**: `assets/07-production/output/cover.jpg`
 
 ## 5. 约束与规范
 - 默认输出 1080p, 30fps, H.264 编码。
-- 交付物必须严格存放在 `skills/07-production/output/` 目录下。
+- 交付物必须严格存放在 `assets/07-production/output/` 目录下。
 
 ## 6. 示例
 ```json
 {
   "project_name": "未来城市",
   "total_duration": 60,
-  "output_file": "07-production/output/final_video.mp4"
+  "output_file": "assets/07-production/output/final_video.mp4"
 }
 ```

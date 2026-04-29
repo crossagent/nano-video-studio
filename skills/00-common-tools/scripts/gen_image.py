@@ -4,10 +4,12 @@ import base64
 import os
 import sys
 import argparse
+from pathlib import Path
 from dotenv import load_dotenv
 
-# 加载 .env 文件
-load_dotenv()
+# 获取项目根目录的 .env 文件
+env_path = Path(__file__).parent.parent.parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 def encode_image(image_path):
     """将本地图片转为 Base64 编码"""
@@ -29,14 +31,22 @@ def generate_image(prompt, output_path, base_image_path=None, api_key=None):
     if not api_key:
         api_key = os.getenv("OPENROUTER_API_KEY")
     
+    if api_key:
+        api_key = api_key.strip()
+    
     if not api_key:
         print("错误: 未找到 OPENROUTER_API_KEY 环境变量")
         return
+    
+    # 调试信息：检查 API Key 是否正确加载（仅显示前几位和长度）
+    print(f"DEBUG: API Key loaded, length: {len(api_key)}, starts with: {api_key[:10]}...")
 
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
+        "HTTP-Referer": "https://github.com/trae-ide", # 推荐添加
+        "X-Title": "Nano Video Studio",               # 推荐添加
     }
 
     # 构建消息内容
