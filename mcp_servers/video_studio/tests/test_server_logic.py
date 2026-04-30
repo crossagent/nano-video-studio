@@ -31,7 +31,7 @@ def test_submit_flow(mocker, temp_db):
     
     # 提交图像任务
     res = server.submit_image_task(
-        "test_channel", "test_model_image", "proj", "stage", "prompt", {"size": "1024"}
+        "test_channel", "test_model_image", "stage", "prompt", {"size": "1024"}
     )
     assert "submitted successfully" in res
     
@@ -45,8 +45,9 @@ def test_execution_logic(mocker, temp_db, mock_generators):
     mocker.patch("run_task.TaskDB", return_value=temp_db)
     mock_img, mock_vid = mock_generators
     
-    # 1. 准备一个已审批的任务
-    tid = temp_db.add_task("test_channel", "test_model_image", "p", "s", "prompt", {"size": "1024"})
+    # 1. 准备一个已审批的任务，指定一个模拟的项目路径
+    project_path = str(Path("/tmp/fake_project").absolute())
+    tid = temp_db.add_task("test_channel", "test_model_image", project_path, "s", "prompt", {"size": "1024"})
     temp_db.update_task(tid, status='approved')
     
     # 2. 执行

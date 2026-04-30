@@ -54,24 +54,26 @@ def list_tasks(channel_id: Optional[str] = None, status: Optional[str] = None) -
     return "\n".join(res)
 
 @mcp.tool()
-def submit_image_task(channel_id: str, model_id: str, project: str, stage: str, prompt: str, extra_params: Dict[str, Any]) -> str:
-    """Submit an IMAGE task."""
+def submit_image_task(channel_id: str, model_id: str, stage: str, prompt: str, extra_params: Dict[str, Any]) -> str:
+    """Submit an IMAGE task. Project is automatically set to the current workspace."""
     ok, err = _validate(channel_id, model_id, "image", extra_params)
     if not ok: return f"Error: {err}"
     
+    from run_task import WORKSPACE
     db = TaskDB()
-    tid = db.add_task(channel_id, model_id, project, stage, prompt, extra_params)
-    return f"Image task {tid} submitted successfully."
+    tid = db.add_task(channel_id, model_id, str(WORKSPACE), stage, prompt, extra_params)
+    return f"Image task {tid} submitted successfully to workspace: {WORKSPACE}"
 
 @mcp.tool()
-def submit_video_task(channel_id: str, model_id: str, project: str, stage: str, prompt: str, extra_params: Dict[str, Any]) -> str:
-    """Submit a VIDEO task."""
+def submit_video_task(channel_id: str, model_id: str, stage: str, prompt: str, extra_params: Dict[str, Any]) -> str:
+    """Submit a VIDEO task. Project is automatically set to the current workspace."""
     ok, err = _validate(channel_id, model_id, "video", extra_params)
     if not ok: return f"Error: {err}"
     
+    from run_task import WORKSPACE
     db = TaskDB()
-    tid = db.add_task(channel_id, model_id, project, stage, prompt, extra_params)
-    return f"Video task {tid} submitted successfully."
+    tid = db.add_task(channel_id, model_id, str(WORKSPACE), stage, prompt, extra_params)
+    return f"Video task {tid} submitted successfully to workspace: {WORKSPACE}"
 
 @mcp.tool()
 def approve_task(task_id: int) -> str:
@@ -90,11 +92,53 @@ def execute_task(task_id: int) -> str:
         return f"Error: {str(e)}"
 
 @mcp.tool()
+def get_workspace() -> str:
+    """Get the current global workspace path for assets."""
+    from run_task import WORKSPACE
+    return f"Current workspace: {WORKSPACE}"
+
+@mcp.tool()
+def set_workspace(new_path: str) -> str:
+    """Update the global workspace path in .env and memory."""
+    from pathlib import Path
+    abs_path = str(Path(new_path).absolute()).replace("\\", "/")
+    
+    # 1. 更新 .env 文件
+    env_file = Path(__file__).parent / ".env"
+    lines = []
+    if env_file.exists():
+        with open(env_file, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+    
+    new_lines = []
+    found = False
+    for line in lines:
+        if line.startswith("STUDIO_WORKSPACE="):
+            new_lines.append(f"STUDIO_WORKSPACE={abs_path}\n")
+            found = True
+        else:
+            new_lines.append(line)
+    
+    if not found:
+        new_lines.append(f"\nSTUDIO_WORKSPACE={abs_path}\n")
+    
+    with open(env_file, "w", encoding="utf-8") as f:
+        f.writelines(new_lines)
+    
+    # 2. 提醒用户重启或说明后续生效
+    return f"Workspace updated to: {abs_path}. (Note: For long-running processes, a restart may be required to refresh the environment variable)."
+
+@mcp.tool()
 def get_task_details(task_id: int) -> str:
     """Get full details (including JSON params) of a task."""
     db = TaskDB()
     t = db.get_task(task_id)
-    return json.dumps(t, indent=2, default=str) if t else "Task not found."
+    if not t: return "Task not found."
+    
+    # 在详情中加入当前 Workspace 的提示，方便排查路径
+    from run_task import WORKSPACE
+    t['current_workspace'] = str(WORKSPACE)
+    return json.dumps(t, indent=2, default=str, ensure_ascii=False)
 
 if __name__ == "__main__":
     mcp.run()

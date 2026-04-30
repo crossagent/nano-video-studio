@@ -41,9 +41,11 @@ def execute_task(task_id):
     # 确定任务类型
     is_video = "video" in model_id.lower() or "seedance" in model_id.lower()
 
+    # 确定项目根目录：优先使用数据库记录的路径，否则使用当前环境 Workspace
+    project_root = Path(task.get('project', str(WORKSPACE)))
+    
     # 生成输出路径
-    project_name = task.get('project', 'default')
-    output_dir = WORKSPACE / project_name / "assets" / task['stage'] / "output"
+    output_dir = project_root / "assets" / task['stage'] / "output"
     output_dir.mkdir(parents=True, exist_ok=True)
     
     ext = ".mp4" if is_video else ".png"
