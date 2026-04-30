@@ -15,10 +15,10 @@ description: "负责视频的最终合成、渲染与音画同步。当需要拼
 1. **素材校验**：检查分辨率、帧率。
 2. **视频生成任务流 (Video Generation Workflow)**：
    - **创建提案 (Propose)**：
-     使用 `task_db.py` 向 `model_volcengine_seedance_video` 表添加任务。必须包含 `ref_image_path`（分镜关键帧）。
+     使用 `video-studio` MCP 服务的 `submit_video_task` 工具添加任务。必须关联对应的分镜关键帧。
    - **获取审批**：向用户展示视频生成参数、成本及关联分镜图，等待批准。
    - **触发执行 (Execute)**：
-     调用 `run_task.py` 启动异步生成任务，脚本会自动轮询直至完成。
+     通过 `video-studio` MCP 服务的 `approve_task` 和 `execute_task` 启动生成任务。
 3. **音画对齐 (Syncing)**：精确对齐音频与画面。
 4. **后期处理**：添加转场、调色、字幕。
 

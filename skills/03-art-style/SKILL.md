@@ -16,8 +16,9 @@ description: "定义视频的全局艺术风格与视觉基调。当需要设定
 2. **色板定义**：选定主色、辅助色和强调色。
 3. **Prompt 模板构建**：生成用于 AI 绘图的正面后缀和负面提示词。
 4. **风格参考图生成**：
-   - 调用 `python skills/00-common-tools/scripts/gen_image.py --prompt "[Prompt]" --output "[project]/assets/03-art-style/style_reference.png"`。
-   - 参考 `[project]/assets/03-art-style/references/` 中的风格库。
+   - 调用 `video-studio` MCP 服务的 `submit_image_task` 工具进行生成。
+   - 必须记录 `project`、`stage` ('art-style') 以及对应的模型参数。
+   - 生成完成后，通过 `approve_task` 和 `execute_task` 触发实际渲染。
    - 产出 1-3 张代表全片视觉最高标准的“风格样帧”。
 
 ## 4. 交付物与存放位置

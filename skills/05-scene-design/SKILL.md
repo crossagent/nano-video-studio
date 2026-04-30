@@ -19,10 +19,10 @@ description: "负责视频场景的空间布局与环境设定。当需要设计
 3. **空间布局规划 (Layout)**：明确主体活动区域与背景区域。
 4. **生成任务流 (Generation Workflow)**：
    - **创建提案 (Propose)**：
-     使用 `task_db.py` 向指定图像模型表添加任务。必须包含 `ref_image_path`（通常为艺术风格图）。
+     使用 `video-studio` MCP 服务的 `submit_image_task` 工具添加任务。必须在 `extra_params` 中包含参考图路径。
    - **获取审批**：告知用户任务 ID 与参数，由用户决定是否执行。
    - **触发执行 (Execute)**：
-     通过 `run_task.py` 触发生成，并将结果保存至 `[project]/assets/05-scene-design/scenes/[name]/` 目录。
+     通过 `video-studio` MCP 服务的 `approve_task` 和 `execute_task` 触发生成，并将结果保存至 `[project]/assets/05-scene-design/scenes/[name]/` 目录。
 
 ## 4. 场景设计深度与广度 (Depth & Scope)
 场景设计应涵盖以下维度：

@@ -22,12 +22,11 @@ description: "将剧本转化为可视化的分镜表。当需要规划镜头语
    - **必须包含**：每个镜头的详细描述、关联的角色参考图、场景参考图及艺术风格说明。
 5. **生成任务流 (Generation Workflow)**：
     - **创建提案 (Propose)**：
-      根据 `storyboard_preview.md` 的描述，为每个 Shot 提交生图提案。
-      - **模型表**：推荐 `model_openrouter_gpt54_image`。
-      - **参数**：必须关联角色设定图和场景图。
+      根据 `storyboard_preview.md` 的描述，调用 `video-studio` MCP 服务的 `submit_image_task` 工具为每个 Shot 提交提案。
+      - **参数**：必须在 `extra_params` 中通过 `ref_images_json` 关联角色设定图和场景图。
     - **获取审批**：向用户展示分镜提案列表及 ID。
     - **触发执行 (Execute)**：
-      审批通过后，调用 `run_task.py` 生成分镜关键帧。
+      审批通过后，调用 `video-studio` MCP 服务的 `approve_task` 和 `execute_task` 工具生成分镜关键帧。
 
 ## 4. 交付物与存放位置
 - **分镜预览与详细描述 (Markdown)**: `[project]/assets/06-storyboarding/storyboard_preview.md`

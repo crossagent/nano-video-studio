@@ -1,8 +1,10 @@
 import sqlite3
 import json
 from datetime import datetime
+from pathlib import Path
 
-DB_PATH = "generation_tasks.db"
+ROOT_DIR = Path(__file__).parent.parent.parent
+DB_PATH = str(ROOT_DIR / "generation_tasks.db")
 
 class TaskDB:
     def __init__(self, db_path=DB_PATH):

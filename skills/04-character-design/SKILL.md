@@ -19,10 +19,10 @@ description: "负责视频角色的视觉设定与一致性维护。当需要设
 3. **视觉锚点定义**：确定不可变特征。
 4. **生成任务流 (Generation Workflow)**：
    - **创建提案 (Propose)**：
-     调用 `task_db.py` 向 `model_openrouter_gpt54_image` 或 `model_volcengine_seedream_image` 表添加任务，并附带参考图路径。
+     调用 `video-studio` MCP 服务的 `submit_image_task` 工具，明确 `channel_id`、`model_id`、`project`、`stage` ('character-design') 及 `extra_params`。
    - **获取审批**：向用户汇报任务 ID 及参数，等待批准。
    - **触发执行 (Execute)**：
-     审批通过后，调用 `python skills/00-common-tools/scripts/run_task.py --table [table] --id [id]` 完成图片生成。
+     审批通过后，调用 `video-studio` MCP 服务的 `approve_task` 和 `execute_task` 工具完成渲染。
 
 ## 4. 角色设定图核心要素 (Core Elements)
 为了确保角色一致性，一张完整的设定图应包含以下要素：

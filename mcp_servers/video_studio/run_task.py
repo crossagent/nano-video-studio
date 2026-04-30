@@ -5,6 +5,9 @@ from task_db import TaskDB
 import gen_image
 import gen_video
 
+# 获取项目根目录
+ROOT_DIR = Path(__file__).parent.parent.parent
+
 # 渠道映射配置 (Channel -> Provider)
 CHANNEL_TO_PROVIDER = {
     "volcengine": "volcengine",
@@ -30,35 +33,33 @@ def execute_task(task_id):
     provider = CHANNEL_TO_PROVIDER.get(channel)
     
     # 确定任务类型
-    # 我们可以通过 model_id 或者注册表来判断，这里通过表名已经简化，但现在是大表，
-    # 所以我们直接根据是否有 "video" 关键字或之前定义的 task_type 来判断。
-    # 简单起见，这里假设 model_id 中包含 video 字样即为视频
     is_video = "video" in model_id.lower() or "seedance" in model_id.lower()
 
     # 生成输出路径
     project_name = task.get('project', 'default')
-    output_dir = Path(f"{project_name}/assets/{task['stage']}/output")
+    output_dir = ROOT_DIR / project_name / "assets" / task['stage'] / "output"
     output_dir.mkdir(parents=True, exist_ok=True)
     
     ext = ".mp4" if is_video else ".png"
     output_path = str(output_dir / f"task_{task_id}_{model_id.replace('/', '_')}{ext}")
 
     try:
-        # 获取模型特定参数 (从数据库的 params 列)
+        # 获取模型特定参数
         params = task.get('params', {})
         
         # 处理参考资产
         ref_assets = []
         if 'ref_images_json' in params:
             try:
-                ref_assets = json.loads(params['ref_images_json']) if isinstance(params['ref_images_json'], str) else params['ref_images_json']
+                ref_val = params['ref_images_json']
+                ref_assets = json.loads(ref_val) if isinstance(ref_val, str) else ref_val
             except:
                 pass
 
         success = False
         if is_video:
             # 视频生成逻辑
-            images_ref = [a['path'] for a in ref_assets if a.get('path')]
+            images_ref = [a['path'] for a in ref_assets if isinstance(a, dict) and a.get('path')]
             success = gen_video.generate_video(
                 prompt=task['prompt'],
                 output_path=output_path,
@@ -74,7 +75,7 @@ def execute_task(task_id):
                 ref_assets=ref_assets,
                 **{k: v for k, v in params.items() if k != 'ref_images_json'}
             )
-            if not success: # 有些脚本可能不返回 bool，检查文件是否存在
+            if not success: 
                 success = os.path.exists(output_path)
 
         if success:
