@@ -5,8 +5,14 @@ from task_db import TaskDB
 import gen_image
 import gen_video
 
-# 获取项目根目录
+from dotenv import load_dotenv
+
+# 获取项目根目录并加载环境变量
 ROOT_DIR = Path(__file__).parent.parent.parent
+load_dotenv(dotenv_path=Path(__file__).parent / ".env")
+
+# 优先级：.env 中的 STUDIO_WORKSPACE > 默认根目录
+WORKSPACE = Path(os.getenv("STUDIO_WORKSPACE", str(ROOT_DIR)))
 
 # 渠道映射配置 (Channel -> Provider)
 CHANNEL_TO_PROVIDER = {
@@ -37,7 +43,7 @@ def execute_task(task_id):
 
     # 生成输出路径
     project_name = task.get('project', 'default')
-    output_dir = ROOT_DIR / project_name / "assets" / task['stage'] / "output"
+    output_dir = WORKSPACE / project_name / "assets" / task['stage'] / "output"
     output_dir.mkdir(parents=True, exist_ok=True)
     
     ext = ".mp4" if is_video else ".png"

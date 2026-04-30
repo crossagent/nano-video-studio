@@ -7,8 +7,8 @@ import argparse
 from pathlib import Path
 from dotenv import load_dotenv
 
-# 获取项目根目录的 .env 文件
-env_path = Path(__file__).parent.parent.parent.parent / '.env'
+# 获取本地 .env 文件
+env_path = Path(__file__).parent / '.env'
 load_dotenv(dotenv_path=env_path)
 
 def encode_image(image_path):
