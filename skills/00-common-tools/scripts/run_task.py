@@ -1,96 +1,97 @@
-import sys
 import os
-import argparse
+import json
 from pathlib import Path
 from task_db import TaskDB
 import gen_image
 import gen_video
 
-# 路由配置：表名 -> (Provider, 内部模型名称)
-MODEL_ROUTES = {
-    "model_openrouter_gpt54_image": ("openrouter", "openai/gpt-5.4-image-2"),
-    "model_volcengine_seedream_image": ("volcengine", "doubao-seedream-5-0-260128"),
-    "model_volcengine_seedance_video": ("volcengine", "doubao-seedance-2-0-fast-260128")
+# 渠道映射配置 (Channel -> Provider)
+CHANNEL_TO_PROVIDER = {
+    "volcengine": "volcengine",
+    "openrouter": "openrouter"
 }
 
-def execute_task(table_name, task_id):
+def execute_task(task_id):
     db = TaskDB()
-    task = db.get_task(table_name, task_id)
+    task = db.get_task(task_id)
     
     if not task:
-        print(f"Error: Task {task_id} not found in {table_name}.")
-        return
+        return False, f"Error: Task {task_id} not found."
 
     if task['status'] == 'completed':
-        print(f"Task {task_id} already completed.")
-        return
+        return True, f"Task {task_id} already completed."
 
-    print(f"Starting Task {task_id} from {table_name}...")
-    db.update_task(table_name, task_id, status='executing')
+    # 更新为执行中
+    db.update_task(task_id, status='executing')
 
-    provider, model_name = MODEL_ROUTES.get(table_name, (None, None))
-    if not provider:
-        print(f"Error: No route defined for table {table_name}.")
-        db.update_task(table_name, task_id, status='failed', error_msg="Unknown model table route.")
-        return
+    # 获取渠道和模型信息
+    channel = task['channel_id']
+    model_id = task['model_id']
+    provider = CHANNEL_TO_PROVIDER.get(channel)
+    
+    # 确定任务类型
+    # 我们可以通过 model_id 或者注册表来判断，这里通过表名已经简化，但现在是大表，
+    # 所以我们直接根据是否有 "video" 关键字或之前定义的 task_type 来判断。
+    # 简单起见，这里假设 model_id 中包含 video 字样即为视频
+    is_video = "video" in model_id.lower() or "seedance" in model_id.lower()
 
-    # 生成输出路径：[项目名]/assets/[阶段]/output/
+    # 生成输出路径
     project_name = task.get('project', 'default')
     output_dir = Path(f"{project_name}/assets/{task['stage']}/output")
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    ext = ".mp4" if "video" in table_name else ".png"
-    output_path = str(output_dir / f"{table_name}_{task_id}{ext}")
+    ext = ".mp4" if is_video else ".png"
+    output_path = str(output_dir / f"task_{task_id}_{model_id.replace('/', '_')}{ext}")
 
     try:
-        # 解析参考资产 (JSON 格式)
+        # 获取模型特定参数 (从数据库的 params 列)
+        params = task.get('params', {})
+        
+        # 处理参考资产
         ref_assets = []
-        if task.get('ref_images_json'):
+        if 'ref_images_json' in params:
             try:
-                ref_assets = json.loads(task['ref_images_json'])
+                ref_assets = json.loads(params['ref_images_json']) if isinstance(params['ref_images_json'], str) else params['ref_images_json']
             except:
-                print("Warning: Failed to parse ref_images_json.")
+                pass
 
         success = False
-        if "video" in table_name:
+        if is_video:
             # 视频生成逻辑
-            # 视频模型目前主要关注第一张图作为关键帧参考
             images_ref = [a['path'] for a in ref_assets if a.get('path')]
             success = gen_video.generate_video(
                 prompt=task['prompt'],
                 output_path=output_path,
-                images=images_ref
+                images=images_ref,
+                **{k: v for k, v in params.items() if k != 'ref_images_json'}
             )
         else:
             # 图像生成逻辑
-            # 传入结构化的 ref_assets 到 gen_image
-            gen_image.generate_image(
+            success = gen_image.generate_image(
                 prompt=task['prompt'],
                 output_path=output_path,
-                model=model_name,
-                size=task.get('size'),
-                aspect_ratio=task.get('aspect_ratio'),
-                ref_assets=ref_assets
+                model=model_id,
+                ref_assets=ref_assets,
+                **{k: v for k, v in params.items() if k != 'ref_images_json'}
             )
-            success = os.path.exists(output_path)
+            if not success: # 有些脚本可能不返回 bool，检查文件是否存在
+                success = os.path.exists(output_path)
 
         if success:
-            print(f"Task {task_id} successful: {output_path}")
-            # 这里可以增加成本计算逻辑，目前先填固定占位
             cost_str = "0.1 CNY" if provider == "volcengine" else "0.05 USD"
-            db.update_task(table_name, task_id, status='completed', output_path=output_path, cost_info=cost_str)
+            db.update_task(task_id, status='completed', output_path=output_path, cost_info=cost_str)
+            return True, f"Task {task_id} successful: {output_path}"
         else:
-            print(f"Task {task_id} failed.")
-            db.update_task(table_name, task_id, status='failed', error_msg="Generation script returned False or no file.")
+            db.update_task(task_id, status='failed', error_msg="Generation failed.")
+            return False, f"Task {task_id} failed."
 
     except Exception as e:
-        print(f"Exception during Task {task_id}: {str(e)}")
-        db.update_task(table_name, task_id, status='failed', error_msg=str(e))
+        db.update_task(task_id, status='failed', error_msg=str(e))
+        return False, f"Exception: {str(e)}"
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Task Runner: Executing tasks from model tables.")
-    parser.add_argument("--table", required=True, help="Model table name")
-    parser.add_argument("--id", type=int, required=True, help="Task ID")
-    
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--id", type=int, required=True)
     args = parser.parse_args()
-    execute_task(args.table, args.id)
+    execute_task(args.id)

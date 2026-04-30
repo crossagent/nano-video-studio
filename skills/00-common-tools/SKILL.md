@@ -6,44 +6,40 @@ description: "提供视频生产流水线通用的自动化脚本与工具。当
 # 通用工具集 (Common Tools)
 
 ## 1. 技能描述
-本技能作为整个流水线的“工具箱”，存放所有可复用的自动化脚本。通过统一管理，降低维护成本，确保各阶段调用的工具逻辑一致。
+本技能作为整个流水线的“工具箱”，存放所有可复用的自动化脚本。
 
 ## 2. 使用时机
-- 当其他 Skill 需要执行具体的自动化任务（如生图、视频合成）时。
-- 需要维护或更新全局通用的 API 调用逻辑时。
+- 执行具体的自动化任务（如生图、视频合成）时。
+- 必须通过 MCP 接口进行操作，严禁直接运行脚本。
 
-### 任务管理与自动化 (Task Management)
-- **数据库路径**: `generation_tasks.db`
-- **管理脚本**: `skills/00-common-tools/scripts/task_db.py`
-- **执行引擎**: `skills/00-common-tools/scripts/run_task.py`
-- **核心逻辑**: 所有昂贵的生成任务必须遵循：**提交提案 (Propose) -> 用户审批 (Approve) -> 触发执行 (Execute)**。
+### 任务管理与自动化 (MCP Server)
+- **服务路径**: `skills/00-common-tools/scripts/nano_video_mcp.py`
+- **传输协议**: MCP (Model Context Protocol)
 
-## 3. 核心工具说明
-### 图像生成工具 (`gen_image.py`)
-- **路径**: `skills/00-common-tools/scripts/gen_image.py`
-- **功能**: 统一生图底层驱动。由 `run_task.py` 内部调用。
-- **注意**: 严禁直接从生产 Skill 调用此脚本，必须通过 `run_task.py` 间接调用。
-- **参数**:
-  - `--prompt`: 生成指令。
-  - `--output`: 输出路径。
-  - `--stage`: (可选) 任务阶段，可选 `style`, `character`, `scene`, `storyboard`。会自动读取对应的环境变量。
-  - `--model`: (可选) 直接指定模型名称，会覆盖 stage 配置。
-  - `--size`: (可选) 图片尺寸，支持 `1K`, `2K` 等。
-  - `--aspect_ratio`: (可选) 图片比例（仅 OpenRouter 支持）。
+## 3. 核心工具说明 (MCP Tools)
 
-### 视频生成工具 (`gen_video.py`)
-- **路径**: `skills/00-common-tools/scripts/gen_video.py`
-- **功能**: 统一视频底层驱动。由 `run_task.py` 内部调用。
-- **注意**: 严禁直接从生产 Skill 调用此脚本，必须通过 `run_task.py` 间接调用。
-- **参数**:
-  - `--prompt`: 视频动作及场景描述。
-  - `--output`: 输出视频路径 (.mp4)。
-  - `--images`: (可选) 参考分镜图路径或 URL。
-  - `--videos`: (可选) 参考视频 URL。
-  - `--audios`: (可选) 参考音频 URL。
-- **注意**: 视频生成为异步任务，脚本会自动轮询状态并下载结果。时长与比例由 `.env` 配置决定。
+AI 应当优先调用 `nano_video_mcp.py` 暴露的以下工具：
 
-## 4. 约束与规范
-- 所有新开发的通用脚本必须存放在 `scripts/` 目录下。
-- 脚本必须支持从根目录的 `.env` 文件读取配置。
-- 跨阶段调用的路径必须使用相对于项目根目录的完整路径。
+1. **`list_available_models`**: 查询支持的渠道、模型及其必填参数要求。**在提交任务前应先通过此工具确认参数规范。**
+
+2. **`submit_image_task`**: 提交一个新的图像生成提案。
+   - `channel_id`: 必填（如 `openrouter`, `volcengine`）。
+   - `model_id`: 必填（如 `doubao-seedream-5-0-260128`）。
+   - `extra_params`: 必填。字典格式，必须包含该模型要求的参数（如 `size`）。
+
+3. **`submit_video_task`**: 提交一个新的视频生成提案。
+   - `channel_id`: 必填。
+   - `model_id`: 必填。
+   - `extra_params`: 必填。必须包含视频模型要求的参数（如 `duration`, `aspect_ratio`）。
+
+4. **`approve_task`**: 审批通过一个任务。
+5. **`execute_task`**: 正式触发任务执行。
+6. **`list_tasks`**: 查看特定模型表的任务列表。
+7. **`get_task_details`**: 获取任务详情。
+
+## 4. 校验规则与约束
+- **参数预审**: 服务器会在写入数据库前强制校验 `channel_id`、`model_id` 以及对应的 `required_fields`。
+- **类型匹配**: 视频模型严禁通过 `submit_image_task` 提交，反之亦然。
+- **错误处理**: 如果参数不完整，接口将返回 `Validation Error` 及其缺失的字段列表。
+- **禁止绕过**: 严禁 AI 直接通过 shell 调用底层脚本。
+- **状态追踪**: 必须严格遵循 `submit -> approve -> execute` 的生命周期。
