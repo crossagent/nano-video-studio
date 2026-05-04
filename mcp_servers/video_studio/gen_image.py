@@ -48,7 +48,7 @@ def save_image(url_or_base64, output_path):
             f.write(base64.b64decode(data))
         print(f"图片已保存至: {output_path} (来自 Base64)")
 
-def generate_via_openrouter(prompt, output_path, model, base_image_paths=None, size=None, aspect_ratio=None):
+def generate_via_openrouter(prompt, output_path, model, ref_assets=None, size=None, aspect_ratio=None, **kwargs):
     """使用 OpenRouter API 生成图片"""
     api_key = os.getenv("OPENROUTER_API_KEY")
     if not api_key:
@@ -68,8 +68,13 @@ def generate_via_openrouter(prompt, output_path, model, base_image_paths=None, s
     
     if ref_assets:
         for asset in ref_assets:
-            path = asset.get('path')
-            label = asset.get('label', os.path.basename(path) if path else "参考图")
+            if isinstance(asset, str):
+                path = asset
+                label = os.path.basename(path)
+            else:
+                path = asset.get('path')
+                label = asset.get('label', os.path.basename(path) if path else "参考图")
+            
             if path and os.path.exists(path):
                 img_data = encode_image(path)
                 # 插入文字描述标签
@@ -89,31 +94,38 @@ def generate_via_openrouter(prompt, output_path, model, base_image_paths=None, s
         "modalities": ["image", "text"]
     }
 
-    image_config = {}
+    # 合并额外的图像配置
+    image_config = kwargs.copy()
     if size: image_config["image_size"] = size
     if aspect_ratio: image_config["aspect_ratio"] = aspect_ratio
     if image_config: payload["image_config"] = image_config
 
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=120)
-        response.raise_for_status()
+        if response.status_code != 200:
+            print(f"OpenRouter 请求失败 ({response.status_code}): {response.text}")
+            return False
+        
         result = response.json()
         if result.get("choices"):
             message = result["choices"][0]["message"]
             if message.get("images"):
                 img_data = message["images"][0]["image_url"]["url"]
                 save_image(img_data, output_path)
+                return True
             else:
-                print(f"OpenRouter 未返回图片。完整响应: {json.dumps(result)}")
+                print(f"OpenRouter 未返回图片。")
+        return False
     except Exception as e:
-        print(f"OpenRouter 请求失败: {str(e)}")
+        print(f"OpenRouter 请求异常: {str(e)}")
+        return False
 
-def generate_via_volcengine(prompt, output_path, model, base_image_paths=None, size=None):
+def generate_via_volcengine(prompt, output_path, model, ref_assets=None, size=None, **kwargs):
     """使用火山引擎 (Volcengine Ark) Seedream 生成图片"""
     api_key = os.getenv("ARK_API_KEY")
     if not api_key:
         print("错误: 未找到 ARK_API_KEY")
-        return
+        return False
 
     url = "https://ark.cn-beijing.volces.com/api/v3/images/generations"
     headers = {
@@ -133,24 +145,31 @@ def generate_via_volcengine(prompt, output_path, model, base_image_paths=None, s
         "stream": False,
         "watermark": True
     }
+    
+    # 合并额外参数
+    payload.update(kwargs)
 
-    if base_image_paths:
-        if len(base_image_paths) == 1:
-            img_path = base_image_paths[0]
-            if os.path.exists(img_path):
-                payload["image_url"] = f"data:image/png;base64,{encode_image(img_path)}"
-        else:
+    if ref_assets:
+        paths = []
+        for asset in ref_assets:
+            path = asset if isinstance(asset, str) else asset.get('path')
+            if path and os.path.exists(path):
+                paths.append(path)
+
+        if len(paths) == 1:
+            img_path = paths[0]
+            payload["image_url"] = f"data:image/png;base64,{encode_image(img_path)}"
+        elif len(paths) > 1:
             images = []
-            for img_path in base_image_paths:
-                if os.path.exists(img_path):
-                    images.append(f"data:image/png;base64,{encode_image(img_path)}")
+            for img_path in paths:
+                images.append(f"data:image/png;base64,{encode_image(img_path)}")
             payload["image"] = images
 
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=120)
         if response.status_code != 200:
             print(f"火山引擎请求失败 ({response.status_code}): {response.text}")
-            return
+            return False
         
         result = response.json()
         if "data" in result:
@@ -159,12 +178,14 @@ def generate_via_volcengine(prompt, output_path, model, base_image_paths=None, s
                 img_url = data[0].get("url")
                 if img_url:
                     save_image(img_url, output_path)
-                    return
+                    return True
         print(f"火山引擎未返回预期的图片格式: {json.dumps(result)}")
+        return False
     except Exception as e:
         print(f"火山引擎请求异常: {str(e)}")
+        return False
 
-def generate_image(prompt, output_path, model=None, stage=None, base_image_paths=None, size=None, aspect_ratio=None, versioning=False):
+def generate_image(prompt, output_path, model=None, stage=None, ref_assets=None, size=None, aspect_ratio=None, versioning=False, **kwargs):
     """统一生图入口"""
     # 确定模型
     if not model:
@@ -193,9 +214,9 @@ def generate_image(prompt, output_path, model=None, stage=None, base_image_paths
         print(f"启用版本化命名，实际输出路径: {output_path}")
     
     if "doubao-" in model:
-        generate_via_volcengine(prompt, output_path, model, base_image_paths, size)
+        return generate_via_volcengine(prompt, output_path, model, ref_assets, size, **kwargs)
     else:
-        generate_via_openrouter(prompt, output_path, model, base_image_paths, size, aspect_ratio)
+        return generate_via_openrouter(prompt, output_path, model, ref_assets, size, aspect_ratio, **kwargs)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="AI 图像生成工具 (支持多阶段模型配置)")
@@ -203,7 +224,7 @@ if __name__ == "__main__":
     parser.add_argument("--output", required=True, help="输出路径")
     parser.add_argument("--stage", choices=["style", "character", "scene", "storyboard"], help="任务阶段")
     parser.add_argument("--model", help="覆盖默认模型名称")
-    parser.add_argument("--base_image", nargs='+', help="参考图路径")
+    parser.add_argument("--ref_assets", nargs='+', help="参考图路径")
     parser.add_argument("--size", help="图片尺寸")
     parser.add_argument("--aspect_ratio", help="比例")
     parser.add_argument("--versioning", action="store_true", help="启用版本化命名 (增加时间戳和模型标签)")
@@ -211,5 +232,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     generate_image(args.prompt, args.output, model=args.model, stage=args.stage, 
-                   base_image_paths=args.base_image, size=args.size, 
+                   ref_assets=args.ref_assets, size=args.size, 
                    aspect_ratio=args.aspect_ratio, versioning=args.versioning)
