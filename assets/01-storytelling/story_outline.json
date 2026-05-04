@@ -1,0 +1,18 @@
+{
+  "title": "骸骨之城",
+  "theme": "Privacy vs. Control",
+  "protagonist": {
+    "name": "小宇",
+    "age": 15,
+    "visual_hook": "Solid chest vs. Gelatinous limbs"
+  },
+  "setting": {
+    "name": "X-Ray Metropolis",
+    "visual_style": "Translucent, glowing, medical-surrealism"
+  },
+  "plot_points": [
+    "Discovery of the solid patch",
+    "The pain of transparency",
+    "The dive into the core"
+  ]
+}

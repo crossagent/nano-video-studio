@@ -1,6 +1,13 @@
 .env
-assets/
 __pycache__/
 *.pyc
 .DS_Store
 *.db
+
+# Assets: Keep text/config, ignore binaries
+assets/**/*.png
+assets/**/*.jpg
+assets/**/*.jpeg
+assets/**/*.mp4
+assets/**/*.webm
+assets/**/*.mov
