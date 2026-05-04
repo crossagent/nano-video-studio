@@ -1,5 +1,5 @@
 ---
-name: "video-character-design"
+name: "04-video-character-design"
 description: "负责视频角色的视觉设定与一致性维护。当需要设计角色形象、生成三视图、表情特写或准备 AI 角色一致性素材时调用。触发词：'设计角色'、'角色设定'、'角色一致性'。"
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: "video-scripting"
+name: "02-video-scripting"
 description: "负责视频剧本的深度创作与结构化拆解。当需要将创意转化为包含旁白、视觉描述和精确时长预估的脚本时调用。触发词：'写剧本'、'拆解故事'、'视频大纲'。"
 ---
 

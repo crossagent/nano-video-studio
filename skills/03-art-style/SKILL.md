@@ -1,5 +1,5 @@
 ---
-name: "video-art-style"
+name: "03-video-art-style"
 description: "定义视频的全局艺术风格与视觉基调。当需要设定色彩规范、艺术流派或生成全局 Prompt 风格后缀时调用。触发词：'设定风格'、'视觉基调'、'艺术风格'。"
 ---
 

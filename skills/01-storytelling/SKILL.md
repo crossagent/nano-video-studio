@@ -1,5 +1,5 @@
 ---
-name: "video-storytelling"
+name: "01-video-storytelling"
 description: "负责视频的核心故事创作与叙事结构设计。当需要构思世界观、打磨故事情节、确定人物动机或编写故事大纲时调用。触发词：'写故事'、'构思情节'、'故事大纲'。"
 ---
 

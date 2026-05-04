@@ -1,5 +1,5 @@
 ---
-name: "video-storyboarding"
+name: "06-video-storyboarding"
 description: "将剧本转化为可视化的分镜表。当需要规划镜头语言、相机运动或确定视频节奏时调用。触发词：'画分镜'、'分镜脚本'、'镜头规划'。"
 ---
 

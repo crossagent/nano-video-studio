@@ -1,5 +1,5 @@
 ---
-name: "video-scene-design"
+name: "05-video-scene-design"
 description: "负责视频场景的空间布局与环境设定。当需要设计背景、确定光影基准或管理场景资产时调用。触发词：'设计场景'、'场景设定'、'环境设计'。"
 ---
 

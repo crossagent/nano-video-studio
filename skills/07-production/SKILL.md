@@ -1,5 +1,5 @@
 ---
-name: "video-production"
+name: "07-video-production"
 description: "负责视频的最终合成、渲染与音画同步。当需要拼接素材、对齐音频、添加特效并输出最终视频文件时调用。触发词：'合成视频'、'视频渲染'、'音画同步'。"
 ---
 
