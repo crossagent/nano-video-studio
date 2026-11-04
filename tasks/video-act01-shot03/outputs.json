@@ -1,0 +1,16 @@
+[
+  {
+    "id": "act01-shot03-cockpit",
+    "shot": "Shot 03",
+    "description": "收割机驾驶舱颠簸手持中景，拉尔斯与奥克塔维亚在红光警报与暴风雨中颠簸",
+    "target": "tasks/video-act01-shot03/output/act01_shot03_cockpit.mp4",
+    "bytes": 558644,
+    "width": 768,
+    "height": 320,
+    "fps": 24.0,
+    "duration": 3.04,
+    "frames": 73,
+    "prompt_id": "4d00479b-4f58-414f-a2be-c4ce8d2b76e0",
+    "status": "completed"
+  }
+]
