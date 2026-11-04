@@ -1,0 +1,20 @@
+[
+  {
+    "node": "15",
+    "remote": {
+      "filename": "Woman07_Character_Reference_00001_.mp4",
+      "subfolder": "studio",
+      "type": "output",
+      "metadata": {
+        "kind": "video",
+        "width": 608,
+        "height": 352,
+        "duration": 2.3333333333333335,
+        "fps": 24,
+        "frame_count": 56
+      },
+      "id": "50c51c59-21a0-4305-9865-b615e7c7d407"
+    },
+    "local": "output/0-Woman07_Character_Reference_00001_.mp4"
+  }
+]

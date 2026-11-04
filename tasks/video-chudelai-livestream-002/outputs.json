@@ -1,0 +1,20 @@
+[
+  {
+    "node": "15",
+    "remote": {
+      "filename": "Chudelai_Livestream_12s_00001_.mp4",
+      "subfolder": "studio",
+      "type": "output",
+      "metadata": {
+        "kind": "video",
+        "width": 352,
+        "height": 608,
+        "duration": 12.25,
+        "fps": 24,
+        "frame_count": 294
+      },
+      "id": "79f5a3cb-9654-4bc1-ad11-efa956c555c7"
+    },
+    "local": "output/0-Chudelai_Livestream_12s_00001_.mp4"
+  }
+]

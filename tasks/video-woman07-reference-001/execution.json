@@ -1,0 +1,156 @@
+{
+  "endpoint": "http://127.0.0.1:8188",
+  "assets": {
+    "assets/edits/selected/07_女人/face/front/02.webp": {
+      "image": "studio-8cce356c072df2638a45.webp",
+      "sha256": "58fb0674c1ef1aa06edd2e7136cb09720ddfdf671f6a48b2d5ee33d6b7424441"
+    },
+    "assets/edits/selected/07_女人/face/side/03.webp": {
+      "image": "studio-d47be3e123a7afc0b3d6.webp",
+      "sha256": "0d8ee444c3862b90f37403cd6e751afe6f2654f6d5b5e9476dc22eeec6c47521"
+    }
+  },
+  "definition": {
+    "description": "07_女人：双角度身份参考，正面02＋侧面03",
+    "requirements": {
+      "models": [
+        "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "minimax_h3_video_vae_int8_convrot.safetensors",
+        "minimax_h3_audio_vae_fp32.safetensors"
+      ],
+      "validation": "Node schema checked against local service; GPU generation pending user character image."
+    },
+    "bindings": {
+      "prompt": [
+        {
+          "node": "6",
+          "input": "prompt"
+        }
+      ],
+      "seed": [
+        {
+          "node": "9",
+          "input": "noise_seed"
+        }
+      ],
+      "width": [
+        {
+          "node": "6",
+          "input": "width"
+        }
+      ],
+      "height": [
+        {
+          "node": "6",
+          "input": "height"
+        }
+      ],
+      "frames": [
+        {
+          "node": "6",
+          "input": "length"
+        }
+      ],
+      "prefix": [
+        {
+          "node": "15",
+          "input": "filename_prefix"
+        }
+      ],
+      "reference": [
+        {
+          "node": "16",
+          "input": "image"
+        }
+      ],
+      "steps": [
+        {
+          "node": "10",
+          "input": "steps"
+        }
+      ],
+      "reference_side": [
+        {
+          "node": "17",
+          "input": "image"
+        }
+      ]
+    },
+    "defaults": {
+      "width": 608,
+      "height": 352,
+      "frames": 56,
+      "steps": 20
+    }
+  },
+  "system": {
+    "system": {
+      "os": "win32",
+      "ram_total": 34240802816,
+      "ram_free": 6793658368,
+      "comfyui_version": "0.43.0",
+      "required_frontend_version": "1.57.4",
+      "installed_templates_version": "0.11.97",
+      "required_templates_version": "0.11.97",
+      "comfy_package_versions": [
+        {
+          "name": "comfyui-frontend-package",
+          "installed": "1.59.0.dev2",
+          "required": "1.57.4"
+        },
+        {
+          "name": "comfyui-workflow-templates",
+          "installed": "0.11.97",
+          "required": "0.11.97"
+        },
+        {
+          "name": "comfyui-embedded-docs",
+          "installed": "0.5.15",
+          "required": "0.5.15"
+        },
+        {
+          "name": "comfy-aimdo",
+          "installed": "0.6.0",
+          "required": "0.6.0"
+        },
+        {
+          "name": "comfy-kitchen",
+          "installed": "0.2.40",
+          "required": "0.2.40"
+        }
+      ],
+      "python_version": "3.13.12 (main, Feb 12 2026, 00:38:53) [MSC v.1944 64 bit (AMD64)]",
+      "pytorch_version": "2.12.1+cu130",
+      "embedded_python": false,
+      "deploy_environment": "local-desktop2-standalone",
+      "argv": [
+        "ComfyUI\\main.py",
+        "--feature-flag",
+        "show_signin_button=true",
+        "--feature-flag",
+        "enable_telemetry=true",
+        "--enable-assets",
+        "--enable-agent",
+        "--lowvram",
+        "--extra-model-paths-config",
+        "C:\\Users\\zhouxy\\AppData\\Roaming\\Comfy Desktop\\instance-model-paths\\inst-1793762508721.yaml",
+        "--input-directory",
+        "D:\\Comfy-Desktop\\ComfyUI-Shared\\input",
+        "--output-directory",
+        "D:\\Comfy-Desktop\\ComfyUI-Shared\\output"
+      ]
+    },
+    "devices": [
+      {
+        "name": "cuda:0 NVIDIA GeForce RTX 5060 Ti : cudaMallocAsync",
+        "type": "cuda",
+        "index": 0,
+        "vram_total": 17074421760,
+        "vram_free": 2114524984,
+        "torch_vram_total": 67108864,
+        "torch_vram_free": 26081080
+      }
+    ]
+  }
+}

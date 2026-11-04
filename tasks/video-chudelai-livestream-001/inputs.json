@@ -1,0 +1,16 @@
+{
+  "task": "video-chudelai-livestream-001",
+  "requirements": "使用12_楚得来角色，生成超过10秒的直播镜头，有自然说话、微笑和轻微手势",
+  "acceptance": "时长超过10秒；角色外观稳定；直播动作自然；音视频可正常播放；不含原图字幕或界面叠字。人物相似度和台词口型待评审。",
+  "parameters": {
+    "prompt": "A fictional livestream scene featuring the same adult woman shown in <Picture 1> and <Picture 2>. Use both references to preserve her facial identity, rounded eyes, nose, lips, fair skin and dark brown hair. Keep one consistent face throughout the entire clip. She wears a modest black-and-white striped sleeveless top with a high round neckline, seated comfortably at a streaming desk. Vertical 9:16 smartphone livestream framing, medium close-up from upper chest to above her head. A small desktop microphone is visible near the bottom edge. Soft ring-light catchlights, warm table lamp and blurred flowers behind her, cozy tidy room. Single continuous fixed camera shot, natural realistic movement, no cuts, no zooms. 0-3 seconds: she smiles at the camera and gently waves once. 3-8 seconds: she speaks to her audience, briefly glances slightly downward as if reading comments, then looks back at the camera. 8-12 seconds: she gives a small friendly nod and a warm smile, her hands rest naturally near the desk. Natural blinking, subtle head motion, stable facial features and anatomically correct hands. Audio: a naturally generated clear friendly adult female Mandarin voice, conversational and unhurried, synchronized lip movement, saying: \"大家好，欢迎来到我的直播间！今天想和你们聊聊最近的小开心。新来的朋友也打个招呼吧，我们慢慢聊。\" Subtle quiet indoor room ambience, no music. Generate a clean camera feed only: no subtitles, no on-screen text, no chat overlays, no logos, no watermarks, no black bars.",
+    "seed": 2026110412,
+    "reference": {
+      "asset": "assets/edits/selected/12_楚得来/face/front/02.png"
+    },
+    "reference_side": {
+      "asset": "assets/edits/selected/12_楚得来/face/side/03.png"
+    },
+    "prefix": "studio/Chudelai_Livestream_12s"
+  }
+}

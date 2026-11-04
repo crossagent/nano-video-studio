@@ -1,0 +1,16 @@
+{
+  "task": "video-woman07-reference-001",
+  "requirements": "同一人物转头、眨眼、轻微微笑，测试双角度身份保持",
+  "acceptance": "面部五官与两张参考图相符；无明显变脸、闪烁；仅候选，不自动入库",
+  "parameters": {
+    "prompt": "The same adult woman shown in <Picture 1> and <Picture 2>. Both pictures show the same character from different angles; use them to preserve her facial identity, eye shape, nose, lips and long dark brown hair. She wears a modest white blouse. Medium close-up in a bright quiet garden, she slowly turns her head toward the camera, blinks naturally and gives a subtle smile. Gentle breeze moves a few strands of hair. Single continuous shot, stable camera, realistic skin texture and soft natural daylight. Quiet garden ambience. No speech, text or watermark. Do not reproduce the source selfie composition.",
+    "seed": 20261104,
+    "reference": {
+      "asset": "assets/edits/selected/07_女人/face/front/02.webp"
+    },
+    "reference_side": {
+      "asset": "assets/edits/selected/07_女人/face/side/03.webp"
+    },
+    "prefix": "studio/Woman07_Character_Reference"
+  }
+}

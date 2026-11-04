@@ -1,9 +1,16 @@
-# Platform
+# Platform 平台能力
 
-提供通用生图、生视频能力。当前后端为本地 ComfyUI，入口见 [comfyui](comfyui/README.md)。
+`platform/` 统一管理影视工程对接的底层生成与制作引擎，提供标准化的自动化执行接口与调用适配器。
 
-- 本工程拥有资产、任务要求、工作流版本、调用记录与收回的结果。
-- ComfyUI 拥有独立安装、Python 环境、模型、自定义节点与运行队列，不作为本仓库子目录或子模块。
-- 仅通过 HTTP API 集成；不修改 ComfyUI 源码、不共用虚拟环境、不接管其更新。
-- 升级可能改变节点接口。工作流应记录所用 ComfyUI 版本、自定义节点版本与模型文件，升级后用图形界面回归验证。
-- 生成入口统一为 ComfyUI HTTP API；旧云端生成 MCP 工具已移除。
+---
+
+## 包含平台引擎
+
+1. **`blender/` (Blender 3D 制作引擎)**：
+   - 影视 3D 分镜预演（Previs）、相机调度轨迹（Camera Blocking）、粗模搭建与视口渲染快照；
+   - 统一由 `platform/blender/run.ps1` 调度，任务文件存放在 `tasks/blender/<task-id>/`；
+   - 详细接口与通用工具参见 [Blender 平台规范](blender/README.md)。
+
+2. **`comfyui/` (ComfyUI 本地图像与视频工作流)**：
+   - 本地 ComfyUI HTTP API 批量执行接口；
+   - 详细接口参见 [ComfyUI 接入说明](comfyui/README.md)。

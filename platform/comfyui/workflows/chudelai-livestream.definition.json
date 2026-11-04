@@ -1,0 +1,74 @@
+{
+  "description": "楚得来双图角色参考直播场景，竖屏约12.25秒",
+  "requirements": {
+    "models": [
+      "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "minimax_h3_video_vae_int8_convrot.safetensors",
+      "minimax_h3_audio_vae_fp32.safetensors"
+    ],
+    "validation": "Pipeline previously passed 56-frame test; 294-frame livestream requires new run."
+  },
+  "bindings": {
+    "prompt": [
+      {
+        "node": "6",
+        "input": "prompt"
+      }
+    ],
+    "seed": [
+      {
+        "node": "9",
+        "input": "noise_seed"
+      }
+    ],
+    "width": [
+      {
+        "node": "6",
+        "input": "width"
+      }
+    ],
+    "height": [
+      {
+        "node": "6",
+        "input": "height"
+      }
+    ],
+    "frames": [
+      {
+        "node": "6",
+        "input": "length"
+      }
+    ],
+    "prefix": [
+      {
+        "node": "15",
+        "input": "filename_prefix"
+      }
+    ],
+    "reference": [
+      {
+        "node": "16",
+        "input": "image"
+      }
+    ],
+    "steps": [
+      {
+        "node": "10",
+        "input": "steps"
+      }
+    ],
+    "reference_side": [
+      {
+        "node": "17",
+        "input": "image"
+      }
+    ]
+  },
+  "defaults": {
+    "width": 352,
+    "height": 608,
+    "frames": 294,
+    "steps": 20
+  }
+}

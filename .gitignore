@@ -15,12 +15,20 @@ __pycache__/
 !/tasks/**/task.md
 !/tasks/**/workflow.md
 !/tasks/**/log.md
-!/tasks/.gitkeep
-
-/platform/comfyui/*.local.json
 !/tasks/**/workflow.json
 !/tasks/**/inputs.json
 !/tasks/**/submission.json
 !/tasks/**/history.json
 !/tasks/**/outputs.json
 !/tasks/**/execution.json
+!/tasks/**/*.py
+!/tasks/**/*.ps1
+!/tasks/**/*.cmd
+!/tasks/**/*.sh
+!/tasks/.gitkeep
+
+/platform/comfyui/*.local.json
+
+# Windows Junctions
+/设定/
+/设定
