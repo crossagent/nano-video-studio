@@ -1,0 +1,9 @@
+{
+  "workflow": "workflows/minimax-h3.api.json",
+  "definition": "workflows/minimax-h3.definition.json",
+  "timeoutSeconds": 21600,
+  "jobs": [
+    { "task": "video-h3-001", "requirements": "黄昏城市街头，微风吹动树叶，固定镜头", "parameters": { "prompt": "A quiet city street at sunset, leaves moving in a gentle breeze, static camera, natural ambient sound.", "seed": 20261104, "prefix": "studio/video-h3-001" } },
+    { "task": "video-h3-002", "requirements": "同一描述，使用另一随机种子生成候选", "parameters": { "prompt": "A quiet city street at sunset, leaves moving in a gentle breeze, static camera, natural ambient sound.", "seed": 20261105, "prefix": "studio/video-h3-002" } }
+  ]
+}

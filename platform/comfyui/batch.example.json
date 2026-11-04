@@ -1,0 +1,11 @@
+{
+  "workflow": "workflows/your-workflow.api.json",
+  "jobs": [
+    {
+      "task": "video-shot-001",
+      "requirements": "替换为具体镜头、时长、画幅与动作要求",
+      "acceptance": "替换为画面、连续性和输出规格的验收要求",
+      "inputs": {}
+    }
+  ]
+}

@@ -14,7 +14,7 @@
 - assets/edits/：成片、字幕、封面。
 - tasks/<task-id>/：具体工作的要求、流程、记录与过程产物。
 - skills/：资产管理、任务管理及各工种能力。
-- mcp_servers/：现有生成工具代码。
+- platform/：ComfyUI 的资产同步、工作流与批量执行接口。
 
 ## 资产
 
@@ -33,7 +33,7 @@
 - work/：草稿、工程文件、时间线及中间文件。
 - output/：生成结果、候选导出。
 
-手工任务使用唯一且有意义的 ID，例如 video-shot-001、edit-trailer-001。现有生成工具使用 task-<数据库ID>，结果写入对应 output/；要求、流程和日志由任务管理规则补充。旧接口 stage 字段仅作兼容标签，不决定目录或顺序。
+任务使用唯一且有意义的 ID，例如 video-shot-001、edit-trailer-001。ComfyUI 批量任务使用批次清单中指定的 ID，结果写入对应 output/，同时保存要求、工作流、执行记录与输出清单。
 
 ## 工种协作
 
@@ -41,4 +41,10 @@
 
 变更已被引用的资产时记录版本，并标记受影响任务需要复核；不静默覆盖仍被引用的版本。
 
-文本规则、资产说明、任务要求与记录纳入 Git；媒体文件、数据库及任务过程文件默认留在本地。本次未发现已有产物实物，无需迁移资产。
+文本规则、资产说明、任务要求与记录纳入 Git；媒体文件及任务过程文件默认留在本地。
+
+## 平台能力
+
+platform/ 保存通用生成平台接入。当前通过本地 ComfyUI 提供生图和生视频：图形界面调试工作流，Codex 直接调用 API 批量执行。安装与模型独立维护，详见 [平台说明](platform/README.md)。
+
+nano-agent 与 ComfyUI 仅通过 HTTP 交换图片快照、工作流和结果。调试时运行 `node platform/comfyui/client.mjs sync-assets` 导入资产；工作流验收后导出 API 图并登记命名参数，批量时运行 `node platform/comfyui/client.mjs run <批次.json>`。具体约定和 MiniMax 示例见 [接入说明](platform/comfyui/README.md)。

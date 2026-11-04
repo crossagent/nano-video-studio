@@ -16,3 +16,11 @@ __pycache__/
 !/tasks/**/workflow.md
 !/tasks/**/log.md
 !/tasks/.gitkeep
+
+/platform/comfyui/*.local.json
+!/tasks/**/workflow.json
+!/tasks/**/inputs.json
+!/tasks/**/submission.json
+!/tasks/**/history.json
+!/tasks/**/outputs.json
+!/tasks/**/execution.json

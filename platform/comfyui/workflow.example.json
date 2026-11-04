@@ -1,0 +1,10 @@
+{
+  "description": "按实际 API 图填写节点 ID；同一参数可以绑定多个输入",
+  "requirements": { "models": [], "customNodes": [], "testedComfyUIVersion": "填写调试版本" },
+  "bindings": {
+    "prompt": [{ "node": "6", "input": "text" }],
+    "seed": [{ "node": "3", "input": "seed" }],
+    "reference": [{ "node": "10", "input": "image" }]
+  },
+  "defaults": { "seed": 1 }
+}

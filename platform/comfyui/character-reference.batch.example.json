@@ -1,0 +1,16 @@
+{
+  "workflow": "workflows/minimax-h3-reference.api.json",
+  "definition": "workflows/minimax-h3-reference.definition.json",
+  "jobs": [
+    {
+      "task": "video-character-001",
+      "parameters": {
+        "prompt": "Use the person in <Picture 1> as the character identity reference. Preserve the face, hairstyle and outfit. The character walks slowly through a sunlit garden, then turns toward the camera and smiles. Natural body motion, gentle camera tracking, soft outdoor ambience. No text or watermark.",
+        "seed": 42,
+        "reference": {
+          "asset": "assets/settings/characters/your-character-v1.png"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "description": "07_女人：双角度身份参考，正面02＋侧面03",
+  "requirements": {
+    "models": [
+      "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "minimax_h3_video_vae_int8_convrot.safetensors",
+      "minimax_h3_audio_vae_fp32.safetensors"
+    ],
+    "validation": "Node schema checked against local service; GPU generation pending user character image."
+  },
+  "bindings": {
+    "prompt": [
+      {
+        "node": "6",
+        "input": "prompt"
+      }
+    ],
+    "seed": [
+      {
+        "node": "9",
+        "input": "noise_seed"
+      }
+    ],
+    "width": [
+      {
+        "node": "6",
+        "input": "width"
+      }
+    ],
+    "height": [
+      {
+        "node": "6",
+        "input": "height"
+      }
+    ],
+    "frames": [
+      {
+        "node": "6",
+        "input": "length"
+      }
+    ],
+    "prefix": [
+      {
+        "node": "15",
+        "input": "filename_prefix"
+      }
+    ],
+    "reference": [
+      {
+        "node": "16",
+        "input": "image"
+      }
+    ],
+    "steps": [
+      {
+        "node": "10",
+        "input": "steps"
+      }
+    ],
+    "reference_side": [
+      {
+        "node": "17",
+        "input": "image"
+      }
+    ]
+  },
+  "defaults": {
+    "width": 608,
+    "height": 352,
+    "frames": 56,
+    "steps": 20
+  }
+}

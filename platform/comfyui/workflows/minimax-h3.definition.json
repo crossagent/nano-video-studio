@@ -1,0 +1,16 @@
+{
+  "description": "MiniMax H3 本地低显存测试：文生视频和音频；参考图片需另行调试图生视频图",
+  "requirements": {
+    "models": ["minimax_h3_fl2va_pruned_int8_convrot.safetensors", "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors", "minimax_h3_video_vae_int8_convrot.safetensors", "minimax_h3_audio_vae_fp32.safetensors", "minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors"],
+    "validation": "来自本机已成功生成的视频测试图；本次集成仅做模拟服务验证，升级后需重新试跑"
+  },
+  "bindings": {
+    "prompt": [{ "node": "6", "input": "prompt" }],
+    "seed": [{ "node": "9", "input": "noise_seed" }],
+    "width": [{ "node": "6", "input": "width" }],
+    "height": [{ "node": "6", "input": "height" }],
+    "frames": [{ "node": "6", "input": "length" }],
+    "prefix": [{ "node": "15", "input": "filename_prefix" }]
+  },
+  "defaults": { "width": 352, "height": 608, "frames": 56 }
+}
