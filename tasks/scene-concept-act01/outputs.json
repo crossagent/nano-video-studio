@@ -10,10 +10,10 @@
   },
   {
     "id": "scene-02-free-haven-perimeter-turret",
-    "title": "自由避难所边陲与人族导弹塔",
+    "title": "自由避难所边陲与星际2人族导弹塔",
     "target": "assets/settings/scenes/scene-02-free-haven-perimeter-turret.jpg",
-    "bytes": 924970,
-    "sha256": "ec67f3de2b50a38c3695b70a6318fce972f62c7b488179c8f2cc1845344c9b06",
+    "bytes": 918602,
+    "sha256": "6279df0185b2f8c39599c667df24376cb97a85a4da203001203c9f4b806977d8",
     "aspectRatio": "16:9",
     "status": "archived"
   },
@@ -48,8 +48,8 @@
     "id": "scene-06-dominion-norad-bridge",
     "title": "帝国战巡舰【诺拉德 II 号】主舰桥",
     "target": "assets/settings/scenes/scene-06-dominion-norad-bridge.jpg",
-    "bytes": 826250,
-    "sha256": "8f065693f3daa6f4232a549260e8c8fd0a8ecc26925d601fd2ed1f391f436ef5",
+    "bytes": 950209,
+    "sha256": "6101d66e4943aabf3867ab52862e630607f8f29918a08e37d6938ced53b9e331",
     "aspectRatio": "16:9",
     "status": "archived"
   },
