@@ -1,0 +1,35 @@
+{
+  "name": "starcraft-act01-previs-to-video",
+  "description": "StarCraft: Shadow of the Xel'Naga - 3D白模分镜视频切片驱动 + 角色三视图与场景概念图参考生成实拍级视频",
+  "defaults": {
+    "video": "starcraft_previs_act01_unique_20261104.mp4",
+    "start_frame": 144,
+    "length": 72,
+    "width": 768,
+    "height": 320,
+    "output_length": 73,
+    "ref_image_size": "match",
+    "seed": 2026110412,
+    "steps": 20,
+    "character_ref_1": "lars-bren-full-sheet.jpg",
+    "character_ref_2": "octavia-bren-full-sheet.jpg",
+    "scene_ref": "scene-01-bhekar-ro-wheatfield-storm.png",
+    "output_prefix": "starcraft/act01_shot03"
+  },
+  "bindings": {
+    "video": [["22", "file"]],
+    "start_frame": [["23", "start_frame"]],
+    "length": [["23", "length"]],
+    "prompt": [["5", "prompt"]],
+    "width": [["5", "width"]],
+    "height": [["5", "height"]],
+    "output_length": [["5", "length"]],
+    "ref_image_size": [["5", "ref_image_size"]],
+    "character_ref_1": [["19", "image"]],
+    "character_ref_2": [["24", "image"]],
+    "scene_ref": [["26", "image"]],
+    "seed": [["8", "noise_seed"]],
+    "steps": [["9", "steps"]],
+    "output_prefix": [["14", "filename_prefix"]]
+  }
+}
