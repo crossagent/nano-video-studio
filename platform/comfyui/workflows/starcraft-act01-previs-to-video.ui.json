@@ -392,10 +392,10 @@
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        "StarCraft: Shadow of the Xel'Naga, Act I, shot 03. Use <Video 1> as the blocking and camera reference: follow the composition and handheld jolts of the harvester cockpit shot, transform the whitebox into a realistic live-action cinematic scene. <Picture 1> is Lars Bren: an 18-year-old lean frontier mechanic with tousled light brown hair, worn brown leather jacket, work trousers and fingerless gloves. <Picture 2> is Octavia Bren: his 17-year-old sister, practical dark hair, green work jacket and mechanic clothes; preserve each distinct face and costume, do not reproduce the reference sheet layouts or text. <Picture 3> is Bhekar Ro storm and harvester exterior reference: match the battered red industrial vehicle, dark clouds, muddy fields and violet lightning visible beyond the windows. The setting is a tight, battered industrial robo-harvester cockpit, metal panels, hydraulic steering yoke, worn switches and red warning lights, rain and hail striking the windows. Lars grips the yoke with an exhilarated grin; Octavia in the passenger seat urgently checks the console and braces against the shaking. One continuous handheld medium shot with physical vehicle vibration, no camera cuts. Cinematic realistic 35mm anamorphic photography, dark steel blue, storm violet and red warning light, natural human motion, wide landscape composition. Sound: engine roar, hail on metal and warning beeps; no dialogue, no music. No captions, interface overlays, watermarks, reference sheets or typography.",
+        "StarCraft: Shadow of the Xel'Naga, Act I, shot 03. Use <Video 1> as the continuous 5-second camera blocking and vehicle shaking reference: transform the 3D whitebox into a realistic, gritty live-action movie scene.\n<Picture 1> is Lars Bren: an 18-year-old lean, rugged frontier colonist and reckless thrill-seeker with tousled light brown hair, worn brown leather jacket, rough work trousers and fingerless gloves. His face has faint grease smudges and sweat sheen. His personality is fiercely defiant, cocky, and adrenaline-fueled: his expression is NOT a clean cheerful smile, but a bold, reckless, mocking smirk of an untamed adventurer who laughs at danger and challenges the roaring storm. His eyes are intense, fierce, and wildly confident.\n<Picture 2> is Octavia Bren: his 17-year-old mechanic sister with practical short dark hair, green mechanic jumpsuit, and goggles around her neck. In contrast to Lars's wild thrill, Octavia is tense, anxious, and deeply worried, frantically adjusting switches on the copilot console and shouting warning words over the engine roar while bracing against the violent vehicle vibration.\n<Picture 3> is Bhekar Ro storm and harvester exterior reference: match the battered red industrial vehicle, dark tempest clouds, muddy furrows and blinding electric-violet laser-lightning flashes outside the rain-streaked windshield.\nThe setting is the narrow, rugged interior of a battered industrial robo-harvester cockpit, heavy steel bulkheads, hydraulic steering yoke, analog switches, and amber-and-red hazard warning lights flashing on the dashboard. One continuous handheld medium shot with realistic vehicle vibration and camera turbulence, no camera cuts.\nCinematography: 35mm anamorphic live-action sci-fi blockbuster cinematography (Dune / Aliens / Rogue One gritty industrial realism), atmospheric haze drifting under swinging caged tungsten lamp, natural human movement and facial acting, wide 2.4:1 landscape framing. Sound: roaring turbo-gas engine, hail pelting the armor, flashing alarm beeps, no music. Clean plate without any text, captions, or interface overlays.",
         768,
         320,
-        73,
+        124,
         "match"
       ],
       "widgets_values_named": {
@@ -538,7 +538,7 @@
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        2026110412,
+        2026110455,
         "fixed"
       ],
       "widgets_values_named": {
@@ -947,7 +947,7 @@
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        "starcraft/act01_shot03",
+        "starcraft/act01_shot03_5s_v2",
         "auto",
         "auto",
         "auto"
@@ -1132,7 +1132,7 @@
         "Node name for S&R": "LoadVideo"
       },
       "widgets_values": [
-        "starcraft_previs_act01_unique_20261104.mp4",
+        "shot03_cockpit_5s_previs.mp4",
         "image"
       ],
       "widgets_values_named": {
@@ -1195,8 +1195,8 @@
         "Node name for S&R": "VideoTemporalCrop"
       },
       "widgets_values": [
-        144,
-        72
+        0,
+        124
       ],
       "widgets_values_named": {
         "start_frame": 144,
