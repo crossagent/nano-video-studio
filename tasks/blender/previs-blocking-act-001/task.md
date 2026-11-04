@@ -7,7 +7,7 @@
 
 ---
 
-## 核心交付准则（对齐 skills/storyboarding/SKILL.md）
+## 核心交付准则（对齐 .agents/skills/storyboarding/SKILL.md）
 1. **产出为连续视频**：最终输出必须为包含镜头运动与多机位切换的完整动画预演视频（MP4，2.39:1，24 fps），非静态分镜图。
 2. **过程文件留 task**：
    - 构建脚本：`build_previs_video.py`

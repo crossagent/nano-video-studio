@@ -1003,13 +1003,12 @@ def setup_timeline_cameras():
     col_cam = bpy.data.collections.new("Cameras_Animatic")
     scene.collection.children.link(col_cam)
     
-    def create_cam(name, loc, rot_deg, lens=35.0):
+    def create_cam(name, loc, lens=35.0):
         cdata = bpy.data.cameras.new(name)
         cdata.lens = lens
-        cdata.clip_end = 3000.0
+        cdata.clip_end = 3500.0
         cobj = bpy.data.objects.new(name, cdata)
         cobj.location = loc
-        cobj.rotation_euler = (math.radians(rot_deg[0]), math.radians(rot_deg[1]), math.radians(rot_deg[2]))
         col_cam.objects.link(cobj)
         return cobj
 
@@ -1018,79 +1017,127 @@ def setup_timeline_cameras():
         marker.camera = cam_obj
         return marker
 
+    def point_cam_at(cam, target_pt):
+        import mathutils
+        direction = mathutils.Vector(target_pt) - cam.location
+        cam.rotation_euler = direction.to_track_quat('-Z', 'Y').to_euler()
+
     # 1. Shot 01 (Frame 1-72): 麦原风暴慢摇 (24mm)
-    cam01 = create_cam("Cam_01_StormWide", (0, 36, 1.8), (80, 0, 180), lens=24.0)
-    cam01.rotation_euler = (math.radians(78), 0, math.radians(180))
+    cam01 = create_cam("Cam_01_StormWide", (0, 36, 1.8), lens=24.0)
+    point_cam_at(cam01, (0, -25, 2.0))
     cam01.keyframe_insert(data_path="rotation_euler", frame=1)
-    cam01.rotation_euler = (math.radians(85), 0, math.radians(180))
+    point_cam_at(cam01, (0, 8, 2.0))
     cam01.keyframe_insert(data_path="rotation_euler", frame=72)
     bind_marker("Shot01_StormWide", 1, cam01)
     
     # 2. Shot 02 (Frame 73-144): 侧后45°高速跟拍收割机 (35mm)
-    cam02 = create_cam("Cam_02_HarvesterTrack", (-11, 42, 4.5), (76, 0, -145), lens=35.0)
+    cam02 = create_cam("Cam_02_HarvesterTrack", (-11, 44, 4.5), lens=35.0)
     cam02.location = (-11, 44, 4.5)
+    point_cam_at(cam02, (0, 36, 2.2))
     cam02.keyframe_insert(data_path="location", frame=73)
+    cam02.keyframe_insert(data_path="rotation_euler", frame=73)
     cam02.location = (-11, -12, 4.5)
+    point_cam_at(cam02, (0, -20, 2.2))
     cam02.keyframe_insert(data_path="location", frame=144)
+    cam02.keyframe_insert(data_path="rotation_euler", frame=144)
     bind_marker("Shot02_HarvesterTrack", 73, cam02)
     
-    # 3. Shot 03 (Frame 145-216): 驾驶舱颠簸特写与地平线剧烈起伏 (28mm)
-    cam03 = create_cam("Cam_03_CockpitMS", (0, 0.4, 3.5), (90, 0, 0), lens=28.0)
+    # 3. Shot 03 (Frame 145-216): 驾驶舱颠簸特写与起伏地平线 (28mm)
+    cam03 = create_cam("Cam_03_CockpitMS", (0, 0.4, 3.5), lens=28.0)
     for f in range(145, 217, 3):
         shake = (f % 4 - 2) * 0.045
         cam03.location = (shake, 0.4, 3.5 + shake)
+        point_cam_at(cam03, (0, 2.3, 3.4))
         cam03.keyframe_insert(data_path="location", frame=f)
+        cam03.keyframe_insert(data_path="rotation_euler", frame=f)
     bind_marker("Shot03_CockpitMS", 145, cam03)
     
     # 4. Shot 04 (Frame 217-288): 自由避难所防风圈与旧导弹塔仰望 (35mm)
-    cam05 = create_cam("Cam_05_TurretPerimeter", (244, 2, 2.2), (70, 0, -25), lens=35.0)
-    cam05.location = (244, 2, 2.2)
+    cam05 = create_cam("Cam_05_TurretPerimeter", (240, 2, 2.4), lens=35.0)
+    cam05.location = (240, 2, 2.4)
+    point_cam_at(cam05, (244, 16, 7.3))
     cam05.keyframe_insert(data_path="location", frame=217)
-    cam05.location = (242, 6, 2.8)
+    cam05.keyframe_insert(data_path="rotation_euler", frame=217)
+    cam05.location = (242, 6, 3.0)
+    point_cam_at(cam05, (244, 16, 7.3))
     cam05.keyframe_insert(data_path="location", frame=288)
+    cam05.keyframe_insert(data_path="rotation_euler", frame=288)
     bind_marker("Shot04_TurretPerimeter", 217, cam05)
     
-    # 5. Shot 05 (Frame 289-360): 室内避难所合力锁窗 (24mm)
-    cam07 = create_cam("Cam_07_HomesteadLock", (497.5, -2.2, 2.4), (78, 0, 30), lens=24.0)
+    # 5. Shot 05 (Frame 289-360): 室内避难所合力锁窗 (28mm)
+    cam07 = create_cam("Cam_07_HomesteadLock", (497.5, 0.5, 2.2), lens=28.0)
+    point_cam_at(cam07, (500.0, 3.4, 2.4))
+    cam07.keyframe_insert(data_path="rotation_euler", frame=289)
     bind_marker("Shot05_HomesteadLock", 289, cam07)
     
-    # 6. Shot 06 (Frame 361-432): 地震仪真实仪器与纸带跳表长焦特写 (85mm 微距)
-    # 机位：正侧微俯视紧贴纸带滚筒与跳针，画面清晰展现滚筒网格、机械摆臂与红墨尖头剧烈跳动！
-    cam09 = create_cam("Cam_09_SeismographECU", (502.8, -0.4, 2.22), (84, 0, -90), lens=85.0)
+    # 6. Shot 06 (Frame 361-432): 地震仪真实仪器与纸带跳表长焦特写 (55mm 微距)
+    # 正确机位：正对仪器操作台与走纸滚筒，精准捕捉红色微型墨水笔头与高频振动网格图纸！
+    cam09 = create_cam("Cam_09_SeismographECU", (503.5, -0.15, 2.45), lens=55.0)
     for f in range(361, 433, 4):
-        cam09.location = (502.8 + (f%3-1)*0.012, -0.4 + (f%2-1)*0.012, 2.22)
+        q = (f % 3 - 1) * 0.015
+        cam09.location = (503.5 + q, -0.15 + q*0.5, 2.45)
+        point_cam_at(cam09, (502.35, -0.4, 2.15))
         cam09.keyframe_insert(data_path="location", frame=f)
+        cam09.keyframe_insert(data_path="rotation_euler", frame=f)
     bind_marker("Shot06_SeismographECU", 361, cam09)
     
-    # 7. Shot 07 (Frame 433-504): 大地震剧烈晃动，吊灯狂摆、保温杯翻倒与警报 (35mm)
-    cam10 = create_cam("Cam_10_HomesteadQuake", (498.2, 0.4, 2.3), (85, 0, 70), lens=35.0)
+    # 7. Shot 07 (Frame 433-504): 大地震剧烈晃动，吊灯狂摆、保温杯翻倒与警报 (32mm)
+    cam10 = create_cam("Cam_10_HomesteadQuake", (497.5, -0.5, 2.3), lens=32.0)
     for f in range(433, 505, 2):
-        q = (f % 5 - 2) * 0.15
-        cam10.location = (498.2 + q, 0.4 + q*0.5, 2.3 + q*0.8)
+        q = (f % 5 - 2) * 0.12
+        cam10.location = (497.5 + q, -0.5 + q*0.6, 2.3 + q*0.8)
+        point_cam_at(cam10, (501.2, 0, 2.0))
         cam10.keyframe_insert(data_path="location", frame=f)
+        cam10.keyframe_insert(data_path="rotation_euler", frame=f)
     bind_marker("Shot07_HomesteadQuake", 433, cam10)
     
     # 8. Shot 08 (Frame 505-576): 查尔星火山异虫主巢俯瞰与刀锋女王 (24mm)
-    cam12 = create_cam("Cam_12_CharHive", (1300, 70, 52), (54, 0, 180), lens=24.0)
-    cam12.location = (1300, 80, 56)
+    cam12 = create_cam("Cam_12_CharHive", (1300, 75, 54), lens=24.0)
+    cam12.location = (1300, 75, 54)
+    point_cam_at(cam12, (1300, 0, 47.0))
     cam12.keyframe_insert(data_path="location", frame=505)
-    cam12.location = (1300, 52, 46)
+    cam12.keyframe_insert(data_path="rotation_euler", frame=505)
+    cam12.location = (1300, 48, 45)
+    point_cam_at(cam12, (1300, 0, 47.0))
     cam12.keyframe_insert(data_path="location", frame=576)
+    cam12.keyframe_insert(data_path="rotation_euler", frame=576)
     bind_marker("Shot08_CharHive", 505, cam12)
     
-    # 9. Shot 09 (Frame 577-672): 萨尔那加出土金字塔裂谷大俯冲与微型收割机 (18mm)
-    cam15 = create_cam("Cam_15_TempleChasmEpic", (850, 155, 105), (58, 0, 180), lens=18.0)
-    cam15.location = (850, 165, 115)
+    # 9. Shot 09 (Frame 577-672): 萨尔那加出土金字塔裂谷大俯冲与微型收割机 (20mm)
+    # 航线沿着裂谷走向从西向东俯冲，彻底避开南悬崖遮挡，俯瞰深渊全貌与神庙！
+    cam15 = create_cam("Cam_15_TempleChasmEpic", (760, 28, 85), lens=20.0)
+    cam15.location = (760, 28, 85)
+    point_cam_at(cam15, (850, 0, 42.0))
     cam15.keyframe_insert(data_path="location", frame=577)
-    cam15.location = (850, 105, 62)
+    cam15.keyframe_insert(data_path="rotation_euler", frame=577)
+    cam15.location = (812, 16, 52)
+    point_cam_at(cam15, (850, 0, 42.0))
     cam15.keyframe_insert(data_path="location", frame=672)
+    cam15.keyframe_insert(data_path="rotation_euler", frame=672)
     bind_marker("Shot09_TempleChasmEpic", 577, cam15)
     
-    # 10. Shot 10 (Frame 673-792): 拉尔斯触碰大门、强光粒子化与400米宇宙信标爆发 (16mm)
-    cam19 = create_cam("Cam_19_CosmicBeacon", (850, 22.0, 3.2), (48, 0, 0), lens=16.0)
-    cam19.rotation_euler = (math.radians(45), 0, 0)
+    # 10. Shot 10 (Frame 673-792): 拉尔斯触碰大门、强光粒子化与400米宇宙信标爆发 (18mm)
+    cam19 = create_cam("Cam_19_CosmicBeacon", (850, 26.0, 3.2), lens=18.0)
+    # 前半段：聚焦门廊前拉尔斯走向大门与悬浮分解
+    cam19.location = (850, 26.0, 3.2)
+    point_cam_at(cam19, (850, 41.2, 5.0))
+    cam19.keyframe_insert(data_path="location", frame=673)
     cam19.keyframe_insert(data_path="rotation_euler", frame=673)
-    cam19.rotation_euler = (math.radians(18), 0, 0)
+    
+    cam19.location = (850, 24.0, 3.5)
+    point_cam_at(cam19, (850, 41.2, 5.5))
+    cam19.keyframe_insert(data_path="location", frame=730)
+    cam19.keyframe_insert(data_path="rotation_euler", frame=730)
+    
+    # 后半段：信标爆发时拉远机位并大角度仰望，展现神庙金字塔主体与通天光柱全貌
+    cam19.location = (850, -32.0, 9.0)
+    point_cam_at(cam19, (850, 0, 110.0))
+    cam19.keyframe_insert(data_path="location", frame=760)
+    cam19.keyframe_insert(data_path="rotation_euler", frame=760)
+    
+    cam19.location = (850, -40.0, 12.0)
+    point_cam_at(cam19, (850, 0, 180.0))
+    cam19.keyframe_insert(data_path="location", frame=792)
     cam19.keyframe_insert(data_path="rotation_euler", frame=792)
     bind_marker("Shot10_CosmicBeacon", 673, cam19)
 
