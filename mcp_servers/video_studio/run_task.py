@@ -45,7 +45,7 @@ def execute_task(task_id):
     project_root = Path(task.get('project', str(WORKSPACE)))
     
     # 生成输出路径
-    output_dir = project_root / "assets" / task['stage'] / "output"
+    output_dir = project_root / "tasks" / f"task-{task_id}" / "output"
     output_dir.mkdir(parents=True, exist_ok=True)
     
     ext = ".mp4" if is_video else ".png"

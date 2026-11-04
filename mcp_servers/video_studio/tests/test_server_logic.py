@@ -40,13 +40,13 @@ def test_submit_flow(mocker, temp_db):
     assert len(tasks) == 1
     assert tasks[0]['model_id'] == "test_model_image"
 
-def test_execution_logic(mocker, temp_db, mock_generators):
+def test_execution_logic(mocker, temp_db, mock_generators, tmp_path):
     """测试执行逻辑的控制流"""
     mocker.patch("run_task.TaskDB", return_value=temp_db)
     mock_img, mock_vid = mock_generators
     
     # 1. 准备一个已审批的任务，指定一个模拟的项目路径
-    project_path = str(Path("/tmp/fake_project").absolute())
+    project_path = str(tmp_path)
     tid = temp_db.add_task("test_channel", "test_model_image", project_path, "s", "prompt", {"size": "1024"})
     temp_db.update_task(tid, status='approved')
     
@@ -62,4 +62,4 @@ def test_execution_logic(mocker, temp_db, mock_generators):
     # 验证数据库状态更新
     task = temp_db.get_task(tid)
     assert task['status'] == 'completed'
-    assert task['output_path'] is not None
+    assert Path(task['output_path']).parent == tmp_path / 'tasks' / f'task-{tid}' / 'output'
