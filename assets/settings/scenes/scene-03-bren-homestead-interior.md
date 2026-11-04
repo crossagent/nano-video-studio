@@ -35,5 +35,21 @@
 ---
 
 ## 四、概念图归档
-* **概念图文件**：`scene-03-bren-homestead-interior.jpg`  
+* **概念图文件**：`scene-03-bren-homestead-interior.png`  
 * **画面内容**：狭窄硬核的预制工坊内景，冒烟跳表的地震监测台，百叶窗透入的暴风雨闪电冷光，电影级写实氛围。
+
+
+## 参考图交付 v2（2026-11-04）
+
+![布伦兄妹工坊](scene-03-bren-homestead-interior.png)
+
+- 图片：1672×941 PNG，接近16:9，保留工具原始画幅。
+- 来源任务：`tasks/scene-reference-sotx-002`；生成方式：内置 image_gen；完整提示词与参考来源见任务档案。模型版本与seed未公开。
+- 本版视觉基准：遵循用户修订后的导弹塔图，低对比度、柔和高光、可读中间调、克制反射与真实材质；此项优先于早期规格中高反差、强光及镜面效果描述。
+- 构图与空间、材质、光源按上述设定用于分镜参考；属于项目概念设计，并非官方游戏原画或测量施工图。
+- 关联：`assets/storyboards/act-01-storyboard-script.md`、本场景原有规格。
+
+
+### 场景概念大图（16:9 电影特写/内景）
+
+![布伦兄妹预制板房内景与地震仪](scene-03-bren-homestead-interior.jpg)

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "scene-01-bhekar-ro-wheatfield-storm",
+    "title": "贝卡·罗暴风麦浪与联合收割机",
+    "target": "assets/settings/scenes/scene-01-bhekar-ro-wheatfield-storm.jpg",
+    "bytes": 967800,
+    "sha256": "d19b34eea85cd59dcb66ebaeb09a6d8e142d8005aeddbcb1265f22aba2472861",
+    "aspectRatio": "16:9",
+    "status": "archived"
+  },
+  {
+    "id": "scene-02-free-haven-perimeter-turret",
+    "title": "自由避难所边陲与人族导弹塔",
+    "target": "assets/settings/scenes/scene-02-free-haven-perimeter-turret.jpg",
+    "bytes": 924970,
+    "sha256": "ec67f3de2b50a38c3695b70a6318fce972f62c7b488179c8f2cc1845344c9b06",
+    "aspectRatio": "16:9",
+    "status": "archived"
+  },
+  {
+    "id": "scene-03-bren-homestead-interior",
+    "title": "布伦兄妹预制板房内景与地震仪",
+    "target": "assets/settings/scenes/scene-03-bren-homestead-interior.jpg",
+    "bytes": 775553,
+    "sha256": "7bd4798db4f379f6a9d932dcac1a36a4e01ecb86e7481ec493d0a6d92880226c",
+    "aspectRatio": "16:9",
+    "status": "archived"
+  },
+  {
+    "id": "scene-04-xelnaga-temple-chasm",
+    "title": "萨尔那加出土神庙裂谷与通天光柱",
+    "target": "assets/settings/scenes/scene-04-xelnaga-temple-chasm.jpg",
+    "bytes": 798819,
+    "sha256": "a92fb7b75c8a81541f459d48836ed0dbc784dcc1f0c9c186dbb1721ee4237484",
+    "aspectRatio": "16:9",
+    "status": "archived"
+  },
+  {
+    "id": "scene-05-planet-char-zerg-hive",
+    "title": "查尔星灰烬废土与异虫主巢",
+    "target": "assets/settings/scenes/scene-05-planet-char-zerg-hive.jpg",
+    "bytes": 1009669,
+    "sha256": "7b679e04bd5767ac88fef7e446ac4c04eef739a206fa45b7a88e07233b7e7cbe",
+    "aspectRatio": "16:9",
+    "status": "archived"
+  },
+  {
+    "id": "scene-06-dominion-norad-bridge",
+    "title": "帝国战巡舰【诺拉德 II 号】主舰桥",
+    "target": "assets/settings/scenes/scene-06-dominion-norad-bridge.jpg",
+    "bytes": 826250,
+    "sha256": "8f065693f3daa6f4232a549260e8c8fd0a8ecc26925d601fd2ed1f391f436ef5",
+    "aspectRatio": "16:9",
+    "status": "archived"
+  },
+  {
+    "id": "scene-07-protoss-carrier-sanctum",
+    "title": "星灵圣堂航母【奎尔哈号】圣殿舰桥",
+    "target": "assets/settings/scenes/scene-07-protoss-carrier-sanctum.jpg",
+    "bytes": 949736,
+    "sha256": "fd9db8d6d079debafd132a1472d1517b118bc15a54479e75c0027ed9850ca7a6",
+    "aspectRatio": "16:9",
+    "status": "archived"
+  }
+]
