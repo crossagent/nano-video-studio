@@ -98,3 +98,34 @@
    三路画幅完全同步（True Depth / RGB Previs / Option B AI Gen），支持单帧步进与逐帧核对。
 
 
+
+---
+
+## 人类导演复核与偏差纠正：破除伪锁死，重构贴身侧后运镜
+
+- **复核时间**：2026-11-05 21:50
+- **导演核心质疑**：“我感觉最终的成片明显没有参考深度图的镜头啊”（附 VS Code 打开原版 Shot 02 白模视频 `StarCraft_Act01_Shot02_Previs_Input_00001_.mp4` 截图证明）。
+- **核查结论（完全属实）**：
+  上轮成片 `StarCraft_Act01_Shot02_ComplexDepth_OptionB_00001_.mp4` 呈现的完全是**收割机正面 45° 中景慢速前行**（前滚筒在前，大灯朝前），完全退化为场景概念图 `scene-01-bhekar-ro-wheatfield-storm.png` 的微动重绘，白模原始确立的“侧后贴身跟拍”构图与镜头轨迹完全丢失。
+- **四大根因查明**：
+  1. **视角死锁**：参考图为正前视角，白模为侧后视角，二者在潜空间互搏；
+  2. **过早退火断控**：方案 B 设 `end_percent = 0.35`，在后 65% 的高频几何去噪期 ControlNet 彻底退出，潜空间直接向参考图正面视角投降；
+  3. **深度测距被抹平**：此前 Workbench 引擎导出深度非物理线性，车体与麦田地面灰度均为 160~180，无明显边缘轮廓；
+  4. **机位拉远**：前版 5 秒相机误放置于 17 米开外，车身占比缩小。
+
+---
+
+## 修正实验：贴身侧后跟拍 + 物理几何深度 + 85% 强控生成
+
+- **实验时间**：2026-11-05 22:15 ~ 22:31
+- **任务 Prompt ID**：`2b048363-0c24-47bc-a458-2bbe55572539`
+- **生成产物**：[`StarCraft_Act01_Shot02_CloseupDepth_StrongControl_00001_.mp4`](file:///d:/nano-video-studio/tasks/video-act01-shot02-reference-test/StarCraft_Act01_Shot02_CloseupDepth_StrongControl_00001_.mp4) (768×320，124 帧 / 5.17s @ 24fps，844KB)
+- **工程与资产修正**：
+  1. **Blender 机位严格复原**：重回横向 11 米、后方 6 米、焦距 35mm 的原版贴身机位，保证车体占满左半幅 45%~55% 画面；
+  2. **124 帧连续动态超车**：相机沿左侧装甲从侧后方伴飞平滑滑过车体，超越至左前侧；
+  3. **EEVEE 物理高反差深度提取**：Map Range 0-25m 线性归一化，车身达到 170~185 高亮灰阶，远景与天空绝对纯黑（0），刀锋剪影；
+  4. **ControlNet 强力约束**：强度提升至 `0.75`，时间步覆盖延长至 `85%`（`end_percent = 0.85`）；
+  5. **提示词严格解绑**：强调 `<Picture 1>` 仅为材质与风暴环境参考，画面空间与镜头运动必须严格服从侧后跟拍。
+- **本地对比工具**：
+  - 本地交互比对播放器：[`tasks/video-act01-shot02-reference-test/shot02_closeup_strong_comparison.html`](file:///d:/nano-video-studio/tasks/video-act01-shot02-reference-test/shot02_closeup_strong_comparison.html)
+  - 3路逐帧点阵对比图：[`tasks/video-act01-shot02-reference-test/eval_closeup_strong/contact_sheet_3way_closeup.jpg`](file:///d:/nano-video-studio/tasks/video-act01-shot02-reference-test/eval_closeup_strong/contact_sheet_3way_closeup.jpg)
