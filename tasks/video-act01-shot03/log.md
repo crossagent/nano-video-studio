@@ -35,3 +35,14 @@
   - 动图预览：`tasks/video-act01-shot03/output/act01_shot03_5s_v2.webp` (1.44 MB), `tasks/video-act01-shot03/output/act01_shot03_5s_v2.gif` (2.34 MB)；
   - 效果验收：5.17 秒全程镜头流畅无融胶，拉尔斯的狂傲狂徒神韵与眼神极度逼真传神，奥克塔维亚在后方惊恐呼喊与舷窗外紫电形成强烈戏剧冲突；
   - 交互验收页面：`tasks/video-act01-shot03/output/shot03_comparison_player.html`。
+
+## 2026-11-05：ComfyUI 图形界面工作流维护
+
+- 在 ComfyUI Desktop 打开并保存工作流 `StarCraft-Act01-Previs-References`，移除未连接的抽帧节点，修改生成节点标题及输出前缀 `studio/StarCraft_Act01_Shot03`。
+- 白模输入：`previs_act01_animatic.mp4` 的输入副本，裁剪起始帧索引 144、长度 72 帧，经视频组件图像输出连接参考视频。
+- 参考图：Lars Bren、Octavia Bren 角色设定图与 Bhekar Ro 风暴麦田场景图，分别连接参考图输入；提示词包含角色和场景描述。
+- 生成参数：768×320、73 帧、24 fps、20 步，固定种子 2026110412。已通过 UI 提交生成，任务进入采样；生成结果和质量尚待核验。
+- 待核查：ComfyUI 内视频预览曾显示与资源管理器中白模缩略图不一致的画面，尚不能据此认定实际送入模型的内容；需对输入帧和生成结果复核。
+- 本次任务完成：ComfyUI 任务 ID `ebf846b2-a57f-4d47-9e72-ab471e8c6d0a`，界面显示耗时 16 分 53 秒；输出 `output/StarCraft_Act01_Shot03_00001_.mp4`，已复制至本任务目录。
+- 预览约 3 秒：驾驶舱内两名人物、风暴及闪电可见，人物动作有变化。是否精确遵循白模构图和运动，以及视频输入预览异常的原因，仍需逐帧对照核验。
+- 导出工作流：`StarCraft-Act01-Previs-References.json`，位于本任务目录。

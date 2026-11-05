@@ -1,0 +1,58 @@
+[
+  {
+    "id": "act01-shot02-previs-input",
+    "shot": "Shot 02 (Previs Input)",
+    "description": "Blender 3D白模视口裁剪输入（72帧，近景粉红方块车身与天线）",
+    "target": "tasks/video-act01-shot02-reference-test/StarCraft_Act01_Shot02_Previs_Input_00001_.mp4",
+    "bytes": 263544,
+    "width": 1920,
+    "height": 804,
+    "fps": 24.0,
+    "duration": 3.0,
+    "frames": 72,
+    "status": "completed"
+  },
+  {
+    "id": "act01-shot02-strong-control",
+    "shot": "Shot 02 (StrongControl)",
+    "description": "Canny 1.0 全程锁死翻车对照组（潜空间被硬直线禁锢，生成粉红积木盒）",
+    "target": "tasks/video-act01-shot02-reference-test/StarCraft_Act01_Shot02_StrongControl_00001_.mp4",
+    "bytes": 591053,
+    "width": 768,
+    "height": 256,
+    "fps": 24.0,
+    "duration": 3.04,
+    "frames": 73,
+    "prompt_id": "45ccba0f-6f4d-42d0-ac00-a882c1116498",
+    "status": "failed_verification"
+  },
+  {
+    "id": "act01-shot02-option-a-pureref",
+    "shot": "Shot 02 (Option A)",
+    "description": "方案 A：纯隐空间参考注入（机械细节丰富，但构图被拉宽为侧向全景）",
+    "target": "tasks/video-act01-shot02-reference-test/StarCraft_Act01_Shot02_OptionA_PureRef.mp4",
+    "bytes": 558856,
+    "width": 768,
+    "height": 256,
+    "fps": 24.0,
+    "duration": 3.04,
+    "frames": 73,
+    "prompt_id": "44f4e586-142a-42c1-bd49-b6545994a7c7",
+    "status": "completed"
+  },
+  {
+    "id": "act01-shot02-option-b-annealed",
+    "shot": "Shot 02 (Option B)",
+    "description": "方案 B：ControlNet 降权与时间步退火（完美兼顾侧后方低角度贴身近景构图与高精履带重装甲细节）",
+    "target": "tasks/video-act01-shot02-reference-test/StarCraft_Act01_Shot02_OptionB_AnnealedControl.mp4",
+    "bytes": 448940,
+    "width": 768,
+    "height": 256,
+    "fps": 24.0,
+    "duration": 3.04,
+    "frames": 73,
+    "prompt_id": "105dc61e-275e-4c9b-8e4a-0614fbf449f7",
+    "status": "recommended_master",
+    "interactive_player": "tasks/video-act01-shot02-reference-test/shot02_options_comparison.html"
+  }
+]
