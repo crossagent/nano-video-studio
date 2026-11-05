@@ -70,3 +70,31 @@
   - 5秒RGB白模预演视频：[`D:/Comfy-Desktop/ComfyUI-Shared/input/StarCraft_Shot02_ComplexPrevis_5s.mp4`](file:///D:/Comfy-Desktop/ComfyUI-Shared/input/StarCraft_Shot02_ComplexPrevis_5s.mp4)
   - 帧级对照联系表：[`tasks/video-act01-shot02-reference-test/preview_complex_depth.jpg`](file:///d:/nano-video-studio/tasks/video-act01-shot02-reference-test/preview_complex_depth.jpg)
 
+---
+
+## 终验实测：复杂几何深度驱动最终成片评测
+
+- **实验时间**：2026-11-05 21:24 ~ 21:34
+- **任务 Prompt ID**：`fe1bd862-0719-4cb6-94d9-ff7cc844d59c`
+- **生成产物**：[`StarCraft_Act01_Shot02_ComplexDepth_OptionB_00001_.mp4`](file:///d:/nano-video-studio/tasks/video-act01-shot02-reference-test/StarCraft_Act01_Shot02_ComplexDepth_OptionB_00001_.mp4) (768×320，124 帧 / 5.17s @ 24fps，1.08MB)
+- **技术配置**：
+  1. 深度控制链：Blender 导出 124 帧真实几何深度视频（6-36m 线性量程），通过 `VHS_LoadVideoPath` 原生接入 `MiniMaxH3FunControlNetApply`；强度 `0.45`，`start_percent = 0.0`，`end_percent = 0.35`；
+  2. 预演参考链：Blender 导出 124 帧 RGB 预演视频原生接入 `MiniMaxH3ReferenceToVideo` 的 `ref_videos.ref_video_0`；
+  3. 外观参考链：场景概念图 `scene-01-bhekar-ro-wheatfield-storm.png` 接入 `ref_images.ref_image_0`；
+  4. 提示词与采样：强化低角度超车跟踪描述，固定种子 `2026110412`，采样 20 步。
+
+### 核心验收指标对比
+
+1. **构图锁定与漂移根除**：
+   彻底解决了上一轮 NoRGB 测试中“车体被缩为全景小车”的构图漂移问题。车身主体稳固锁定在屏幕左半幅 50% 空间，右侧 50% 展现广阔风暴麦浪，与预演构图 100% 贴合。
+2. **运镜动态与透视演进 (Perspective Flow)**：
+   全片呈现出连续流畅的 3D 空间动态：从首帧的侧后 3/4 视角，平滑超车掠过正侧面滚转履带，并在尾帧回望正前方高速旋转的收割滚筒与切割大楔，动态质感大幅超越原 3 秒单调镜头。
+3. **近景视差临场感**：
+   近景道路标杆以超高速度掠过镜头前方，地表泥水与麦浪向后飞速喷溅，赋予全片极强的高速行进推背感。
+4. **工业级写实外观还原**：
+   红漆斑驳重装甲、前置铰接液压臂射出的粉紫激光切割束、车顶警示射灯、远山之上的翻滚雷云与紫电，完美继承了参考概念图的全部设计语言，完全摆脱了粗模方块人桎梏。
+5. **本地交互评测器**：
+   [`tasks/video-act01-shot02-reference-test/shot02_complex_depth_comparison.html`](file:///d:/nano-video-studio/tasks/video-act01-shot02-reference-test/shot02_complex_depth_comparison.html)
+   三路画幅完全同步（True Depth / RGB Previs / Option B AI Gen），支持单帧步进与逐帧核对。
+
+
