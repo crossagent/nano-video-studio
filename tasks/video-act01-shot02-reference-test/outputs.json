@@ -43,7 +43,7 @@
   {
     "id": "act01-shot02-option-b-annealed",
     "shot": "Shot 02 (Option B)",
-    "description": "方案 B：ControlNet 降权与时间步退火（完美兼顾侧后方低角度贴身近景构图与高精履带重装甲细节）",
+    "description": "方案 B：ControlNet 降权与时间步退火（初版3秒对照组）",
     "target": "tasks/video-act01-shot02-reference-test/StarCraft_Act01_Shot02_OptionB_AnnealedControl.mp4",
     "bytes": 448940,
     "width": 768,
@@ -52,7 +52,34 @@
     "duration": 3.04,
     "frames": 73,
     "prompt_id": "105dc61e-275e-4c9b-8e4a-0614fbf449f7",
-    "status": "recommended_master",
-    "interactive_player": "tasks/video-act01-shot02-reference-test/shot02_options_comparison.html"
+    "status": "completed"
+  },
+  {
+    "id": "act01-shot02-complex-depth-5s",
+    "shot": "Shot 02 (Complex True Depth 5s)",
+    "description": "Blender 动态超车低角度跟拍真实几何深度序列（768x320 2.4:1，120帧/5.0s，近景标杆视差、旋转滚刀与负重轮连续动态）",
+    "target": "tasks/video-act01-shot02-reference-test/StarCraft_Shot02_ComplexDepth_5s.mp4",
+    "bytes": 327859,
+    "width": 768,
+    "height": 320,
+    "fps": 24.0,
+    "duration": 5.0,
+    "frames": 120,
+    "status": "ready_for_comfyui",
+    "blend_file": "tasks/blender/previs-blocking-act-001/work/previs_act01_shot02_complex_depth.blend",
+    "preview_sheet": "tasks/video-act01-shot02-reference-test/preview_complex_depth.jpg"
+  },
+  {
+    "id": "act01-shot02-complex-previs-5s",
+    "shot": "Shot 02 (Complex RGB Previs 5s)",
+    "description": "Blender 动态超车低角度跟拍RGB白模预演视频（768x320 2.4:1，120帧/5.0s，供方案B双轨注入）",
+    "target": "tasks/video-act01-shot02-reference-test/StarCraft_Shot02_ComplexPrevis_5s.mp4",
+    "bytes": 525642,
+    "width": 768,
+    "height": 320,
+    "fps": 24.0,
+    "duration": 5.0,
+    "frames": 120,
+    "status": "ready_for_comfyui"
   }
 ]
