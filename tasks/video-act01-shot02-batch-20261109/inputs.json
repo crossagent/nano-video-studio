@@ -1,0 +1,27 @@
+{
+  "task": "video-act01-shot02-batch-20261109",
+  "requirements": "Shot 02, 3 seconds target; whitebox and storyboard references.",
+  "acceptance": "Playable output; compare composition and motion to whitebox.",
+  "inputs": {
+    "5": {
+      "prompt": "StarCraft: Shadow of the Xel'Naga, Act I, shot 02. Use <Video 1> as camera and blocking reference; follow its framing, positions and camera movement. Use <Picture 1> as visual storyboard reference for the scene and appearance. A battered red industrial harvester moves through the stormy wheat field. Preserve the vehicle placement and camera motion in the whitebox. One continuous shot, cinematic realistic live-action science fiction, no cuts, text, captions, diagrams or watermark.",
+      "length": 73
+    },
+    "8": {
+      "noise_seed": 2026110402
+    },
+    "14": {
+      "filename_prefix": "starcraft/act01_shot02_batch_20261109"
+    },
+    "19": {
+      "image": "act01_shot02_storyboard_20261109.png"
+    },
+    "22": {
+      "file": "act01_shot02_whitebox_20261109.mp4"
+    },
+    "23": {
+      "start_frame": 0,
+      "length": 72
+    }
+  }
+}

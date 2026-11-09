@@ -1,0 +1,27 @@
+{
+  "task": "video-act01-shot06-batch-20261109",
+  "requirements": "Shot 06, 3 seconds target; whitebox and storyboard references.",
+  "acceptance": "Playable output; compare composition and motion to whitebox.",
+  "inputs": {
+    "5": {
+      "prompt": "StarCraft: Shadow of the Xel'Naga, Act I, shot 06. Use <Video 1> as camera and blocking reference; follow its framing, positions and camera movement. Use <Picture 1> as visual storyboard reference for the scene and appearance. Close view of a rotating paper drum seismograph and its wire mechanism in a dim workshop. One continuous shot, cinematic realistic live-action science fiction, no cuts, text, captions, diagrams or watermark.",
+      "length": 73
+    },
+    "8": {
+      "noise_seed": 2026110406
+    },
+    "14": {
+      "filename_prefix": "starcraft/act01_shot06_batch_20261109"
+    },
+    "19": {
+      "image": "act01_shot06_storyboard_20261109.png"
+    },
+    "22": {
+      "file": "act01_shot06_whitebox_20261109.mp4"
+    },
+    "23": {
+      "start_frame": 0,
+      "length": 72
+    }
+  }
+}

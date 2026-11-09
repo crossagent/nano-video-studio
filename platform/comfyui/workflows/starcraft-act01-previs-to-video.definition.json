@@ -17,19 +17,89 @@
     "output_prefix": "starcraft/act01_shot03"
   },
   "bindings": {
-    "video": [["22", "file"]],
-    "start_frame": [["23", "start_frame"]],
-    "length": [["23", "length"]],
-    "prompt": [["5", "prompt"]],
-    "width": [["5", "width"]],
-    "height": [["5", "height"]],
-    "output_length": [["5", "length"]],
-    "ref_image_size": [["5", "ref_image_size"]],
-    "character_ref_1": [["19", "image"]],
-    "character_ref_2": [["24", "image"]],
-    "scene_ref": [["26", "image"]],
-    "seed": [["8", "noise_seed"]],
-    "steps": [["9", "steps"]],
-    "output_prefix": [["14", "filename_prefix"]]
+    "video": [
+      {
+        "node": "22",
+        "input": "file"
+      }
+    ],
+    "start_frame": [
+      {
+        "node": "23",
+        "input": "start_frame"
+      }
+    ],
+    "length": [
+      {
+        "node": "23",
+        "input": "length"
+      }
+    ],
+    "prompt": [
+      {
+        "node": "5",
+        "input": "prompt"
+      }
+    ],
+    "width": [
+      {
+        "node": "5",
+        "input": "width"
+      }
+    ],
+    "height": [
+      {
+        "node": "5",
+        "input": "height"
+      }
+    ],
+    "output_length": [
+      {
+        "node": "5",
+        "input": "length"
+      }
+    ],
+    "ref_image_size": [
+      {
+        "node": "5",
+        "input": "ref_image_size"
+      }
+    ],
+    "character_ref_1": [
+      {
+        "node": "19",
+        "input": "image"
+      }
+    ],
+    "character_ref_2": [
+      {
+        "node": "24",
+        "input": "image"
+      }
+    ],
+    "scene_ref": [
+      {
+        "node": "26",
+        "input": "image"
+      }
+    ],
+    "seed": [
+      {
+        "node": "8",
+        "input": "noise_seed"
+      }
+    ],
+    "steps": [
+      {
+        "node": "9",
+        "input": "steps"
+      }
+    ],
+    "output_prefix": [
+      {
+        "node": "14",
+        "input": "filename_prefix"
+      }
+    ]
   }
 }

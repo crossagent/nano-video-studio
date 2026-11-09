@@ -1,0 +1,27 @@
+{
+  "task": "video-act01-shot01-batch-20261109",
+  "requirements": "Shot 01, 3 seconds target; whitebox and storyboard references.",
+  "acceptance": "Playable output; compare composition and motion to whitebox.",
+  "inputs": {
+    "5": {
+      "prompt": "StarCraft: Shadow of the Xel'Naga, Act I, shot 01. Use <Video 1> as camera and blocking reference; follow its framing, positions and camera movement. Use <Picture 1> as visual storyboard reference for the scene and appearance. A storm sweeps over golden wheat before a massive fortified settlement, thunderclouds and violet lightning. Wide establishing shot. One continuous shot, cinematic realistic live-action science fiction, no cuts, text, captions, diagrams or watermark.",
+      "length": 73
+    },
+    "8": {
+      "noise_seed": 2026110401
+    },
+    "14": {
+      "filename_prefix": "starcraft/act01_shot01_batch_20261109"
+    },
+    "19": {
+      "image": "act01_shot01_storyboard_20261109.png"
+    },
+    "22": {
+      "file": "act01_shot01_whitebox_20261109.mp4"
+    },
+    "23": {
+      "start_frame": 0,
+      "length": 72
+    }
+  }
+}

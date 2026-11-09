@@ -1,0 +1,14 @@
+{
+  "task": "video-act01-shot03-ui-recovery-test",
+  "requirements": "Single shot test of existing UI workflow, 3 seconds, 24 fps, storyboard and whitebox video references.",
+  "acceptance": "Playable video, inspect duration and compare shot composition and motion with whitebox.",
+  "parameters": {
+    "video": "act01_shot03_whitebox_20261109.mp4",
+    "start_frame": 0,
+    "length": 72,
+    "output_length": 73,
+    "scene_ref": "act01_shot03_storyboard_candidate_20261109.png",
+    "output_prefix": "starcraft/act01_shot03_recovery_20261109",
+    "prompt": "StarCraft: Shadow of the Xel'Naga, Act I shot 03, inside a battered harvester cockpit during a storm. Use <Video 1> as the camera and blocking reference, following the two figures' positions and camera movement. Use <Picture 3> as visual storyboard reference for the cockpit and composition; it is a visual reference, not a reference sheet. <Picture 1> is Lars and <Picture 2> is Octavia, preserve their distinct faces and clothing. Octavia sits on the left, Lars on the right at the controls. One continuous shot, realistic industrial science fiction, rain and storm beyond windows. No captions, diagrams, text, watermarks, or cuts."
+  }
+}

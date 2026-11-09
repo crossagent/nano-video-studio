@@ -1,0 +1,20 @@
+[
+  {
+    "node": "14",
+    "remote": {
+      "filename": "act01_shot06_batch_20261109_00001_.mp4",
+      "subfolder": "starcraft",
+      "type": "output",
+      "metadata": {
+        "kind": "video",
+        "width": 768,
+        "height": 320,
+        "duration": 3.0416666666666665,
+        "fps": 24,
+        "frame_count": 73
+      },
+      "id": "7fdbc3ab-0dfd-4d6f-9e94-50503442c9a7"
+    },
+    "local": "output/0-act01_shot06_batch_20261109_00001_.mp4"
+  }
+]

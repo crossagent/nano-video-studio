@@ -30,3 +30,13 @@ test('拒绝 UI 格式和不存在的节点输入', () => {
   assert.throws(() => applyInputs(graph, { '2': { seed: 1 } }), /节点不存在/);
   assert.throws(() => applyInputs(graph, { '1': { typo: 1 } }), /输入不存在/);
 });
+
+test('StarCraft 工作流的绑定与实际节点输入一致', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const graph = JSON.parse(await readFile(new URL('../workflows/starcraft-act01-previs-to-video.api.json', import.meta.url), 'utf8'));
+  const definition = JSON.parse(await readFile(new URL('../workflows/starcraft-act01-previs-to-video.definition.json', import.meta.url), 'utf8'));
+  const result = bindParameters(graph, definition, { start_frame: 0, output_length: 73 });
+  assert.equal(result['23'].inputs.start_frame, 0);
+  assert.equal(result['5'].inputs.length, 73);
+  assert.deepEqual(result['5'].inputs['ref_videos.ref_video_0'], ['21', 0]);
+});

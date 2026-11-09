@@ -1,0 +1,20 @@
+[
+  {
+    "node": "14",
+    "remote": {
+      "filename": "act01_shot03_recovery_20261109_00001_.mp4",
+      "subfolder": "starcraft",
+      "type": "output",
+      "metadata": {
+        "kind": "video",
+        "width": 768,
+        "height": 320,
+        "duration": 3.0416666666666665,
+        "fps": 24,
+        "frame_count": 73
+      },
+      "id": "4aff2ea5-b628-4544-8007-f178abac6604"
+    },
+    "local": "output/0-act01_shot03_recovery_20261109_00001_.mp4"
+  }
+]

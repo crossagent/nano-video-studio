@@ -14,3 +14,7 @@
 2. **`comfyui/` (ComfyUI 本地图像与视频工作流)**：
    - 本地 ComfyUI HTTP API 批量执行接口；
    - 详细接口参见 [ComfyUI 接入说明](comfyui/README.md)。
+
+## CapCut 桌面版
+
+本机通过 `capcut_local` stdio MCP 操作 CapCut 草稿。接入代码在 `platform/capcut-local/` 单独检出，当前使用 `JmsLdrn/capcut-mcp` 的 `50beafd` 提交。本机草稿目录和操作约定见[项目 README](../README.md#capcut-桌面剪辑)，单次剪辑的路径和验收记录见[任务索引](../tasks/README.md#capcut-capcut)。
