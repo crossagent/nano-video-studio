@@ -1,0 +1,20 @@
+{
+  "task": "minimax-act01-strike-track-20261110",
+  "requirements": "S01-020 至 S01-040 雷击、履带及车辆中景",
+  "inputs": {
+    "5": {
+      "length": 294,
+      "prompt": "Use <Video 1> for camera movement, framing, timing, layout and actions. <Picture 1> supplies the stormy black rock and golden wheat appearance. <Picture 2> supplies the weathered red metal harvester appearance. Render as a realistic cinematic scene. Follow the video camera and action; preserve shot changes and subject positions. Violet lightning, rain, wet dark ground. First show the rock close up and lightning striking and shattering it. Cut to the same debris as a harvester tread passes from left to right over it. Then cut to the harvester medium tracking shot, moving to the right."
+    },
+    "8": {
+      "noise_seed": 2026111002
+    },
+    "14": {
+      "filename_prefix": "studio/minimax-act01-strike-track-20261110"
+    },
+    "23": {
+      "start_frame": 144,
+      "length": 288
+    }
+  }
+}

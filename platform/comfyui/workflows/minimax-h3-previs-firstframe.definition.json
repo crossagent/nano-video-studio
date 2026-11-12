@@ -1,0 +1,107 @@
+{
+  "name": "minimax-h3-previs-firstframe",
+  "description": "MiniMax H3 Ref2VA + MiniMaxH3AddGuide(frame_idx=0) 已验证白模转写实单镜工作流（第4版方案）：独立对齐写实首帧 <Picture 1> 硬锚定第 0 帧，单镜 3D 白模视频 <Video 1> 驱动运镜与几何，标准 20 步禁用 Turbo LoRA；帧长需对齐 17n+5（如 56、73、90、158）。",
+  "requirements": {
+    "models": [
+      "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "minimax_h3_video_vae_int8_convrot.safetensors",
+      "minimax_h3_audio_vae_fp32.safetensors"
+    ],
+    "validation": "2026-11-12 在 S01-010 高空俯冲最难单镜（608x256, 158f, 20 steps）实测通过：全程无灰白模残留，无场景突变。"
+  },
+  "defaults": {
+    "first_frame": "replace_with_aligned_firstframe.png",
+    "video": "replace_with_single_shot_clay_previs.mp4",
+    "start_frame": 0,
+    "length": 158,
+    "frames": 158,
+    "width": 608,
+    "height": 256,
+    "ref_image_size": "match",
+    "frame_idx": 0,
+    "seed": 2026111201,
+    "steps": 20,
+    "prefix": "studio/minimax-h3-previs-firstframe"
+  },
+  "bindings": {
+    "first_frame": [
+      {
+        "node": "19",
+        "input": "image"
+      }
+    ],
+    "video": [
+      {
+        "node": "22",
+        "input": "file"
+      }
+    ],
+    "start_frame": [
+      {
+        "node": "23",
+        "input": "start_frame"
+      }
+    ],
+    "length": [
+      {
+        "node": "23",
+        "input": "length"
+      }
+    ],
+    "frames": [
+      {
+        "node": "5",
+        "input": "length"
+      }
+    ],
+    "prompt": [
+      {
+        "node": "5",
+        "input": "prompt"
+      }
+    ],
+    "width": [
+      {
+        "node": "5",
+        "input": "width"
+      }
+    ],
+    "height": [
+      {
+        "node": "5",
+        "input": "height"
+      }
+    ],
+    "ref_image_size": [
+      {
+        "node": "5",
+        "input": "ref_image_size"
+      }
+    ],
+    "frame_idx": [
+      {
+        "node": "25",
+        "input": "frame_idx"
+      }
+    ],
+    "seed": [
+      {
+        "node": "8",
+        "input": "noise_seed"
+      }
+    ],
+    "steps": [
+      {
+        "node": "9",
+        "input": "steps"
+      }
+    ],
+    "prefix": [
+      {
+        "node": "14",
+        "input": "filename_prefix"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "task": "seedance-example-001",
+  "task_dir": "tasks/seedance/act01-scene01-whitemodel-fidelity",
+  "model": "doubao-seedance-2-5-260628",
+  "ratio": "21:9",
+  "resolution": "480p",
+  "duration": 5,
+  "generate_audio": false,
+  "return_last_frame": true,
+  "content": [
+    {
+      "type": "text",
+      "text": "参考@video1中的摄像机运镜轨迹、构图比例和车辆行进动态；主体外观与暴风雨材质参考@image1：贝卡·罗荒原黑麦田在狂风骤雨中大幅倾伏，一辆红漆斑驳的重型履带联合收割机沿泥泞车辙全速行进，履带卷起泥浆水花，远处山脊乌云压顶、紫白闪电劈落，35mm变形宽银幕电影质感，写实摄影。"
+    },
+    {
+      "type": "image_url",
+      "role": "reference_image",
+      "asset": "assets/settings/scenes/scene-01-bhekar-ro-wheatfield-storm.jpg"
+    },
+    {
+      "type": "video_url",
+      "role": "reference_video",
+      "asset": "tasks/seedance/act01-scene01-whitemodel-fidelity/inputs/s01_040_clay.mp4"
+    }
+  ]
+}

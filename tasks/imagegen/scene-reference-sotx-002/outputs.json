@@ -1,0 +1,93 @@
+[
+  {
+    "id": "scene-01-bhekar-ro-wheatfield-storm",
+    "title": "贝卡·罗暴风麦田",
+    "source": "C:\\Users\\zhouxy\\.codex\\generated_images\\01a1a6eb-4694-74e0-b5c2-07774c71eb90\\exec-bb34e229-3ccf-4d55-b1d4-87e7bb1eb72b.png",
+    "output": "tasks/imagegen/scene-reference-sotx-002/output/scene-01-bhekar-ro-wheatfield-storm-v2.png",
+    "target": "assets/settings/scenes/scene-01-bhekar-ro-wheatfield-storm.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2581707,
+    "sha256": "c0ad7348e50467819a1e74204706859832d20f9fe95bbbd13c00d186d46b2726",
+    "verification": "PNG chunks and decompression valid; visual review in chat",
+    "version": "v2"
+  },
+  {
+    "id": "scene-02-free-haven-perimeter-turret",
+    "title": "自由避难所与人族导弹塔",
+    "source": "C:\\Users\\zhouxy\\.codex\\generated_images\\01a1a6eb-4694-74e0-b5c2-07774c71eb90\\exec-6356a142-77fb-4bbb-9b78-6ca24492dc00.png",
+    "output": "tasks/imagegen/scene-reference-sotx-002/output/scene-02-free-haven-perimeter-turret-v2.png",
+    "target": "assets/settings/scenes/scene-02-free-haven-perimeter-turret.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2468489,
+    "sha256": "84123e56bc54d0faf4da26d8c57350b0dc3fa677b39be7721038b11699e253d2",
+    "verification": "PNG chunks and decompression valid; visual review in chat",
+    "version": "v2"
+  },
+  {
+    "id": "scene-03-bren-homestead-interior",
+    "title": "布伦兄妹工坊",
+    "source": "C:\\Users\\zhouxy\\.codex\\generated_images\\01a1a6eb-4694-74e0-b5c2-07774c71eb90\\exec-8885fe4d-b162-409e-a2ce-5cee6cbf57a3.png",
+    "output": "tasks/imagegen/scene-reference-sotx-002/output/scene-03-bren-homestead-interior-v2.png",
+    "target": "assets/settings/scenes/scene-03-bren-homestead-interior.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2391262,
+    "sha256": "6fcf21832fe4b60c4ed494943606198a26ae582347c7acc97442145cef67a7dc",
+    "verification": "PNG chunks and decompression valid; visual review in chat",
+    "version": "v2"
+  },
+  {
+    "id": "scene-04-xelnaga-temple-chasm",
+    "title": "萨尔那加神庙裂谷",
+    "source": "C:\\Users\\zhouxy\\.codex\\generated_images\\01a1a6eb-4694-74e0-b5c2-07774c71eb90\\exec-2c3ab527-5072-440e-997a-f239ece7fb50.png",
+    "output": "tasks/imagegen/scene-reference-sotx-002/output/scene-04-xelnaga-temple-chasm-v2.png",
+    "target": "assets/settings/scenes/scene-04-xelnaga-temple-chasm.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2714612,
+    "sha256": "2c4b9ff302f7156daac0f27824e414cb9de38d9bc817e3bd3ce39478f7150e79",
+    "verification": "PNG chunks and decompression valid; visual review in chat",
+    "version": "v2"
+  },
+  {
+    "id": "scene-05-planet-char-zerg-hive",
+    "title": "查尔星异虫主巢",
+    "source": "C:\\Users\\zhouxy\\.codex\\generated_images\\01a1a6eb-4694-74e0-b5c2-07774c71eb90\\exec-441e6ae1-270d-4937-824d-1230ed55d564.png",
+    "output": "tasks/imagegen/scene-reference-sotx-002/output/scene-05-planet-char-zerg-hive-v2.png",
+    "target": "assets/settings/scenes/scene-05-planet-char-zerg-hive.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2797945,
+    "sha256": "5753989c28c81dcbd8d33eea8d0f28b3de6011db768f3e157d70a9d47bbf453f",
+    "verification": "PNG chunks and decompression valid; visual review in chat",
+    "version": "v2"
+  },
+  {
+    "id": "scene-06-dominion-norad-bridge",
+    "title": "诺拉德II号主舰桥",
+    "source": "C:\\Users\\zhouxy\\.codex\\generated_images\\01a1a6eb-4694-74e0-b5c2-07774c71eb90\\exec-2adc0bfa-f1c9-414d-8285-e08a32996336.png",
+    "output": "tasks/imagegen/scene-reference-sotx-002/output/scene-06-dominion-norad-bridge-v2.png",
+    "target": "assets/settings/scenes/scene-06-dominion-norad-bridge.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2641300,
+    "sha256": "2cbff1bcebf8e119fba9febc4c6d1ccd2060c71c9ac5983afa841d9ea6e725c4",
+    "verification": "PNG chunks and decompression valid; visual review in chat",
+    "version": "v2"
+  },
+  {
+    "id": "scene-07-protoss-carrier-sanctum",
+    "title": "奎尔哈号星灵圣殿舰桥",
+    "source": "C:\\Users\\zhouxy\\.codex\\generated_images\\01a1a6eb-4694-74e0-b5c2-07774c71eb90\\exec-0ae4c54f-852e-4919-880e-4daa152f740e.png",
+    "output": "tasks/imagegen/scene-reference-sotx-002/output/scene-07-protoss-carrier-sanctum-v2.png",
+    "target": "assets/settings/scenes/scene-07-protoss-carrier-sanctum.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2330130,
+    "sha256": "c433977e8898c84d4737c8ed5595627edf1a9cd3bdb9d3c83be65de8929ae880",
+    "verification": "PNG chunks and decompression valid; visual review in chat",
+    "version": "v2"
+  }
+]

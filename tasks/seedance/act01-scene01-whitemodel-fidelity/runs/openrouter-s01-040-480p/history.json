@@ -1,0 +1,17 @@
+{
+  "id": "gen-vid-1794304745-qM14l6Vw9BxYbJU7yilq",
+  "generation_id": "gen-vid-1794304745-qM14l6Vw9BxYbJU7yilq",
+  "polling_url": "https://openrouter.ai/api/v1/videos/gen-vid-1794304745-qM14l6Vw9BxYbJU7yilq",
+  "status": "completed",
+  "unsigned_urls": [
+    "https://openrouter.ai/api/v1/videos/gen-vid-1794304745-qM14l6Vw9BxYbJU7yilq/content?index=0"
+  ],
+  "urls": [
+    "https://storage.googleapis.com/openrouter-generated-media-us/v1/user_2tefL0tIM29u8AeLYx244yMu0Az/gen-vid-1794304745-qM14l6Vw9BxYbJU7yilq/0?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=generated-media-writer%40openrouter-core.iam.gserviceaccount.com%2F20261110%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261110T100147Z&X-Goog-Expires=86393&X-Goog-SignedHeaders=host&X-Goog-Signature=8885637ffc27ce76c29b5a4b496317fb208dbaddfbb352a70bad889d637c35d4ac381e02b76b2f90844a20b138b75f36025c6cf2d15bbb4d9a9bacb71ad0d4efae474444ab1f7d09b63fbf8507f27325a02b8d9185e592a8eb826206a8d6c2f8567a8a6cc84f49eccf97bd6db8c4eeb94b493a8901a3ac486200def825f432cba202e5d7902eaf752f406e5f864ef13833c3eb5bfcfc8dcb0acb802bc3c099623b0c30c734b4fd4d6a085716cd8b5c4407ed310a17b74f6e46a716416051eab2d9f888314f14744e2386389d8524ac76e2b86499b6a6674386822b34e0bd5ba60d4435d313c8f990bf22d9d54e56a4339d261aa7b17cb84aed5ed3da6699a879"
+  ],
+  "usage": {
+    "cost": 0.7097728,
+    "is_byok": false
+  },
+  "expires_at": 1794391300
+}

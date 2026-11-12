@@ -1,0 +1,272 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "_meta": {
+      "title": "Ref2VA 主模型（角色参考专用）"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    },
+    "_meta": {
+      "title": "文本与图片编码器"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    },
+    "_meta": {
+      "title": "视频 VAE"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    },
+    "_meta": {
+      "title": "音频 VAE"
+    }
+  },
+  "5": {
+    "class_type": "MiniMaxH3ReferenceToVideo",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "prompt": "subject_definitions:\n<Video 1> is a 24 fps clay animation defining the camera, staging and action.\n<Subject 1> is a weathered red tracked industrial harvester in a stormy canyon and wheat field, with realistic materials from <Picture 2> and lighting from <Picture 1>.\n\nsummary:\n[reference generation] Generate a fully rendered realistic shot following the visual layout and action of <Video 1>, using <Picture 1> for the environment and <Picture 2> for the harvester appearance.\n\nretention_analysis:\n<Video 1> (camera, composition and action): fully_preserved - match the original camera, object positions, subject scale and timing.\n<Subject 1> (appears in [Shot 1]): attribute_transfer - the simple clay scene is rendered with the realistic scene from <Picture 1> and harvester appearance from <Picture 2>.\n\ndetailed_description:\n[Shot 1] From 0.00 to 5.875 seconds. From a low camera following the harvester on its rear right side, the heavy red tracked harvester travels toward the right. The vehicle occupies the frame and the background flows past as shown in <Video 1>. Follow its camera movement, subject scale and timing throughout. Rain, dark storm clouds and cold violet lightning illuminate the wet canyon. Every frame is fully rendered with realistic surfaces and lighting.\n\noverall_soundscape:\nHeavy wind and rain, thunder and machinery as appropriate to the action.\nnon_diegetic_music:\nNone.\nReference roles: <Picture 1> supplies storm-dark canyon, golden wheat and lighting. <Picture 2> supplies weathered red industrial harvester materials. Use the camera and arrangement of <Video 1> throughout.",
+      "width": 608,
+      "height": 256,
+      "length": 141,
+      "ref_image_size": "match",
+      "vae": [
+        "3",
+        0
+      ],
+      "audio_vae": [
+        "4",
+        0
+      ],
+      "ref_images.ref_image_0": [
+        "19",
+        0
+      ],
+      "ref_videos.ref_video_0": [
+        "21",
+        0
+      ],
+      "ref_images.ref_image_1": [
+        "24",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "MiniMax H3 视频生成条件 (分镜动作 + 星际参考)"
+    }
+  },
+  "6": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    },
+    "_meta": {
+      "title": "采样器"
+    }
+  },
+  "7": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "conditioning": [
+        "5",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "模型与角色条件"
+    }
+  },
+  "8": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 2026111032
+    },
+    "_meta": {
+      "title": "固定随机种子 · 可复现"
+    }
+  },
+  "9": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "scheduler": "beta",
+      "steps": 20,
+      "denoise": 1
+    },
+    "_meta": {
+      "title": "标准 20 步 · Beta"
+    }
+  },
+  "10": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "8",
+        0
+      ],
+      "guider": [
+        "7",
+        0
+      ],
+      "sampler": [
+        "6",
+        0
+      ],
+      "sigmas": [
+        "9",
+        0
+      ],
+      "latent_image": [
+        "5",
+        1
+      ]
+    },
+    "_meta": {
+      "title": "音视频联合采样"
+    }
+  },
+  "11": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "10",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "视频解码"
+    }
+  },
+  "12": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "10",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "音频解码"
+    }
+  },
+  "13": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "11",
+        0
+      ],
+      "fps": 24,
+      "audio": [
+        "12",
+        0
+      ],
+      "bit_depth": "auto",
+      "color_space": "sRGB",
+      "codec": "none"
+    },
+    "_meta": {
+      "title": "合成音视频 · 24 fps"
+    }
+  },
+  "14": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "13",
+        0
+      ],
+      "filename_prefix": "studio/minimax-original-shot040-20261111",
+      "format": "auto",
+      "codec": "auto"
+    },
+    "_meta": {
+      "title": "保存生成的视频"
+    }
+  },
+  "19": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "original_s01_canyon_wheat_20261111.jpg"
+    },
+    "_meta": {
+      "title": "角色参考1 (拉尔斯)"
+    }
+  },
+  "21": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "23",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "提取分镜视频动作帧"
+    }
+  },
+  "22": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "original_s01_040_clay_20261111.mp4"
+    },
+    "_meta": {
+      "title": "输入白模分镜视频"
+    }
+  },
+  "23": {
+    "class_type": "VideoTemporalCrop",
+    "inputs": {
+      "video": [
+        "22",
+        0
+      ],
+      "start_frame": 0,
+      "length": 141
+    },
+    "_meta": {
+      "title": "分镜镜头时序切片"
+    }
+  },
+  "24": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "original_s01_harvester_20261111.jpg"
+    }
+  }
+}

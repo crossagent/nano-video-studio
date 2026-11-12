@@ -1,0 +1,20 @@
+[
+  {
+    "node": "14",
+    "remote": {
+      "filename": "minimax-shot010-firstframe-verify-20261112_00001_.mp4",
+      "subfolder": "studio",
+      "type": "output",
+      "metadata": {
+        "kind": "video",
+        "width": 608,
+        "height": 256,
+        "duration": 6.583333333333333,
+        "fps": 24.0,
+        "frame_count": 158
+      }
+    },
+    "local": "output/0-minimax-shot010-firstframe-verify-20261112_00001_.mp4",
+    "size_bytes": 1384756
+  }
+]

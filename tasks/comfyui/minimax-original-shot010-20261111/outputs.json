@@ -1,0 +1,12 @@
+[
+  {
+    "node": "14",
+    "remote": {
+      "filename": "minimax-original-shot010-20261111_00001_.mp4",
+      "subfolder": "studio",
+      "type": "output"
+    },
+    "local": "output/0-minimax-original-shot010-20261111_00001_.mp4",
+    "size_bytes": 1054645
+  }
+]

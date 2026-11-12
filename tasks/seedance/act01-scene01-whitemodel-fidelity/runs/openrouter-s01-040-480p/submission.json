@@ -1,0 +1,10 @@
+{
+  "provider": "openrouter",
+  "submitted_at": "2026-11-10T17:59:15+0800",
+  "endpoint": "https://openrouter.ai/api/v1/videos",
+  "response": {
+    "id": "gen-vid-1794304745-qM14l6Vw9BxYbJU7yilq",
+    "polling_url": "https://openrouter.ai/api/v1/videos/gen-vid-1794304745-qM14l6Vw9BxYbJU7yilq",
+    "status": "pending"
+  }
+}

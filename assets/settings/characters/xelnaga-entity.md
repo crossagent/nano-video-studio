@@ -2,7 +2,7 @@
 
 - **用途**：远古神级造物 / 终极核心实体设定
 - **版本**：v1.0
-- **来源任务**：tasks/character-design-sotx-001
+- **来源任务**：tasks/imagegen/character-design-sotx-001
 - **关联资产**：`novels/StarCraft - Shadow of The Xel'Naga (2001).txt`、`assets/settings/characters/lars-bren.md`、`assets/settings/characters/xerana.md`
 
 ---

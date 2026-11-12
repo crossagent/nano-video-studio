@@ -1,0 +1,32 @@
+{
+  "job_file": "D:\\nano-video-studio\\tasks\\seedance\\act01-scene01-whitemodel-fidelity\\jobs\\job_openrouter_s01_full_480p_submit.local.json",
+  "warnings": [],
+  "assets": [
+    {
+      "field": "input_references",
+      "index": 1,
+      "type": "image_url",
+      "asset": "tasks/seedance/act01-scene01-whitemodel-fidelity/inputs/style-canyon-wheat.jpg",
+      "size_bytes": 33518,
+      "sha256": "80413000d5df41b9985e815b9b48e75ad9c1f56a8401f334c71b72856c128087",
+      "transport": "data-uri-base64"
+    },
+    {
+      "field": "input_references",
+      "index": 2,
+      "type": "image_url",
+      "asset": "tasks/seedance/act01-scene01-whitemodel-fidelity/inputs/style-harvester-material-580.jpg",
+      "size_bytes": 24327,
+      "sha256": "c23f535e7762b285a8d72098d5a0b9b4443efff64043c071c7c2045577689e71",
+      "transport": "data-uri-base64"
+    }
+  ],
+  "payload_summary": {
+    "model": "bytedance/seedance-2.5",
+    "prompt": "视频编辑：将@video1的18秒四镜白模改为写实电影画面。以@video1为唯一镜头与动作依据，保持原有切镜时刻、镜位、镜头运动、构图、透视、物体位置及动作先后。0–6秒从高处沿山口越过山脊俯冲至麦田；6–9.5秒山脚岩石近景，闪电击中岩石，岩石碎裂；9.5–12.5秒同一处碎石在画面中被向右行进的履带碾过；12.5–18秒切到车辆同侧后方中景跟拍，保持车头朝右。只参考@image1的黑色岩石、暗金麦田与风暴色调，以及@image2的工业红漆、金属和泥污材质；两张图仅用于纹理色彩，不采用其构图或车辆朝向。恶劣外星风暴，乌云、横雨、冷紫闪光，湿润黑色玄武岩和暗金麦穗，写实电影质感。保持岩石碎块与履带的接触和跨镜连续性。",
+    "duration": 18,
+    "resolution": "480p",
+    "aspect_ratio": "21:9",
+    "generate_audio": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "job_file": "D:\\nano-video-studio\\tasks\\seedance\\act01-scene01-whitemodel-fidelity\\jobs\\job_openrouter_s01_040_480p.json",
+  "warnings": [],
+  "assets": [
+    {
+      "field": "input_references",
+      "index": 0,
+      "type": "image_url",
+      "asset": "assets/settings/scenes/scene-01-bhekar-ro-wheatfield-storm.jpg",
+      "size_bytes": 967800,
+      "sha256": "d19b34eea85cd59dcb66ebaeb09a6d8e142d8005aeddbcb1265f22aba2472861",
+      "transport": "data-uri-base64"
+    }
+  ],
+  "payload_summary": {
+    "model": "bytedance/seedance-2.5",
+    "prompt": "参考@video1中的摄像机运动轨迹、空间构图比例、镜头透视和车辆行进节奏，1:1严格复刻@video1的机位调度与画面运动，彻底替换掉灰白模质感；主体外观材质与环境光影参考@image1：暴风雨肆虐的贝卡·罗黑麦平原上，一辆红漆斑驳的重型履带联合收割机沿泥泞车辙全速行进，履带咬地溅起泥水与麦屑，驾驶舱玻璃内两名驾驶员轮廓隐约可见，远山黑云压顶伴随冷紫闪电，35mm变形宽银幕真人电影实拍质感，写实摄影。",
+    "duration": 6,
+    "resolution": "480p",
+    "aspect_ratio": "21:9",
+    "generate_audio": false
+  }
+}

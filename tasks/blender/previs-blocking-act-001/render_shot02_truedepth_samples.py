@@ -110,7 +110,7 @@ bpy.ops.wm.save_as_mainfile(filepath=blend_path)
 print("Updated and saved:", blend_path)
 
 # Render sample test depth frames
-out_dir = r"D:\nano-video-studio\tasks\video-act01-shot02-reference-test"
+out_dir = r"D:\nano-video-studio\tasks\comfyui\video-act01-shot02-reference-test"
 for f in [1, 31, 62, 93, 124]:
     scene.frame_set(f)
     scene.render.filepath = os.path.join(out_dir, f"test_truedepth_sample_f{f:03d}.png")

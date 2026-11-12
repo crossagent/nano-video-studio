@@ -1,0 +1,68 @@
+{
+  "endpoint": "http://127.0.0.1:8188",
+  "assets": {},
+  "definition": {},
+  "system": {
+    "system": {
+      "os": "win32",
+      "ram_total": 34240802816,
+      "ram_free": 17763799040,
+      "comfyui_version": "0.43.0",
+      "required_frontend_version": "1.57.4",
+      "installed_templates_version": "0.11.97",
+      "required_templates_version": "0.11.97",
+      "comfy_package_versions": [
+        {
+          "name": "comfyui-frontend-package",
+          "installed": "1.59.0.dev2",
+          "required": "1.57.4"
+        },
+        {
+          "name": "comfyui-workflow-templates",
+          "installed": "0.11.97",
+          "required": "0.11.97"
+        },
+        {
+          "name": "comfyui-embedded-docs",
+          "installed": "0.5.15",
+          "required": "0.5.15"
+        },
+        {
+          "name": "comfy-aimdo",
+          "installed": "0.6.0",
+          "required": "0.6.0"
+        },
+        {
+          "name": "comfy-kitchen",
+          "installed": "0.2.40",
+          "required": "0.2.40"
+        }
+      ],
+      "python_version": "3.13.12 (main, Feb 12 2026, 00:38:53) [MSC v.1944 64 bit (AMD64)]",
+      "pytorch_version": "2.12.1+cu130",
+      "embedded_python": false,
+      "deploy_environment": "local-desktop2-standalone",
+      "argv": [
+        "ComfyUI/main.py",
+        "--lowvram",
+        "--extra-model-paths-config",
+        "D:/nano-video-studio/tasks/comfyui/minimax-act01-original-inputs-20261111/models.local.yaml",
+        "--input-directory",
+        "D:/Comfy-Desktop/ComfyUI-Shared/input",
+        "--output-directory",
+        "D:/Comfy-Desktop/ComfyUI-Shared/output"
+      ]
+    },
+    "devices": [
+      {
+        "name": "cuda:0 NVIDIA GeForce RTX 5060 Ti : cudaMallocAsync",
+        "type": "cuda",
+        "index": 0,
+        "vram_total": 17074421760,
+        "vram_free": 15911092224,
+        "torch_vram_total": 0,
+        "torch_vram_free": 0
+      }
+    ]
+  }
+}

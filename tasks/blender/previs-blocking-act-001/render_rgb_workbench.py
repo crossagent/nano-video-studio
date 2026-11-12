@@ -23,7 +23,7 @@ if tree:
     tree.links.clear()
     tree.links.new(rl.outputs['Image'], out.inputs[0])
 
-previs_dir = r"D:\nano-video-studio\tasks\video-act01-shot02-reference-test\previs_frames"
+previs_dir = r"D:\nano-video-studio\tasks\comfyui\video-act01-shot02-reference-test\previs_frames"
 os.makedirs(previs_dir, exist_ok=True)
 
 print("Rendering 124 RGB Previs frames with Workbench...")

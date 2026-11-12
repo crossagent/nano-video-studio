@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { bindParameters, resolveAssets } from './workflows.mjs';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const tasksRoot = path.join(root, 'tasks');
+const comfyTasks = path.join(tasksRoot, 'comfyui');
 const base = (process.env.COMFYUI_URL || 'http://127.0.0.1:8188').replace(/\/$/, '');
 export async function request(route, options = {}) {
   const response = await fetch(base + route, { ...options, signal: AbortSignal.timeout(30000) });
@@ -27,7 +29,16 @@ export function applyInputs(graph, overrides = {}) {
 }
 function taskDirectory(id) {
   if (!/^[a-zA-Z0-9][a-zA-Z0-9_-]*$/.test(id)) throw new Error('无效任务 ID');
-  return path.join(root, 'tasks', id);
+  return path.join(comfyTasks, id);
+}
+async function directoryExists(dir) {
+  try {
+    await fs.access(dir);
+    return true;
+  } catch (error) {
+    if (error.code === 'ENOENT') return false;
+    throw error;
+  }
 }
 async function json(file) { return JSON.parse((await fs.readFile(file, 'utf8')).replace(/^\uFEFF/, '')); }
 async function save(file, value) { await fs.writeFile(file, JSON.stringify(value, null, 2) + '\n'); }
@@ -74,8 +85,9 @@ export async function submit(manifestFile) {
   });
   // 批次全量预检；存在任务目录时拒绝重复提交。
   for (const item of prepared) {
-    try { await fs.access(item.dir); } catch (e) { if (e.code === 'ENOENT') continue; throw e; }
-    throw new Error(`任务目录已存在: ${item.job.task}，请检查原执行记录`);
+    if (await directoryExists(item.dir) || await directoryExists(path.join(tasksRoot, item.job.task))) {
+      throw new Error(`任务目录已存在: ${item.job.task}，请检查原执行记录`);
+    }
   }
   const nodeTypes = await (await request('/object_info')).json();
   for (const { graph } of prepared) {
@@ -95,6 +107,7 @@ export async function submit(manifestFile) {
     });
   }
   const system = await (await request('/system_stats')).json();
+  await fs.mkdir(comfyTasks, { recursive: true });
   for (const { job, dir, graph, assets } of prepared) {
     await fs.mkdir(dir);
     await fs.mkdir(path.join(dir, 'output'));
@@ -113,7 +126,10 @@ export async function submit(manifestFile) {
   }
 }
 export async function collect(id) {
-  const dir = taskDirectory(id);
+  const standardDir = taskDirectory(id);
+  const legacyDir = path.join(tasksRoot, id);
+  const useLegacy = !(await directoryExists(standardDir)) && await directoryExists(legacyDir);
+  const dir = useLegacy ? legacyDir : standardDir;
   const execution = await json(path.join(dir, 'execution.json')).catch(error => {
     if (error.code === 'ENOENT') return {};
     throw error;

@@ -155,18 +155,18 @@ print("Saved blend file:", save_blend)
 
 # Test render frame 1
 scene.frame_set(1)
-scene.render.filepath = r"D:\nano-video-studio\tasks\video-act01-shot02-reference-test\test_closeup_depth_f001.png"
+scene.render.filepath = r"D:\nano-video-studio\tasks\comfyui\video-act01-shot02-reference-test\test_closeup_depth_f001.png"
 bpy.ops.render.render(write_still=True)
 print("Rendered test_closeup_depth_f001.png")
 
 # Test render frame 60
 scene.frame_set(60)
-scene.render.filepath = r"D:\nano-video-studio\tasks\video-act01-shot02-reference-test\test_closeup_depth_f060.png"
+scene.render.filepath = r"D:\nano-video-studio\tasks\comfyui\video-act01-shot02-reference-test\test_closeup_depth_f060.png"
 bpy.ops.render.render(write_still=True)
 print("Rendered test_closeup_depth_f060.png")
 
 # Test render frame 124
 scene.frame_set(124)
-scene.render.filepath = r"D:\nano-video-studio\tasks\video-act01-shot02-reference-test\test_closeup_depth_f124.png"
+scene.render.filepath = r"D:\nano-video-studio\tasks\comfyui\video-act01-shot02-reference-test\test_closeup_depth_f124.png"
 bpy.ops.render.render(write_still=True)
 print("Rendered test_closeup_depth_f124.png")

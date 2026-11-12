@@ -98,8 +98,8 @@ out_node.location = (500, 0)
 bpy.ops.wm.save_as_mainfile(filepath=blend_path)
 print("Updated blend saved.")
 
-depth_dir = r"D:\nano-video-studio\tasks\video-act01-shot02-reference-test\depth_frames"
-previs_dir = r"D:\nano-video-studio\tasks\video-act01-shot02-reference-test\previs_frames"
+depth_dir = r"D:\nano-video-studio\tasks\comfyui\video-act01-shot02-reference-test\depth_frames"
+previs_dir = r"D:\nano-video-studio\tasks\comfyui\video-act01-shot02-reference-test\previs_frames"
 os.makedirs(depth_dir, exist_ok=True)
 os.makedirs(previs_dir, exist_ok=True)
 

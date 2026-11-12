@@ -30,7 +30,7 @@
 
 ## 2026-11-04 参考图更新
 
-七张参考图已按修订后的低对比度写实风格重绘，实际原图均为PNG。导弹塔形制参照StarCraft II游戏造型。来源任务：`tasks/scene-reference-sotx-002`；完整参数与提示词见该任务。
+七张参考图已按修订后的低对比度写实风格重绘，实际原图均为PNG。导弹塔形制参照StarCraft II游戏造型。来源任务：`tasks/imagegen/scene-reference-sotx-002`；完整参数与提示词见该任务。
 
 ### 贝卡·罗暴风麦田
 

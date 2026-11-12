@@ -33,7 +33,7 @@ Git 保存目录 README、规格、任务档案和可共享工作流。生成的
 
 ## 任务执行规范
 
-新任务使用独立目录 `tasks/<主工具>/<task-id>/`，例如 `tasks/blender/<task-id>/`。纯文本创作可归 `tasks/writing/`。现有任务按[工具索引](tasks/README.md)查找，迁移时逐项更新引用。
+任务使用独立目录 `tasks/<主工具>/<task-id>/`，例如 `tasks/blender/<task-id>/`。纯文本创作归 `tasks/writing/`。现有任务按[工具索引](tasks/README.md)查找。
 
 - `task.md`：任务目标、要求、主工具及辅助工具、输入资产路径及版本、验收标准与依赖。
 - `workflow.md`：本任务的执行步骤、工具、参数或预演方案。

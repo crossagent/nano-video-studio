@@ -1,0 +1,18 @@
+{
+  "provider": "openrouter",
+  "job_id": "gen-vid-1794313048-B4aU245fA4FU0cETLqDK",
+  "status": "completed",
+  "usage": {
+    "cost": 2.3168128,
+    "is_byok": false
+  },
+  "urls": [
+    "https://storage.googleapis.com/openrouter-generated-media-us/v1/user_2tefL0tIM29u8AeLYx244yMu0Az/gen-vid-1794313048-B4aU245fA4FU0cETLqDK/0?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=generated-media-writer%40openrouter-core.iam.gserviceaccount.com%2F20261110%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20261110T122102Z&X-Goog-Expires=86395&X-Goog-SignedHeaders=host&X-Goog-Signature=3164265773751af74812e21ce0c5ace3906e50e3a22e0b77cec5993194680619a5f14824a279259fab3e4b77e15c4224591a27d7308adef848fb8c7bc3b9b196c2157346c3ef08e103639425b57197001e0372443ffc106383b612b8f19a0333a5841ce92a58c8427364f21a50ca3939b65d6516fc2a2b0c7c03f5f1bae56881b806a7a9459c374a0a7d25fd21dc553cb8af930c70f21b04ebbc98912bae40cee07900da39c4034071da08d4f6167d3e09cacae2851708752d557d3a7e76d0b0a6c7ff8f6f8a16eb28672cb5898a0e0c34cbb88120cb1c21c7cb7a6447c670c395bae0e3ef3d1595e90108f66871901ce5b31c3ee4e58d796bb493335ce940ae"
+  ],
+  "unsigned_urls": [
+    "https://openrouter.ai/api/v1/videos/gen-vid-1794313048-B4aU245fA4FU0cETLqDK/content?index=0"
+  ],
+  "saved_files": {
+    "video": "D:\\nano-video-studio\\tasks\\seedance\\act01-scene01-whitemodel-fidelity\\runs\\openrouter-s01-full-reference-480p\\output\\openrouter-s01-full-reference-480p_openrouter.mp4"
+  }
+}

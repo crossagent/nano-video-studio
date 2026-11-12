@@ -1,0 +1,20 @@
+{
+  "task": "minimax-act01-wind-20261110",
+  "requirements": "S01-010 白模越脊俯冲",
+  "inputs": {
+    "5": {
+      "length": 141,
+      "prompt": "Use <Video 1> for camera movement, framing, timing, layout and actions. <Picture 1> supplies the stormy black rock and golden wheat appearance. <Picture 2> supplies the weathered red metal harvester appearance. Render as a realistic cinematic scene. Follow the video camera and action; preserve shot changes and subject positions. Violet lightning, rain, wet dark ground. The camera descends over a dark ridge, dives through the canyon and settles low over the wheat field."
+    },
+    "8": {
+      "noise_seed": 2026111001
+    },
+    "14": {
+      "filename_prefix": "studio/minimax-act01-wind-20261110"
+    },
+    "23": {
+      "start_frame": 0,
+      "length": 144
+    }
+  }
+}

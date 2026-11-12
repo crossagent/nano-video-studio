@@ -1,12 +1,33 @@
 .env
+.env.*
+!.env.example
 __pycache__/
 *.pyc
 .DS_Store
 *.db
+*.log
+*.local.log
+*.local.yaml
+*.local.yml
+*.local.json
 
-# 本机浏览器会话与独立平台检出目录
+# 本机浏览器会话、安装包、模型权重与独立平台检出目录
 /.browser_data/
 /platform/capcut-local/
+/ComfyUI*/
+*ComfyUI*Setup*
+*.exe
+*.msi
+*.msix
+*.zip
+*.7z
+*.rar
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.gguf
 
 # 生成媒体和制作工程保留在本机或独立存储
 *.png
@@ -57,6 +78,8 @@ __pycache__/
 !/tasks/**/*.mjs
 !/tasks/.gitkeep
 /tasks/**/work/deps/
+# 本机 CapCut 旧草稿仍引用的媒体路径
+/tasks/act01-visual-storyboards/
 
 /platform/comfyui/**/*.local.json
 
