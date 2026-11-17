@@ -34,7 +34,7 @@ description: 使用 Blender 制作 3D 白模动态分镜视频（Previs Video / 
 * **平台统一调用**：底层统一通过 `platform/blender/run.cmd` 调度执行，复用 `platform/blender/previs_toolkit.py` 预置工具。
 
 ### 2. 过程文件放在 task 中，方便人类参与迭代修改
-* **独立任务目录**：每一次具体的 Blender 分镜任务，必须且只能存放在 `tasks/blender/<task-id>/` 目录下；
+* **独立任务目录**：每一次具体的 Blender 分镜任务，必须且只能存放在 `project/<项目名>/tasks/blender/<task-id>/` 目录下；
 * **人机协同透明度**：
   * 场景构建与动画脚本（`build_previs_video.py`）、中间工程文件（`work/*.blend`）、预演导出视频（`output/*.mp4`）及调试日志（`log.md`）全部保留在该 task 目录内；
   * 便于人类创作者随时直接在桌面端 Blender GUI 中打开 `.blend` 工程，拖动时间轴检查相机与动画，手动交互式微调关键帧、焦段、构图与时长，完成人机双向迭代。
@@ -42,7 +42,7 @@ description: 使用 Blender 制作 3D 白模动态分镜视频（Previs Video / 
 ### 3. 成品必须经人类确认后，方可入库 asset 目录
 * **严禁自动擅自入库**：自动化脚本生成出视频仅代表任务完成初步渲染，**绝不自动等同于资产入库**；
 * **人类验收闭环（Human-in-the-Loop）**：生成预演视频后，任务状态置为 `review`，等待人类导演/制作人确认；
-* **正式归档**：只有在人类明确确认并验收通过后，才将最终定稿的 Previs 视频与 `.blend` 工程归档到 `assets/storyboards/` 正式资产库中，并在 `log.md` 记录验收结论与目标版本。
+* **正式归档**：只有在人类明确确认并验收通过后，才将最终定稿的 Previs 视频与 `.blend` 工程归档到 `project/<项目名>/assets/storyboards/` 正式资产库中，并在 `log.md` 记录验收结论与目标版本。
 
 ## 格式与验收
 
@@ -52,4 +52,4 @@ description: 使用 Blender 制作 3D 白模动态分镜视频（Previs Video / 
 
 ## 存放与归档
 
-路径相对项目根目录：任务文件统一放 tasks/blender/<task-id>/，工程放 work/，候选视频放 output/，脚本与 task.md、workflow.md、log.md 放任务根目录。人类明确验收通过后，将定稿视频、工程与镜头清单复制到 assets/storyboards/，记录版本、用途和来源任务，保留原始结果。
+路径相对项目根目录：任务文件统一放 project/<项目名>/tasks/blender/<task-id>/，工程放 work/，候选视频放 output/，脚本与 task.md、workflow.md、log.md 放任务根目录。人类明确验收通过后，将定稿视频、工程与镜头清单复制到 project/<项目名>/assets/storyboards/，记录版本、用途和来源任务，保留原始结果。

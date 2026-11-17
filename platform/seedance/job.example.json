@@ -1,6 +1,6 @@
 {
   "task": "seedance-example-001",
-  "task_dir": "tasks/seedance/act01-scene01-whitemodel-fidelity",
+  "task_dir": "project/starcraft/tasks/seedance/act01-scene01-whitemodel-fidelity",
   "model": "doubao-seedance-2-5-260628",
   "ratio": "21:9",
   "resolution": "480p",
@@ -15,12 +15,12 @@
     {
       "type": "image_url",
       "role": "reference_image",
-      "asset": "assets/settings/scenes/scene-01-bhekar-ro-wheatfield-storm.jpg"
+      "asset": "project/starcraft/assets/settings/scenes/scene-01-bhekar-ro-wheatfield-storm.jpg"
     },
     {
       "type": "video_url",
       "role": "reference_video",
-      "asset": "tasks/seedance/act01-scene01-whitemodel-fidelity/inputs/s01_040_clay.mp4"
+      "asset": "project/starcraft/tasks/seedance/act01-scene01-whitemodel-fidelity/inputs/s01_040_clay.mp4"
     }
   ]
 }

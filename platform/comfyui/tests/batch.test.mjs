@@ -5,7 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { spawn } from 'node:child_process';
-import { root } from '../client.mjs';
+import { root, projectRoot } from '../client.mjs';
 
 test('模拟服务验证批量参数、提交记录、下载及重复提交保护', async () => {
   const submitted = [];
@@ -34,9 +34,9 @@ test('模拟服务验证批量参数、提交记录、下载及重复提交保�
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const tmp = await fs.mkdtemp(path.join(os.tmpdir(), 'studio-comfy-'));
   const ids = [1, 2].map(n => `comfy-test-${process.pid}-${Date.now()}-${n}`);
-  const taskPath = id => path.join(root, 'tasks', 'comfyui', id);
-  const legacyTask = path.join(root, 'tasks', ids[0]);
-  const asset = `assets/settings/characters/${ids[0]}.png`;
+  const taskPath = id => path.join(projectRoot, 'tasks', 'comfyui', id);
+  const legacyTask = path.join(projectRoot, 'tasks', ids[0]);
+  const asset = `project/starcraft/assets/settings/characters/${ids[0]}.png`;
   const assetPath = path.join(root, asset);
   const indexPath = path.join(root, 'platform/comfyui/assets.local.json');
   const previousIndex = await fs.readFile(indexPath).catch(e => { if (e.code === 'ENOENT') return null; throw e; });

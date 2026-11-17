@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { applyInputs, root } from './client.mjs';
+import { applyInputs, root, projectRoot } from './client.mjs';
 
 // A definition gives stable names to GUI node inputs; no plugin is installed in ComfyUI.
 export function bindParameters(graph, definition = {}, parameters = {}) {
@@ -17,9 +17,9 @@ export async function resolveAssets(value, upload) {
   if (Array.isArray(value)) return Promise.all(value.map(v => resolveAssets(v, upload)));
   if (value && typeof value === 'object') {
     if (Object.hasOwn(value, 'asset')) {
-      if (Object.keys(value).length !== 1 || typeof value.asset !== 'string') throw new Error('资产引用应为 {"asset":"assets/..."}');
+      if (Object.keys(value).length !== 1 || typeof value.asset !== 'string') throw new Error('资产引用应为 {"asset":"project/starcraft/assets/..."}');
       const file = path.resolve(root, value.asset);
-      const relative = path.relative(await fs.realpath(path.join(root, 'assets')), await fs.realpath(file));
+      const relative = path.relative(await fs.realpath(path.join(projectRoot, 'assets')), await fs.realpath(file));
       if (relative.startsWith('..') || path.isAbsolute(relative)) throw new Error('只能引用 assets 内的资产');
       if (!/\.(png|jpg|jpeg|webp)$/i.test(file)) throw new Error('资产上传目前仅支持图片');
       return upload(file);

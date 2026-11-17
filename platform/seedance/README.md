@@ -48,7 +48,7 @@ $env:ARK_API_KEY = "您的火山方舟 API Key"
 ### 3. 单独查询/收集已有任务
 
 ```powershell
-& "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\bin\python.exe" platform/seedance/client.py collect tasks/seedance/<task-id> --wait
+& "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\bin\python.exe" platform/seedance/client.py collect project/starcraft/tasks/seedance/<task-id> --wait
 ```
 
 ---
@@ -67,7 +67,7 @@ $env:ARK_API_KEY = "您的火山方舟 API Key"
 
 ```powershell
 # 在 .env 配置 OPENROUTER_API_KEY=sk-or-...
-& "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\bin\python.exe" platform/seedance/openrouter_client.py validate tasks/seedance/act01-scene01-whitemodel-fidelity/jobs/job_openrouter_s01_040_480p.json
-& "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\bin\python.exe" platform/seedance/openrouter_client.py run tasks/seedance/act01-scene01-whitemodel-fidelity/jobs/job_openrouter_s01_040_480p.json
+& "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\bin\python.exe" platform/seedance/openrouter_client.py validate project/starcraft/tasks/seedance/act01-scene01-whitemodel-fidelity/jobs/job_openrouter_s01_040_480p.json
+& "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\bin\python.exe" platform/seedance/openrouter_client.py run project/starcraft/tasks/seedance/act01-scene01-whitemodel-fidelity/jobs/job_openrouter_s01_040_480p.json
 ```
 

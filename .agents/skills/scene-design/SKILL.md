@@ -34,6 +34,6 @@ Markdown 设定与图片索引、PNG 概念图与布局图；空间图注明方�
 
 ## 存放与归档
 
-以下路径相对项目根目录。要求、流程和执行记录写入 tasks/<task-id>/ 的 task.md、workflow.md、log.md；参考放 inputs/，草稿和可编辑源文件放 work/，候选导出放 output/。
+以下路径相对项目根目录。要求、流程和执行记录写入 project/<项目名>/tasks/<task-id>/ 的 task.md、workflow.md、log.md；参考放 inputs/，草稿和可编辑源文件放 work/，候选导出放 output/。
 
-按已有授权和验收标准正式采用后，将交付文件及说明复制到 assets/settings/scenes/，记录用途、版本、来源任务和关联资产，保留任务原始结果。
+按已有授权和验收标准正式采用后，将交付文件及说明复制到 project/<项目名>/assets/settings/scenes/，记录用途、版本、来源任务和关联资产，保留任务原始结果。

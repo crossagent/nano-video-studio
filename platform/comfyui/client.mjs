@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { bindParameters, resolveAssets } from './workflows.mjs';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const tasksRoot = path.join(root, 'tasks');
+export const projectRoot = path.join(root, 'project', 'starcraft');
+const tasksRoot = path.join(projectRoot, 'tasks');
 const comfyTasks = path.join(tasksRoot, 'comfyui');
 const base = (process.env.COMFYUI_URL || 'http://127.0.0.1:8188').replace(/\/$/, '');
 export async function request(route, options = {}) {
@@ -65,7 +66,7 @@ export async function syncAssets() {
       }
     }
   }
-  await walk(path.join(root, 'assets'));
+  await walk(path.join(projectRoot, 'assets'));
   await save(path.join(root, 'platform/comfyui/assets.local.json'), index);
   return index;
 }

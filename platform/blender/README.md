@@ -11,8 +11,8 @@
    - **统一调用工具**：提供统一的执行入口 `run.ps1`，封装无头后台运行（`-b`）、Python 脚本注入与参数映射；
    - **通用影视预演库**：提供 `previs_toolkit.py`，预置 2.39:1 宽银幕画幅规范、Workbench 高对比度视口、摄像机矩阵与快照导出接口。
 
-2. **任务层 (`tasks/blender/<task-id>/`)**：
-   - **任务独立存储**：每一次具体的 3D 建模、分镜预演（Previs）、相机调度、灯光或毛坯搭建任务，均必须独立存放在 `tasks/blender/<task-id>/` 下；
+2. **任务层 (`project/starcraft/tasks/blender/<task-id>/`)**：
+   - **任务独立存储**：每一次具体的 3D 建模、分镜预演（Previs）、相机调度、灯光或毛坯搭建任务，均必须独立存放在 `project/starcraft/tasks/blender/<task-id>/` 下；
    - **任务目录结构**：
      - `task.md`：任务目标、输入依赖、交付目标；
      - `workflow.md`：执行流程、镜头清单、参数规范；
@@ -21,8 +21,8 @@
      - `work/`：过程工程文件（`.blend` 草稿或几何缓存）；
      - `output/`：最终交付的视口渲染快照（PNG）或正式工程。
 
-3. **资产入库层 (`assets/storyboards/`)**：
-   - 任务验收通过后的正式成果，发布至资产目录（如 `assets/storyboards/previs_act01_blocking.blend`）。
+3. **资产入库层 (`project/starcraft/assets/storyboards/`)**：
+   - 任务验收通过后的正式成果，发布至资产目录（如 `project/starcraft/assets/storyboards/previs_act01_blocking.blend`）。
 
 ---
 
@@ -32,20 +32,20 @@
 
 ```powershell
 # 1. 运行任务专有 Python 脚本（默认无头后台执行）
-.\platform\blender\run.ps1 -Script "tasks/blender/previs-blocking-act-001/build_previs.py"
+.\platform\blender\run.ps1 -Script "project/starcraft/tasks/blender/previs-blocking-act-001/build_previs.py"
 
 # 2. 指定加载某个 .blend 文件并运行检查脚本
-.\platform\blender\run.ps1 -BlendFile "assets/storyboards/previs_act01_blocking.blend" -Script "tools/check_scene.py"
+.\platform\blender\run.ps1 -BlendFile "project/starcraft/assets/storyboards/previs_act01_blocking.blend" -Script "tools/check_scene.py"
 
 # 3. 传递自定义参数给 Python 脚本（脚本内通过 sys.argv[sys.argv.index('--') + 1:] 接收）
-.\platform\blender\run.ps1 -Script "tasks/blender/my-task/build.py" -- -Shot "Shot01" -Quality "High"
+.\platform\blender\run.ps1 -Script "project/starcraft/tasks/blender/my-task/build.py" -- -Shot "Shot01" -Quality "High"
 ```
 
 ---
 
 ## 三、通用预演工具库 (`previs_toolkit.py`)
 
-在 `tasks/blender/<task-id>/` 下的脚本中，可以直接导入平台工具库：
+在 `project/starcraft/tasks/blender/<task-id>/` 下的脚本中，可以直接导入平台工具库：
 
 ```python
 import sys

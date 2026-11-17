@@ -50,39 +50,35 @@ __pycache__/
 *.blend
 *.blend[0-9]*
 
-/assets/**/*
-!/assets/**/
-!/assets/**/*.md
-!/assets/**/*.json
-!/assets/**/.gitkeep
+/project/*/assets/**/*
+!/project/*/assets/**/
+!/project/*/assets/**/*.md
+!/project/*/assets/**/*.json
+!/project/*/assets/**/.gitkeep
 
-/tasks/**/*
-!/tasks/**/
-!/tasks/README.md
-!/tasks/*/README.md
-!/tasks/**/shot-list.md
-!/tasks/**/output/**/README.md
-!/tasks/**/task.md
-!/tasks/**/workflow.md
-!/tasks/**/log.md
-!/tasks/**/workflow.json
-!/tasks/**/inputs.json
-!/tasks/**/submission.json
-!/tasks/**/history.json
-!/tasks/**/outputs.json
-!/tasks/**/execution.json
-!/tasks/**/*.py
-!/tasks/**/*.ps1
-!/tasks/**/*.cmd
-!/tasks/**/*.sh
-!/tasks/**/*.mjs
-!/tasks/.gitkeep
-/tasks/**/work/deps/
+/project/*/tasks/**/*
+!/project/*/tasks/**/
+!/project/*/tasks/README.md
+!/project/*/tasks/*/README.md
+!/project/*/tasks/**/shot-list.md
+!/project/*/tasks/**/output/**/README.md
+!/project/*/tasks/**/task.md
+!/project/*/tasks/**/workflow.md
+!/project/*/tasks/**/log.md
+!/project/*/tasks/**/workflow.json
+!/project/*/tasks/**/inputs.json
+!/project/*/tasks/**/submission.json
+!/project/*/tasks/**/history.json
+!/project/*/tasks/**/outputs.json
+!/project/*/tasks/**/execution.json
+!/project/*/tasks/**/*.py
+!/project/*/tasks/**/*.ps1
+!/project/*/tasks/**/*.cmd
+!/project/*/tasks/**/*.sh
+!/project/*/tasks/**/*.mjs
+!/project/*/tasks/.gitkeep
+/project/*/tasks/**/work/deps/
 # 本机 CapCut 旧草稿仍引用的媒体路径
-/tasks/act01-visual-storyboards/
+/project/*/tasks/act01-visual-storyboards/
 
 /platform/comfyui/**/*.local.json
-
-# Windows Junctions
-/设定/
-/设定

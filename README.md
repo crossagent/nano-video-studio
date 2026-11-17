@@ -1,27 +1,27 @@
 # nano-video-studio
 
-工程按资产与任务管理。影视创作由不同工种协作完成，不设置编号阶段或固定顺序。
+工程按资产与任务管理。`project/<项目名>/` 分别保存各创作项目的小说、资产和任务；当前项目为 `project/starcraft/`。`platform/` 和技能由各项目共享。影视创作由不同工种协作完成，不设置编号阶段或固定顺序。
 
 ## 目录结构
 
-目录边界、定稿入库和第一幕试点见[目录与归档规则](DIRECTORY.md)。现有任务可从[工具索引](tasks/README.md)查找。
+目录边界、定稿入库和第一幕试点见[目录与归档规则](DIRECTORY.md)。现有任务可从[工具索引](project/starcraft/tasks/README.md)查找。
 
-- `novels/`：原著小说资源与参考文件。
-- `assets/scripts/`：采用的故事大纲、梗概、分场大纲与电影文学剧本。
-- `assets/settings/style/`：影视美术风格与视觉规范。
-- `assets/settings/characters/`（与 `设定/角色设定` 互通）：核心角色设定集与设计图。
-- `assets/settings/scenes/`（与 `设定/场景设定` 互通）：场景设定集、空间与光影基准。
-- `assets/storyboards/`：逐镜分镜脚本、分镜图、Blender 3D 预演工程与视口渲染。
-- `assets/clips/`：正式采用的动态与视频片段。
-- `assets/audio/`：配音、配乐、音效素材。
-- `assets/edits/`：采用的剪辑工程、时间线与交付导出。
-- `tasks/`：按主工具组织的制作任务、专用脚本、工作流和候选结果。
+- `project/starcraft/novels/`：原著小说资源与参考文件。
+- `project/starcraft/assets/scripts/`：采用的故事大纲、梗概、分场大纲与电影文学剧本。
+- `project/starcraft/assets/settings/style/`：影视美术风格与视觉规范。
+- `project/starcraft/assets/settings/characters/`：核心角色设定集与设计图。
+- `project/starcraft/assets/settings/scenes/`：场景设定集、空间与光影基准。
+- `project/starcraft/assets/storyboards/`：逐镜分镜脚本、分镜图、Blender 3D 预演工程与视口渲染。
+- `project/starcraft/assets/clips/`：正式采用的动态与视频片段。
+- `project/starcraft/assets/audio/`：配音、配乐、音效素材。
+- `project/starcraft/assets/edits/`：采用的剪辑工程、时间线与交付导出。
+- `project/starcraft/tasks/`：按主工具组织的制作任务、专用脚本、工作流和候选结果。
 - `platform/`：共享软件接口、运行器和可复用工作流模板。
 - `.agents/skills/`：资产管理、任务管理及各专业工种技能库。
 
 ## 资产管理规范
 
-`assets/` 是下游取用的正式资产库。每项资产只留当前定稿，采用结论须明确到具体文件及用途。
+`project/starcraft/assets/` 是下游取用的正式资产库。每项资产只留当前定稿，采用结论须明确到具体文件及用途。
 每项资产均配有说明文档（同名 `.md` 或专用规格），记录用途、版本、来源任务及关联资产：
 - 角色设定保留视觉锚点、服装细节与色板 Hex；
 - 场景设定保留空间关系、摄影构图与光影基准；
@@ -33,7 +33,7 @@ Git 保存目录 README、规格、任务档案和可共享工作流。生成的
 
 ## 任务执行规范
 
-任务使用独立目录 `tasks/<主工具>/<task-id>/`，例如 `tasks/blender/<task-id>/`。纯文本创作归 `tasks/writing/`。现有任务按[工具索引](tasks/README.md)查找。
+任务使用独立目录 `project/starcraft/tasks/<主工具>/<task-id>/`，例如 `project/starcraft/tasks/blender/<task-id>/`。纯文本创作归 `project/starcraft/tasks/writing/`。现有任务按[工具索引](project/starcraft/tasks/README.md)查找。
 
 - `task.md`：任务目标、要求、主工具及辅助工具、输入资产路径及版本、验收标准与依赖。
 - `workflow.md`：本任务的执行步骤、工具、参数或预演方案。

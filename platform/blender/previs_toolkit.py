@@ -1,7 +1,7 @@
 """
 platform/blender/previs_toolkit.py
 影视级 3D Previs 与相机调度通用工具库 (Universal Previs Toolkit for Blender 5.x)
-供 tasks/blender/<task-id>/ 脚本调用，统一构图、材质、相机矩阵与快照输出规范。
+供 project/starcraft/tasks/blender/<task-id>/ 脚本调用，统一构图、材质、相机矩阵与快照输出规范。
 """
 
 import bpy

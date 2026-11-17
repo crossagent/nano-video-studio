@@ -8,7 +8,7 @@
 
 1. **`blender/` (Blender 3D 制作引擎)**：
    - 影视 3D 分镜预演（Previs）、相机调度轨迹（Camera Blocking）、粗模搭建与视口渲染快照；
-   - 统一由 `platform/blender/run.ps1` 调度，任务文件存放在 `tasks/blender/<task-id>/`；
+   - 统一由 `platform/blender/run.ps1` 调度，任务文件存放在 `project/starcraft/tasks/blender/<task-id>/`；
    - 详细接口与通用工具参见 [Blender 平台规范](blender/README.md)。
 
 2. **`comfyui/` (ComfyUI 本地图像与视频工作流)**：

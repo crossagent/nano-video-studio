@@ -31,6 +31,6 @@ description: 制作和维护正式资产的说明、索引与版本记录，归�
 
 ## 存放与归档
 
-路径相对项目根目录：故事和剧本放 assets/scripts/；美术规范放 assets/settings/style/；角色放 assets/settings/characters/；场景放 assets/settings/scenes/；分镜与预演放 assets/storyboards/；正式动态片段放 assets/clips/；配音、配乐与音效放 assets/audio/。说明与对应文件同目录，不创建编号阶段目录。
+路径相对项目根目录：故事和剧本放 project/<项目名>/assets/scripts/；美术规范放 project/<项目名>/assets/settings/style/；角色放 project/<项目名>/assets/settings/characters/；场景放 project/<项目名>/assets/settings/scenes/；分镜与预演放 project/<项目名>/assets/storyboards/；正式动态片段放 project/<项目名>/assets/clips/；配音、配乐与音效放 project/<项目名>/assets/audio/。说明与对应文件同目录，不创建编号阶段目录。
 
-草稿与候选产物保留在来源 tasks/ 目录，入库使用复制方式。任务档案本身不转移到 assets/。
+草稿与候选产物保留在来源 project/<项目名>/tasks/ 目录，入库使用复制方式。任务档案本身不转移到 project/<项目名>/assets/。

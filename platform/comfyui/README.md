@@ -39,7 +39,7 @@ node platform/comfyui/client.mjs submit platform/comfyui/batch.local.json
 node platform/comfyui/client.mjs collect video-shot-001
 ```
 
-submit 顺序入队后立即返回，不等待 GPU 执行结束。collect 查询一次历史；尚未完成时稍后再调用。脚本保存实际提交的完整工作流、输入覆盖、prompt_id、历史与输出清单，结果下载到 `tasks/comfyui/<task-id>/output/`。collect 也能读取此前放在 `tasks/<task-id>/` 的记录。任务文档保留要求、流程和执行记录，验收后由 Codex 将采用结果归入 assets。
+submit 顺序入队后立即返回，不等待 GPU 执行结束。collect 查询一次历史；尚未完成时稍后再调用。脚本保存实际提交的完整工作流、输入覆盖、prompt_id、历史与输出清单，结果下载到 `project/starcraft/tasks/comfyui/<task-id>/output/`。collect 也能读取此前放在 `project/starcraft/tasks/<task-id>/` 的记录。任务文档保留要求、流程和执行记录，验收后由 Codex 将采用结果归入 assets。
 
 网络中断后不自动重提，避免重复消耗 GPU；查看任务 submission.json 与 ComfyUI 队列确认。已存在的任务目录拒绝重复提交。批次部分提交失败时，保留成功任务，只为剩余任务另建批次。
 
@@ -55,7 +55,7 @@ submit 顺序入队后立即返回，不等待 GPU 执行结束。collect 查询
   "parameters": {
     "prompt": "人物转头看向窗外",
     "seed": 42,
-    "reference": { "asset": "assets/settings/characters/hero-v1.png" }
+    "reference": { "asset": "project/starcraft/assets/settings/characters/hero-v1.png" }
   }
 }
 ```

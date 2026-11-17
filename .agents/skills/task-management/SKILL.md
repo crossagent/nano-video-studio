@@ -30,6 +30,6 @@ description: 制作和维护本工程任务档案，记录要求、制作流程�
 
 ## 存放与归档
 
-路径相对项目根目录：普通任务放 tasks/<task-id>/；Blender 任务放 tasks/blender/<task-id>/。task.md、workflow.md、log.md 位于任务根目录；参考放 inputs/，工程与草稿放 work/，候选导出放 output/，任务专用脚本可放任务根目录。
+路径相对项目根目录：普通任务放 project/<项目名>/tasks/<task-id>/；Blender 任务放 project/<项目名>/tasks/blender/<task-id>/。task.md、workflow.md、log.md 位于任务根目录；参考放 inputs/，工程与草稿放 work/，候选导出放 output/，任务专用脚本可放任务根目录。
 
-任务档案留在原目录；正式采用的创作产物复制到 assets/ 对应类型目录，保留任务原始结果并记录目标版本。遵循用户已有授权，不因目录规则增加审批；分镜预演的人工验收要求见对应 skill。
+任务档案留在原目录；正式采用的创作产物复制到 project/<项目名>/assets/ 对应类型目录，保留任务原始结果并记录目标版本。遵循用户已有授权，不因目录规则增加审批；分镜预演的人工验收要求见对应 skill。
